@@ -522,81 +522,21 @@ hr{
 /*general*/
 .slider {
         width: auto;
-        margin: 40px auto;
+        margin: 2em 8.333%;
     }
-.slick-slide {
-      margin: 10px 20px;
-	}
-.slick-prev:before,
-.slick-next:before {
- 	color: #fec951 !important;
 
-}
-
-.slick-next:before {
-
-	margin-right: -10px;
-}
-.slick-prev:before {
-
-	margin-left: -10px;
-
-}
-.slider-education-pic{
-	height: 300px;
-}
-.slick-dots li button:before{
-	color: #fec951 !important;
-	font-size: 10px;
-	margin-top: 20px !important;
-}
-.slick-arrows{
-	background-color: #fec951 !important;
-
-}
 /*education*/
 .slider-education-pic, .slider-education-pic img{
 	height: 300px;
 	width: 100%;
 }
-.slider-education-content{
-	height: 100px;
-  	margin-bottom: 0px;
-}
-#micro-pic{
-	height: 300px !important;
-}
+
+
 /*portfolio*/
 .portfolio-section{
 	padding-top: 50px;
 }
-.slider-portfolio-pic{
-	height: 350px !important;
-	margin: 5px auto;
-  	width:100%;
-}
-.slider-portfolio-content{
-	height: 140px;
-	margin: 30px 10px auto;
-}
-#portfolio-text-content{
-  margin-top: 80px;
-}
-.slider-portfolio-pic img{
-	width: 100%;
-	height: 350px;
-}
-.slider-portfolio-nav, .slider-portfolio-nav img{
-	height: 50px ;
-	width: 100%;
-	background-size: cover;
-}
-.slider-portfolio-nav{
-	width: 100%;
-}
-button.slick-next.slick-arrow,button.slick-prev.slick-arrow  {
-	margin-top: 10px !important;
-}
+
 /*====================end of slick===============*/
 /* === skills === */
 
@@ -861,4 +801,19 @@ button.slick-next.slick-arrow,button.slick-prev.slick-arrow  {
     position: relative;
     margin: 1em 0 2em 0;
     color: black;
+}
+
+/* === education === */
+.education-section .row{
+    display: flex;
+    flex-direction: column;
+}
+.education-section #education{
+    flex-basis: 70%;
+ 
+}
+.education-section #education img{
+       align-self: center;
+    margin: 2em 8.33%;
+    width: 65%;  
 }
