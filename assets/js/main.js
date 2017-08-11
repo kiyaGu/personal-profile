@@ -13,14 +13,27 @@ $(function($, window, document) {
    //for animating the progress bar to different sizes
      window.addEventListener('scroll', function() {
         var place = document.body.scrollTop;
-        //var animateOn = document.getElementById('animate-progress-bar').offsetTop;
-
-        function log(txt) {
-            console.log(txt);
-        }
         var eTop = $('#animate-progress-bar').offset().top; //get the offset top of the element
         var animateOn = eTop - $(window).scrollTop();
- 
+        //start the skills progress bar to animate when the user scrolls to #animate-progress-bar
+        if (animateOn < 89) {
+            (function move() {
+                let id = setInterval(frame, 10);
+                function frame() {
+                    $(".pr1,.pr2,.pr4,.pr5,.pr6").width("80%");
+                    $(".pr3").width("90%");
+                    $(".pr8").width("50%");
+                    $(".pr7").width("40%");
+                    $(".pr10").width("45%");
+                    $(".pr9,.pr11, .pr12").width("60%");
+                    $('.progress-bar-text').removeClass('progress-bar-text-display');
+                    this.removeEventListener('scroll', arguments.callee, false);
+                    clearInterval(id);
+                }
+            })();
+              
+        }
+    });
     //parallax scrolling
     $(function() {
         // Cache the Window object
