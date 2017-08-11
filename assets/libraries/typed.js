@@ -126,7 +126,7 @@
 			if (this.stringsElement) {
 				this.strings = [];
 				this.stringsElement.hide();
-				console.log(this.stringsElement.children());
+//				console.log(this.stringsElement.children());
 				var strings = this.stringsElement.children();
 				$.each(strings, function(key, value){
 					self.strings.push($(value).html());
@@ -417,7 +417,7 @@
 		// false = infinite
 		loopCount: false,
 		// show cursor
-		showCursor: true,
+		showCursor: false,
 		// character for cursor
 		cursorChar: "|",
 		// attribute to type (null == text)

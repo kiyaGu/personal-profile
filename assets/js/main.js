@@ -10,7 +10,17 @@ $(function($, window, document) {
             typeSpeed: 80
         });
     });
-   
+   //for animating the progress bar to different sizes
+     window.addEventListener('scroll', function() {
+        var place = document.body.scrollTop;
+        //var animateOn = document.getElementById('animate-progress-bar').offsetTop;
+
+        function log(txt) {
+            console.log(txt);
+        }
+        var eTop = $('#animate-progress-bar').offset().top; //get the offset top of the element
+        var animateOn = eTop - $(window).scrollTop();
+ 
     //parallax scrolling
     $(function() {
         // Cache the Window object
