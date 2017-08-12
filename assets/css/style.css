@@ -188,18 +188,18 @@ button .btn:focus{
 	border: 1px solid #fec951;
 	position: relative;
 }
-.badge.social.github{
+.social-links .badge.social.github{
     left: 25px;
 }
-.badge.social.facebook{
-	right: 25px !important;
+.social-links .badge.social.facebook{
+	right: 25px;
 }
-.badge.social.gplus{
-	right: 12px !important;
+.social-links .badge.social.gplus{
+	right: 12px;
 }
 
-.badge.social.twitter{
-	left: 12px !important;
+.social-links .badge.social.twitter{
+	left: 12px;
 }
 .badge.social.github:hover {
   background: #FFFFFF;
@@ -218,8 +218,9 @@ button .btn:focus{
     background: #db4b39;
 }
 hr{
-	margin-bottom: 30px !important;
-	border-color: #fec951 !important;
+	margin-bottom: 30px;
+	border-color: #fec951;
+    width: 100%;
 }
 .text-success{
 	color: #fec951 !important;
@@ -421,7 +422,7 @@ hr{
 
 /* === about-me section layout === */
 #about-me{
-	background: url(../images/laptop-926775.jpg) 50% 0 repeat fixed; 
+	background:  url(../images/laptop-926775.jpg) 50% 0 repeat fixed; 
 	background-size: cover;	
     height: 500px; 
  	margin: 0 auto; 
@@ -494,7 +495,8 @@ hr{
 	padding-top: 110px;
     width: 25%;
 }
-#download-resume .btn{
+#download-resume .btn,
+#send-button{
 	color:  rgb(52, 50, 75);
     font-size: 1.05em;
     padding: .4em 3em;
@@ -844,8 +846,7 @@ hr{
 
 /* === portfolio section layout === */
 .portfolio-section{
-	background: url(https://www.dropbox.com/s/vm03q1iymm1x74j/computer-1833058_1280.png?dl=1) 100% 0
-    repeat fixed;
+	background: url(../images/monitor-933392_1920.jpg) 100% 0 repeat fixed;
 	background-size: cover;
  	margin: 0 auto;
   	width: 100%;
@@ -903,24 +904,93 @@ hr{
 .contact-me-section{
 	padding-top: 50px;
 }
-#send-button{
-	color:  #34324b !important;
+#contact-me {
+    display: flex;
+    flex-direction: column;
 }
+
+#contact-me .row{
+    display: flex;
+    flex-direction: column;
+    
+    margin: 2em 8.63%;
+}
+#contact-form{
+    width: 60%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-self: center;
+}
+#contact-me .form-group{
+    display: flex;
+    justify-content:space-around;
+    margin: 2em 0;
+}
+
+.form-group input,
+.form-group textarea{
+    flex-basis: 50%;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-group label{
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    align-self: center;
+}
+.form-group #send-button{
+    flex-basis: 55%;
+    margin-left: 30%; 
+    border: none;
+}
+
 #contact-me hr{
-	margin-bottom: 20px !important;
+	margin-bottom: 20px;
 }
 #contact-me .container{
-	padding-top: 10px !important;
+	padding-top: 10px;
 }
-#social-link-bottom{
-	margin-top: 5px !important;
+#social-link-bottom > ul{
+    display: flex;
+	margin-top: 5px;
+    justify-content: space-between;
+    margin: 0 33.333%;
+    list-style: none;
+}
+#social-link-bottom ul li{
+    flex-basis: 10%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    
+}
+#social-link-bottom li a{
+    padding: 5px 8px;
+    font-size: 1em;
+}
+#social-link-bottom a.badge.social.gplus{
+	padding: 5px 5px;
+}
+#social-link-bottom a.badge.social.facebook{
+	padding: 5px 10px;
 }
 footer{
-  	background: url(https://www.dropbox.com/s/7yzw111fl4tp55t/code-938776.jpg?dl=1) no-repeat !important;
+    
+  	background: url(../images/code-938776.jpg) no-repeat;
 	background-size: cover;
     color:#fec85d;
     padding:20px 0 10px 10px;
     font-size: 12px;
+}
+footer .container{
+    display: flex;
+    justify-content: center;
 }
 footer p{
     margin:0;
