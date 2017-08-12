@@ -43,11 +43,15 @@
 body{
   	line-height: 150%;
 /*    margin-top: 50px;*/
-    font-family: 'Raleway', Helvetica, sans-serif;
+    font: 200 1em/1.5em 'Raleway', Helvetica, sans-serif;
     font-size: 16px;
     background: url(../images/code-938776.jpg) 100% 0 repeat fixed;
-	 -webkit-font-smoothing: antialiased;
 	background-size: cover;
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 /* === GLOBAL === */
@@ -56,7 +60,7 @@ section{
 	margin: 20px 0;		
 }
 section div.container{
-	background: url(../images/dark-bg.jpg);		
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, .7)), url(../images/dark-bg.jpg);		
 	padding: 20px;	
 	margin: 0 8.63%;
 /*	opacity: 0.9;*/
@@ -90,6 +94,13 @@ h4{
 p{
     margin: 0 0 15px;
 }
+strong {
+  font-weight: 600;
+}
+p {
+  font-weight: 200;
+  padding-bottom: 10px;
+}
 p.lead{
     font-weight: normal;
 }
@@ -122,8 +133,6 @@ button, input, .btn, a.btn {
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -269,6 +278,18 @@ hr{
 }
 .navbar-right{
     float: right;
+}
+.navbar-toggle {
+    position: relative;
+    float: right;
+    padding: 9px 10px;
+    margin-top: 8px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
 }
 .container{
     width : 85%;
@@ -522,7 +543,7 @@ hr{
 /*general*/
 .slider {
         width: auto;
-        margin: 2em 8.333%;
+        margin: 2em 8.63%;
     }
 
 /*education*/
@@ -533,9 +554,11 @@ hr{
 
 
 /*portfolio*/
+/*
 .portfolio-section{
 	padding-top: 50px;
 }
+*/
 
 /*====================end of slick===============*/
 /* === skills === */
@@ -557,11 +580,11 @@ hr{
 #skills, #experience, #education{
     display: flex;
     flex-direction: column;
-    padding: 2em 8.333%;
+    padding: 2em 8.63%;
 }
 #skills #resume-heading,
 #skills #skill-progress{
-     padding: 2em 8.333%;   
+     padding: 2em 8.63%;   
 }
 
 .heading{
@@ -813,7 +836,107 @@ hr{
  
 }
 .education-section #education img{
-       align-self: center;
-    margin: 2em 8.33%;
+    align-self: center;
+    margin: 2em 8.63%;
     width: 65%;  
 }
+
+
+/* === portfolio section layout === */
+.portfolio-section{
+	background: url(https://www.dropbox.com/s/vm03q1iymm1x74j/computer-1833058_1280.png?dl=1) 100% 0
+    repeat fixed;
+	background-size: cover;
+ 	margin: 0 auto;
+  	width: 100%;
+  	max-width: 1920px;
+  	position: relative;
+}
+.portfolio-section div.container {
+    display: flex;
+    flex-direction: column;
+}
+.portfolio-section div.container>div{
+    margin: 2em 8.63%;
+}
+.portfolio-section h2{
+  margin-bottom:30px;
+}
+#portfolio{
+    display: flex;
+}
+
+.slider-portfolio-content{
+    width: 100%;
+}
+#portfolio-pic{
+   flex-basis: 80%; 
+}
+#portfolio-text-content{
+    flex-basis: 20%;  
+}
+.slider-portfolio-content{
+    min-height: 250px;
+    padding-top: 2em;
+}
+#portfolio-pic,
+#portfolio-text-content{
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.slider-portfolio-pic .slide-item img{
+    height: 400px;
+    width: 90%;
+}
+
+/* === contact-me/footer section layout === */
+.contact-me-section{
+/*	background: url(https://www.dropbox.com/s/4cif10lq79syt3p/at-64056.jpg?dl=1) 50% 0 repeat fixed;
+*/	min-height: 720px;
+	background-size: cover;
+ 	margin: 0 auto;
+  	width: 100%;
+  	max-width: 1920px;
+  	position: relative;
+}
+.contact-me-section{
+	padding-top: 50px;
+}
+#send-button{
+	color:  #34324b !important;
+}
+#contact-me hr{
+	margin-bottom: 20px !important;
+}
+#contact-me .container{
+	padding-top: 10px !important;
+}
+#social-link-bottom{
+	margin-top: 5px !important;
+}
+footer{
+  	background: url(https://www.dropbox.com/s/7yzw111fl4tp55t/code-938776.jpg?dl=1) no-repeat !important;
+	background-size: cover;
+    color:#fec85d;
+    padding:20px 0 10px 10px;
+    font-size: 12px;
+}
+footer p{
+    margin:0;
+}
+footer a:link, footer a:visited{
+    color:cornsilk;
+}
+footer a:hover{
+    color: #dd5638;
+}
+
+@media (min-width: 768px){
+  .navbar-toggle {
+    display: none;
+}  
+}
+
+
+
