@@ -12,15 +12,16 @@ $(function($, window, document) {
     });
     //for animating the progress bar to different sizes
     window.addEventListener('scroll', function() {
-        var place = document.body.scrollTop;
-        var eTop = $('#animate-progress-bar').offset().top; //get the offset top of the element
-        var animateOn = eTop - $(window).scrollTop();
+        let place = document.body.scrollTop;
+        let eTop = $('#animate-progress-bar').offset().top; //get the offset top of the element
+        let animateOn = eTop - $(window).scrollTop();
         //start the skills progress bar to animate when the user scrolls to #animate-progress-bar
         if (animateOn < 89) {
             (function move() {
                 let id = setInterval(frame, 10);
 
                 function frame() {
+                    setWidth(".pr1,.pr2,.pr4,.pr5,.pr6", "80%");
                     setWidth(".pr1,.pr2,.pr4,.pr5,.pr6", "80%");
                     setWidth(".pr3", "90%");
                     setWidth(".pr8", "50%");
@@ -42,35 +43,66 @@ $(function($, window, document) {
     //parallax scrolling
     $(function() {
         // Cache the Window object
-        var $window = $(window);
+        let $window = $(window);
         // Parallax Backgrounds
         // Tutorial: http://code.tutsplus.com/tutorials/a-simple-parallax-scrolling-technique--net-27641
         $('section[data-type="background"]').each(function() {
-            var $bgobj = $(this); // assigning the object
+            let $bgobj = $(this); // assigning the object
             $(window).scroll(function() {
                 //scroll the background at var speed
                 // the yPos is a negative value because we're scrolling it up
-                var yPos = -(($window.scrollTop() - $bgobj.offset().top) / $bgobj.data('speed'));
+                let yPos = -(($window.scrollTop() - $bgobj.offset().top) / $bgobj.data('speed'));
                 // put together our final background position
-                var coords = '50%' + yPos + 'px';
+                let coords = '50%' + yPos + 'px';
                 //Move the background
                 $bgobj.css({ backgroundPosition: coords });
             });
         });
     });
 
-    //jQuery to collapse the navbar on scroll
-    $(window).scroll(function() {
-        if ($(".navbar").offset().top > 50) {
-            $(".navbar-fixed-top").addClass("top-nav-collapse");
-        } else {
-            $(".navbar-fixed-top").removeClass("top-nav-collapse");
-        }
+    // Hide Header on scroll down
+    let didScroll,
+        lastScrollTop = 0,
+        delta = 5,
+        navbarHeight = $('.navbar-fixed-top').outerHeight();
+
+    $(window).scroll(function(event) {
+        didScroll = true;
     });
+
+    setInterval(function() {
+        if (didScroll) {
+            hasScrolled();
+            didScroll = false;
+        }
+    }, 250);
+
+    function hasScrolled() {
+        let st = $(this).scrollTop();
+
+        // Make sure they scroll more than delta
+        if (Math.abs(lastScrollTop - st) <= delta)
+            return;
+
+        // If they scrolled down and are past the navbar, add class .nav-up.
+        // This is necessary so you never see what is "behind" the navbar.
+        if (st > lastScrollTop && st > navbarHeight) {
+            // Scroll Down
+            $('.navbar-fixed-top').removeClass('nav-down').addClass('nav-up animated fadeInDown');
+        } else {
+            // Scroll Up
+            if (st + $(window).height() < $(document).height()) {
+                $('.navbar-fixed-top').removeClass('nav-up').addClass('nav-down');
+            }
+        }
+
+        lastScrollTop = st;
+    }
+
     //jQuery for page scrolling feature - requires jQuery Easing plugin
     $(function() {
         $('a.page-scroll').bind('click', function(event) {
-            var $anchor = $(this);
+            let $anchor = $(this);
             $('html, body').stop().animate({
                 scrollTop: $($anchor.attr('href')).offset().top
             }, 1500, 'easeInOutExpo');

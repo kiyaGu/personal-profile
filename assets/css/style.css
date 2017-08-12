@@ -284,16 +284,59 @@ hr {
 
 /* === navigation section layout === */
 
+.navbar-wrapper .container {
+    padding-left: 8.63%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .navbar-wrapper ul {
     display: flex;
     justify-content: space-between;
 }
 
 .navbar {
-    justify-content: space-around;
-    flex-direction: column-reverse;
     background: url(../images/code-938776.jpg) 100% 0 no-repeat;
     background-size: cover;
+}
+
+.navbar-fixed-top {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    height: 50px;
+    top: 0;
+    transition: top 0.2s ease-in-out;
+}
+
+.nav-up {
+    top: -60px;
+}
+
+.navbar-brand>img {
+    display: block;
+    margin-top: 1em;
+}
+
+.navbar-toggle {
+    position: relative;
+    float: right;
+    padding: 9px 10px;
+    margin-top: 8px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.navbar-toggle .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
 }
 
 .navbar .container {
@@ -319,17 +362,12 @@ hr {
 }
 
 .navbar-nav>li.active {
-    background-color: #3f3e50;
+    /*    background-color: #3f3e50;*/
 }
 
 .navbar-brand img {
     width: 30px;
     height: 30px;
-}
-
-.navbar-collapse li.active {
-    color: white;
-    background-color: #3f3e50;
 }
 
 .navbar {
@@ -767,8 +805,10 @@ hr {
     transition: width .6s ease;
 }
 
-.progress-bar-striped:after {
+.progress-bar:after {
     content: "";
+    width: inherit;
+    /*take the width of the progress-bar */
     position: absolute;
     top: 0;
     left: 0;
@@ -1194,8 +1234,311 @@ footer a:hover {
     color: #dd5638;
 }
 
+
+/*==================== MEDIA QUERIES===============*/
+
 @media (min-width: 768px) {
     .navbar-toggle {
         display: none;
+    }
+}
+
+@media screen and (max-width:768px) {
+    /* === general section layout === */
+    section {
+        padding: 10px;
+    }
+    hr {
+        margin: 10px !important;
+    }
+    .row {
+        margin: 10px 0 !important;
+    }
+    .badge.social {
+        padding-top: 0px;
+    }
+    /* === home section layout === */
+    #home div.container {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+    #introduction {
+        padding-top: 0;
+    }
+    #profile-pic {
+        margin-top: 25px !important;
+        padding-right: 5px;
+        margin-bottom: 10px !important;
+    }
+    #profile-pic img {
+        border-radius: 50%;
+        height: 250px;
+        width: auto;
+        padding: 0;
+    }
+    #typed strong {
+        font-weight: 800;
+        font-size: 24px;
+    }
+    /* === resume section layout === */
+    .slick-next:before {
+        margin-right: 0px;
+    }
+    .slick-prev:before {
+        margin-left: 0px;
+    }
+    .slide-item img {
+        height: 200px;
+    }
+    /* === skills === */
+    .skills {
+        padding-bottom: 15px;
+    }
+    .progress {
+        height: 20px !important;
+    }
+    /* === experience === */
+    .experience h1 {
+        padding: 30px 0;
+    }
+    .slider-education-pic {
+        height: 200px;
+        background-size: cover;
+    }
+    .slick-slide {
+        margin: 0px 5px;
+    }
+    #micro-pic {
+        height: 200px !important;
+    }
+    /* === education === */
+    .education {
+        padding: 10px 0;
+    }
+    .education h1 {
+        padding: 30px 0;
+    }
+    #hr-education {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width:568px) {
+    section {
+        padding: 10px 10px 30px 10px;
+    }
+    section div.container {
+        padding: 10px 0;
+    }
+    #home div.container {
+        margin-top: 0 !important;
+        padding-top: 10px !important;
+    }
+    #personal-info h3 {
+        margin: 10px 0 15px 0 !important;
+        color: #fec951;
+    }
+    h2 {
+        margin: 10px 10px 15px 0;
+        font-size: 16px;
+    }
+    /*
+.home-section{
+	margin-bottom: 0px;
+}
+*/
+    #profile-pic {
+        margin-top: 5px !important;
+        padding-right: 5px;
+        margin-bottom: 10px !important;
+    }
+    #profile-pic img {
+        border-radius: 50%;
+        height: 150px;
+        width: 40%;
+        padding: 0;
+    }
+    #typed strong {
+        font-weight: 800;
+        font-size: 24px;
+    }
+    #typed {
+        font-size: 1.2rem;
+    }
+    hr {
+        margin: 10px !important;
+    }
+    .badge.social {
+        margin-bottom: 5px;
+    }
+    .about-me-section {
+        padding: 40px 10px 20px 10px !important;
+    }
+    #about-me-intro {
+        padding-top: 0px !important;
+    }
+    .slick-next:before {
+        margin-right: 0px;
+    }
+    .slick-prev:before {
+        margin-left: 0px;
+    }
+    .slick-slide {
+        margin: 0px 5px;
+    }
+    #micro-pic {
+        height: 150px !important;
+    }
+    .portfolio-section h2 {
+        margin-bottom: 5px;
+    }
+    .slider-portfolio-pic {
+        height: 300px !important;
+        margin: 10px 0px;
+    }
+    .slider-portfolio-nav {
+        width: 93% !important;
+        height: 60px !important;
+    }
+    .slider-portfolio-nav>.slide-item {
+        height: 60px !important;
+    }
+    .slider-portfolio-nav {
+        height: 60px !important;
+    }
+    .slider-portfolio-nav img {
+        width: 100%;
+        height: 60px !important;
+    }
+    .slider-portfolio-pic img {
+        width: 100%;
+        height: 300px !important;
+    }
+    .slider-education-pic {
+        height: 100%;
+        margin: 10px auto;
+        width: 93%;
+    }
+    .slider-education-pic img {
+        width: 100%;
+        height: 100%;
+    }
+    .slider-education-content {
+        height: 140px !important;
+        margin-top: 10px;
+    }
+    .progress {
+        height: 20px !important;
+    }
+    #introduction {
+        padding-top: 10px;
+    }
+    #download-resume {
+        padding-top: 10px;
+    }
+    #move-down {
+        margin-top: 10px !important;
+    }
+    #about-me {
+        padding-bottom: 0px;
+        text-align: left;
+    }
+    .row {
+        margin: 0 !important;
+    }
+    .experience {
+        padding-bottom: 0;
+    }
+    #about-me .container {
+        margin-top: 0px;
+    }
+    .education {
+        padding: 5px 0;
+    }
+    .portfolio-section div.container {
+        margin-top: 0px;
+    }
+    .slider-portfolio-content {
+        height: 120px;
+        margin: 5px auto;
+    }
+    #portfolio-text-content {
+        margin-top: 10px;
+    }
+    #portfolio-text-content p strong {
+        color: #fec951;
+    }
+    /*
+.aboutab-me-section{
+	height: auto ;
+}
+*/
+    #portfolio.portfolio-section {
+        padding-bottom: 10px !important;
+    }
+    .hire-me {
+        margin-top: 10px !important;
+    }
+    #intro-break {
+        display: none !important;
+    }
+    #timeline {
+        padding: 0 !important;
+    }
+    #timeline ul {
+        padding: 5px !important;
+        margin: 0 !important;
+    }
+    #timeline ul:after {
+        left: 2em !important;
+    }
+    #timeline ul .listing {
+        padding: 10px 5px;
+    }
+    #timeline ul .listing .image_wrapper {
+        margin: .5em .5em;
+        width: 50px;
+    }
+    #timeline ul .listing .image_wrapper img {
+        width: 50px;
+        height: 50px;
+    }
+    #timeline ul .listing .info {
+        width: 100%;
+        padding: .4em 0 0 .4em;
+    }
+    #timeline ul .listing .info .job_info {
+        width: 100%;
+        margin-top: 10px;
+        font-size: 1.3rem !important;
+    }
+    #timeline ul .listing .info .job_info a {
+        display: block;
+        margin: .75em !important;
+    }
+    #timeline ul .listing .info .job_info span {
+        margin: .7em !important;
+    }
+    #timeline ul .listing .info .job_title {
+        font-size: 1em;
+    }
+    #timeline ul .listing .job_type {
+        display: none !important;
+    }
+    #timeline ul .date {
+        padding: .6em;
+        width: 50% !important;
+        background: #ffffff;
+        border-radius: 3em;
+        font-weight: 700;
+        font-size: .75em;
+        text-align: center;
+        z-index: 2;
+        position: relative;
+        margin: 1em 0 2em 0;
+        color: #34324b;
+    }
+    .contact-me-section {
+        padding-top: 20px;
     }
 }
