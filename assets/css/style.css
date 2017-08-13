@@ -73,6 +73,28 @@ section div.container {
     color: cornsilk;
 }
 
+.home-section,
+.about-me-section,
+.education-section,
+.skills-section,
+.portfolio-section,
+.contact-me-section {
+    height: 100%;
+}
+
+.experience-section {
+    height: auto;
+}
+
+.about-me-section,
+.education-section,
+.skills-section,
+.experience-section,
+.contact-me-section,
+.portfolio-section {
+    padding-top: 100px;
+}
+
 #intro-name {
     display: flex;
     flex-direction: row;
@@ -899,10 +921,6 @@ hr {
 
 /* === experience === */
 
-.experience {
-    padding-bottom: 0px;
-}
-
 #timeline ul {
     position: relative;
 }
@@ -1109,8 +1127,6 @@ hr {
 /* === contact-me/footer section layout === */
 
 .contact-me-section {
-    /*	background: url(https://www.dropbox.com/s/4cif10lq79syt3p/at-64056.jpg?dl=1) 50% 0 repeat fixed;
-*/
     min-height: 720px;
     background-size: cover;
     margin: 0 auto;
@@ -1241,6 +1257,15 @@ footer a:hover {
     .navbar-toggle {
         display: none;
     }
+    .navbar {
+        padding: 20px 0;
+        -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+        transition: background .5s ease-in-out, padding .5s ease-in-out;
+    }
+    .top-nav-collapse {
+        padding: 0;
+    }
 }
 
 @media screen and (max-width:768px) {
@@ -1342,11 +1367,6 @@ footer a:hover {
         margin: 10px 10px 15px 0;
         font-size: 16px;
     }
-    /*
-.home-section{
-	margin-bottom: 0px;
-}
-*/
     #profile-pic {
         margin-top: 5px !important;
         padding-right: 5px;
@@ -1468,11 +1488,6 @@ footer a:hover {
     #portfolio-text-content p strong {
         color: #fec951;
     }
-    /*
-.aboutab-me-section{
-	height: auto ;
-}
-*/
     #portfolio.portfolio-section {
         padding-bottom: 10px !important;
     }
