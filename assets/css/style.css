@@ -1117,6 +1117,65 @@ article#experience {
 }
 
 
+/* === portfolio section layout === */
+
+#portfolio #portfolio-container,
+#portfolio #portfolio-heading {
+    margin: 1em 5%;
+}
+
+.portfolio-section {
+    background: url(../images/monitor-933392_1920.jpg) 100% 0 repeat fixed;
+    background-size: cover;
+    padding-top: 100px;
+}
+
+.portfolio-section #portfolio-container {
+    height: 500px;
+}
+
+.portfolio-section h2 {
+    margin-bottom: 30px;
+}
+
+#portfolio #portfolio-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 7em;
+}
+
+#portfolio-text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 1.5em;
+}
+
+#portfolio-text-content .slider-portfolio-content {
+    flex-grow: 0;
+}
+
+#portfolio-pic {
+    flex-basis: 70%;
+}
+
+#portfolio-text-content {
+    flex-basis: 25%;
+    width: 100%;
+}
+
+.slider-portfolio-content {
+    min-height: 250px;
+    padding-top: 2em;
+}
+
+.slider-portfolio-pic .slide-item img {
+    height: 400px;
+    width: 90%;
+}
+
+
 /*==================== MEDIA QUERIES===============*/
 
 @media (min-width: 768px) {
@@ -1366,6 +1425,53 @@ article#experience {
         position: relative;
         margin: 1em 0 2em 0;
         color: #34324b;
+    }
+    /* === portfolio === */
+    .portfolio-section {
+        height: auto;
+        padding-top: 30px;
+    }
+    #portfolio #portfolio-container {
+        flex-direction: column;
+        margin: 0 2em;
+    }
+    #portfolio-text-content {
+        margin-top: 0;
+    }
+    .portfolio-section div.container>div {
+        margin: 2em 8.63%;
+    }
+    .portfolio-section div.container {
+        height: 550px;
+        padding: 0;
+    }
+    #portfolio-pic {
+        max-height: 280px;
+    }
+    .slider-portfolio-pic {
+        height: auto;
+    }
+    .slider-portfolio-pic .slide-item img {
+        height: 250px;
+        width: 90%;
+    }
+    #portfolio-text-content hr:last-of-type {
+        margin-bottom: 0;
+    }
+    .slider-portfolio-content {
+        min-height: 50px;
+        height: 150px;
+        padding-top: 0em;
+    }
+    .slider-portfolio-content #portfolio-content {
+        max-height: 150px;
+        font-size: 14px;
+        padding: 0;
+    }
+    #portfolio-heading {
+        margin-bottom: 5px;
+        font-size: 18px;
+        font-weight: 800;
     }
 }
 
