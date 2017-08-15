@@ -47,7 +47,7 @@ body {
     line-height: 150%;
     font: 200 1em/1.5em 'Raleway', Helvetica, sans-serif;
     font-size: 16px;
-    background: url(../images/code-938776.jpg) 100% 0 repeat fixed;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, .9)), url(../images/code-938776.jpg) no-repeat center center fixed;
     background-size: cover;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -94,12 +94,6 @@ footer .container {
     margin-right: auto;
     flex-direction: column;
 }
-
-
-/* .home-section article,
-.about-me-section article {
-    flex-direction: column;
-} */
 
 .home-sectio article:after,
 .about-me-section article:after,
@@ -602,21 +596,6 @@ hr {
 }
 
 
-/* .experience-section {
-    height: auto;
-} */
-
-
-/* .about-me-section,
-.education-section,
-.skills-section,
-.experience-section,
-.contact-me-section,
-.portfolio-section {
-    padding-top: 100px;
-} */
-
-
 /* === about-me section layout === */
 
 .about-me-section {
@@ -760,7 +739,7 @@ article#about-me {
 }
 
 article#education {
-    height: 87.5vh;
+    height: 789px;
 }
 
 #education #edu-container {
@@ -768,9 +747,10 @@ article#education {
 }
 
 .education-section {
-    background: url(../images/office-581131.jpg) 100% 0 no-repeat fixed;
+    /* background: url(../images/office-581131.jpg) 100% 0 no-repeat fixed; */
     background-size: cover;
     padding-top: 100px;
+    min-height: 850px;
 }
 
 .slider-education-pic,
@@ -960,10 +940,10 @@ article#experience {
 }
 
 .experience-section {
-    background: url("../images/computer-1833058_1280.png") 100% 0 no-repeat fixed;
+    /* background: url("../images/computer-1833058_1280.png") 100% 0 no-repeat fixed; */
     background-size: cover;
     padding-top: 100px;
-    height: auto;
+    min-height: 910px;
 }
 
 #experience #experience-container {
@@ -1184,11 +1164,13 @@ article#experience {
 }
 
 .contact-me-section {
-    background: url(../images/computer-1833058_1280.png) 100% 0 repeat fixed;
+    /* background: url(../images/computer-1833058_1280.png) 100% 0 repeat fixed; */
     background-size: cover;
     padding-top: 80px;
     width: auto;
-    min-height: 770px;
+    padding-top: 50px;
+    min-height: 780px;
+    max-height: 785px;
 }
 
 #contact-me {
@@ -1197,14 +1179,6 @@ article#experience {
 
 .contact-me-section #contact-me-container {
     height: auto;
-}
-
-.contact-me-section {
-    background-size: cover;
-}
-
-.contact-me-section {
-    padding-top: 50px;
 }
 
 #contact-form {
@@ -1299,6 +1273,7 @@ footer {
     margin: 10px 0;
     margin: 10px 0;
     font-size: 14px;
+    max-height: 50px;
 }
 
 footer .container {
@@ -1421,6 +1396,7 @@ footer p {
     .about-me-section {
         height: auto;
         padding-top: 30px;
+        min-height: 700px;
     }
     article#about-me {
         height: auto;
@@ -1459,6 +1435,7 @@ footer p {
     .education-section {
         height: auto;
         padding-top: 30px;
+        min-height: 500px;
     }
     article#education {
         height: auto;
@@ -1623,6 +1600,8 @@ footer p {
     .contact-me-section {
         height: auto;
         padding-top: 10px;
+        min-height: 780px;
+        max-height: 900px;
     }
     .contact-me-section #contact-me {
         padding: 0;
