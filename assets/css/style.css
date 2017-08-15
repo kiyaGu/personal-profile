@@ -91,12 +91,14 @@ footer .container {
     width: 85%;
     margin-left: auto;
     margin-right: auto;
-}
-
-.home-section article,
-.about-me-section article {
     flex-direction: column;
 }
+
+
+/* .home-section article,
+.about-me-section article {
+    flex-direction: column;
+} */
 
 .home-sectio article:after,
 .about-me-section article:after,
@@ -730,6 +732,70 @@ article#about-me {
     border-radius: 4px;
 }
 
+.border {
+    /*---color for the colorful lines/borders---*/
+    height: 6px;
+    border: 0;
+    background-color: #fd7473;
+    margin: 20px 10px;
+    background-image: linear-gradient(to right, #fd7473, #fd7473 25%, #fec951 25%, #fec951 50%, #47b8e0 50%, #47b8e0 75%, #9f68d0 75%, #9f68d0 100%, #9f68d0 100%);
+    -webkit-background-size: 50% 100%;
+    -moz-background-size: 50% 100%;
+    -ms-background-size: 50% 100%;
+    -o-background-size: 50% 100%;
+    background-size: 50% 100%;
+}
+
+
+/*general for slider*/
+
+.slider {
+    width: auto;
+    margin: 2em 8.63%;
+}
+
+
+/* === education === */
+
+article#education {
+    height: 90vh;
+}
+
+#education #edu-container {
+    margin: 1em 5%;
+}
+
+.education-section {
+    background: url(../images/office-581131.jpg) 100% 0 no-repeat fixed;
+    background-size: cover;
+    padding-top: 100px;
+}
+
+.slider-education-pic,
+.slider-education-pic img {
+    height: 300px;
+}
+
+.education-section #edu-container {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+}
+
+.education-section .slider-education-content {
+    height: auto;
+}
+
+.education-section #edu-container {
+    flex-basis: 100%;
+}
+
+.education-section #edu-container img {
+    align-self: center;
+    margin: 2em 8.63%;
+    width: 80%;
+}
+
 
 /*==================== MEDIA QUERIES===============*/
 
@@ -859,6 +925,35 @@ article#about-me {
     #download-resume .btn {
         margin: 0;
         width: 96%;
+    }
+    /* === education === */
+    .education-section {
+        height: auto;
+        padding-top: 30px;
+    }
+    article#education {
+        height: auto;
+    }
+    .slider-education-content {
+        height: auto;
+        margin: 10px;
+    }
+    .slick-slide {
+        margin: 0px 5px;
+    }
+    #micro-pic,
+    .slide-item img {
+        height: 200px;
+    }
+    .slider-education-content #edu-content {
+        max-height: 100px;
+        font-size: 14px;
+        padding: 0;
+        margin-bottom: 0;
+    }
+    .education-section #edu-container img {
+        margin: 0;
+        width: 100%;
     }
 }
 
