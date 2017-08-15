@@ -69,8 +69,7 @@ body {
 .skills-section,
 .experience-section,
 .portfolio-section,
-.contact-me-section,
-footer {
+.contact-me-section {
     height: 100vh;
     width: 100vw;
     -moz-box-sizing: border-box;
@@ -1178,45 +1177,35 @@ article#experience {
 
 /* === contact-me section layout === */
 
-
-/* #contact-me {
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: column;
-} */
-
 #contact-me #contact-me-container {
     display: flex;
     flex-direction: column;
-    margin: 1em 5%;
+    margin: .5em 5%;
 }
 
 .contact-me-section {
     background: url(../images/computer-1833058_1280.png) 100% 0 repeat fixed;
     background-size: cover;
-    padding-top: 100px;
+    padding-top: 80px;
+    width: auto;
+    min-height: 770px;
+}
+
+#contact-me {
+    padding-top: 10px;
 }
 
 .contact-me-section #contact-me-container {
-    height: 600px;
+    height: auto;
 }
 
 .contact-me-section {
-    min-height: 720px;
     background-size: cover;
 }
 
 .contact-me-section {
     padding-top: 50px;
 }
-
-
-/* #contact-me {
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: column;
-    margin: 2em 8.63%;
-} */
 
 #contact-form {
     width: 60%;
@@ -1263,7 +1252,8 @@ article#experience {
 }
 
 #contact-me hr {
-    margin-bottom: 20px;
+    margin: 10px 0;
+    width: 95%;
 }
 
 #contact-me .container {
@@ -1277,6 +1267,7 @@ article#experience {
     justify-content: space-between;
     margin: 0 33.333%;
     list-style: none;
+    padding-bottom: .3em;
 }
 
 #social-link-bottom ul li {
@@ -1296,6 +1287,41 @@ article#experience {
 
 #social-link-bottom a.badge.social.facebook {
     padding: 5px 10px;
+}
+
+
+/*=====footer section layout=========*/
+
+footer {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 10px 0;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+footer .container {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    background: transparent;
+}
+
+footer .container p a {
+    color: #fec85d;
+}
+
+footer .container p a:visited {
+    color: cornsilk;
+}
+
+footer .container p a:hover {
+    color: #dd5638;
+}
+
+footer p {
+    margin: 0;
 }
 
 
