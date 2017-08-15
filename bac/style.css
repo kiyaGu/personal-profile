@@ -818,11 +818,11 @@ hr {
     border: 0;
 }
 
-#resume .container {
+/*#resume .container {
     display: -webkit-flex;
     display: flex;
     flex-direction: column;
-}
+}*/
 
 #skills,
 #experience,
@@ -833,9 +833,9 @@ hr {
     padding: 2em 8.63%;
 }
 
-.heading {
+/*.heading {
     padding-top: 2em;
-}
+}*/
 
 #skills #resume-heading,
 #skills #skill-progress {
@@ -1280,7 +1280,7 @@ hr {
 #social-link-bottom a.badge.social.facebook {
     padding: 5px 10px;
 }
-
+/*=====footer section layout========*/
 footer {
     background: url(../images/code-938776.jpg) no-repeat;
     background-size: cover;
@@ -1552,7 +1552,7 @@ footer a:hover {
     }
     #portfolio-heading {
         margin-bottom: 5px;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 800;
     }
     /* === contact me === */
