@@ -45,7 +45,6 @@
 
 body {
     line-height: 150%;
-    /*    margin-top: 50px;*/
     font: 200 1em/1.5em 'Raleway', Helvetica, sans-serif;
     font-size: 16px;
     background: url(../images/code-938776.jpg) 100% 0 repeat fixed;
@@ -339,6 +338,7 @@ hr {
 .navbar-brand>img {
     display: block;
     margin-top: 1em;
+    float: left;
 }
 
 .navbar-toggle {
@@ -435,9 +435,9 @@ hr {
 }
 
 #home div.container {
-    margin-top: 5px !important;
-    padding-top: 10px !important;
-    padding-bottom: 5px !important;
+    margin-top: 5px;
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
 
 #home #introduction {
@@ -456,10 +456,10 @@ hr {
 
 #profile-pic {
     order: 3;
-    margin-top: 6em;
+    margin-top: 10em;
     padding: 2em;
     padding-top: 0;
-    flex-basis: 20%;
+    flex-basis: 300px;
     padding-right: 5px;
     /*	margin-bottom: 230px;*/
     text-align: center;
@@ -560,15 +560,11 @@ hr {
 }
 
 .hire-me a {
-    color: black !important;
+    color: black;
 }
 
 .hire-me i {
-    color: black !important;
-}
-
-#move-down {
-    /*	margin-top: 20px;*/
+    color: black;
 }
 
 #move-down button {
@@ -1258,7 +1254,6 @@ footer a:hover {
         display: none;
     }
     .navbar {
-        padding: 20px 0;
         -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
         -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
         transition: background .5s ease-in-out, padding .5s ease-in-out;
@@ -1283,6 +1278,35 @@ footer a:hover {
         padding-top: 0px;
     }
     /* === home section layout === */
+    section,
+    .navbar-wrapper ul,
+    #home #intro-name,
+    #about-me .container>div,
+    #contact-me .form-group,
+    #portfolio {
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: no-wrap;
+    }
+    .container {
+        width: 95%;
+    }
+    #home {
+        margin-top: 4em;
+    }
+    #profile-pic {
+        order: 0;
+        margin-top: 10em;
+        align-self: center;
+        padding: 0;
+        max-height: 150px;
+    }
+    #home #introduction {
+        padding-top: 10px;
+    }
+    .navbar-wrapper ul {
+        display: none;
+    }
     #home div.container {
         margin-top: 0 !important;
         padding-top: 0 !important;
@@ -1301,17 +1325,49 @@ footer a:hover {
         width: auto;
         padding: 0;
     }
+    #typed i,
     #typed strong {
         font-weight: 800;
         font-size: 24px;
     }
+    #typed {
+        font-size: 12px;
+    }
+    .hire-me {
+        /* margin: 5px; */
+        width: 100%;
+        margin-left: 10%;
+    }
+    .hire-me button {
+        margin-left: 5%;
+    }
+    /* === about me section ==== */
+    #about-me .container {
+        height: auto;
+        margin-top: 0;
+    }
+    #about-me .container>div {
+        width: 100%;
+        margin-left: 0;
+    }
+    #personal-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #personal-info #contact-info {
+        width: 100%;
+    }
+    #download-resume {
+        width: 65%;
+        padding: 0;
+        margin-left: 10%;
+        align-self: stretch;
+    }
+    #download-resume .btn {
+        margin: 0;
+    }
     /* === resume section layout === */
-    .slick-next:before {
-        margin-right: 0px;
-    }
-    .slick-prev:before {
-        margin-left: 0px;
-    }
     .slide-item img {
         height: 200px;
     }
@@ -1346,22 +1402,25 @@ footer a:hover {
     #hr-education {
         margin-top: 20px;
     }
+    .form-group #send-button {
+        margin-left: 0;
+    }
 }
 
 @media screen and (max-width:568px) {
     section {
-        padding: 10px 10px 30px 10px;
+        /* padding: 10px 10px 30px 10px; */
     }
     section div.container {
-        padding: 10px 0;
+        /* padding: 10px 0; */
     }
     #home div.container {
         margin-top: 0 !important;
         padding-top: 10px !important;
     }
     #personal-info h3 {
-        margin: 10px 0 15px 0 !important;
-        color: #fec951;
+        /* margin: 10px 0 15px 0 !important; */
+        /* color: #fec951; */
     }
     h2 {
         margin: 10px 10px 15px 0;
@@ -1375,16 +1434,16 @@ footer a:hover {
     #profile-pic img {
         border-radius: 50%;
         height: 150px;
-        width: 40%;
+        width: 70%;
         padding: 0;
     }
-    #typed strong {
+    /* #typed strong {
         font-weight: 800;
         font-size: 24px;
     }
     #typed {
         font-size: 1.2rem;
-    }
+    } */
     hr {
         margin: 10px !important;
     }
@@ -1392,19 +1451,10 @@ footer a:hover {
         margin-bottom: 5px;
     }
     .about-me-section {
-        padding: 40px 10px 20px 10px !important;
+        /* padding: 40px 10px 20px 10px; */
     }
     #about-me-intro {
         padding-top: 0px !important;
-    }
-    .slick-next:before {
-        margin-right: 0px;
-    }
-    .slick-prev:before {
-        margin-left: 0px;
-    }
-    .slick-slide {
-        margin: 0px 5px;
     }
     #micro-pic {
         height: 150px !important;
@@ -1424,10 +1474,6 @@ footer a:hover {
         height: 60px !important;
     }
     .slider-portfolio-nav {
-        height: 60px !important;
-    }
-    .slider-portfolio-nav img {
-        width: 100%;
         height: 60px !important;
     }
     .slider-portfolio-pic img {
@@ -1454,17 +1500,16 @@ footer a:hover {
         padding-top: 10px;
     }
     #download-resume {
-        padding-top: 10px;
+        /* padding-top: 10px; */
     }
     #move-down {
-        margin-top: 10px !important;
+        margin-top: 10px;
     }
     #about-me {
         padding-bottom: 0px;
-        text-align: left;
     }
     .row {
-        margin: 0 !important;
+        margin: 0;
     }
     .experience {
         padding-bottom: 0;
