@@ -67,6 +67,7 @@ body {
 .about-me-section,
 .education-section,
 .skills-section,
+.experience-section,
 .portfolio-section,
 .contact-me-section,
 footer {
@@ -81,6 +82,7 @@ footer {
 .about-me-section article,
 .education-section article,
 .skills-section article,
+.experience-section article,
 .portfolio-section article,
 .contact-me-section article,
 footer .container {
@@ -104,6 +106,7 @@ footer .container {
 .about-me-section article:after,
 .education-section article:after,
 .skills-section article:after,
+.experience-section article,
 .portfolio-section article:after,
 .contact-me-section article:after,
 footer .container {
@@ -732,6 +735,9 @@ article#about-me {
     border-radius: 4px;
 }
 
+
+/*=======education====*/
+
 .border {
     /*---color for the colorful lines/borders---*/
     height: 6px;
@@ -754,11 +760,8 @@ article#about-me {
     margin: 2em 8.63%;
 }
 
-
-/* === education === */
-
 article#education {
-    height: 90vh;
+    height: 87.5vh;
 }
 
 #education #edu-container {
@@ -783,7 +786,7 @@ article#education {
 }
 
 .education-section .slider-education-content {
-    height: auto;
+    height: 150px;
 }
 
 .education-section #edu-container {
@@ -794,6 +797,323 @@ article#education {
     align-self: center;
     margin: 2em 8.63%;
     width: 80%;
+}
+
+
+/*=========skills section layout ===========*/
+
+.skills-section {
+    background: url("../images/computer-1209641 2.jpg") 100% 0 no-repeat fixed;
+    background-size: cover;
+    padding-top: 100px;
+}
+
+#skills #skills-container {
+    margin: 1em 5%;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+#skills #skill-progress {
+    padding: 2em 5.63%;
+}
+
+#skill-progress {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+}
+
+#skill-bar-1,
+#skill-bar-2 {
+    flex-basis: 47%;
+}
+
+.progress {
+    position: relative;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 25px;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    float: left;
+    height: 100%;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+    text-align: center;
+    -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+    -webkit-transition: width .6s ease;
+    -o-transition: width .6s ease;
+    transition: width .6s ease;
+}
+
+.progress-bar:after {
+    content: "";
+    width: inherit;
+    /*take the width of the progress-bar */
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: linear-gradient( -45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+    z-index: 1;
+    background-size: 40px 40px;
+    animation: move 2s linear infinite;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    overflow: hidden;
+    -webkit-animation: progress 2s linear infinite;
+    -moz-animation: progress 2s linear infinite;
+    -ms-animation: progress 2s linear infinite;
+    animation: progress 2s linear infinite;
+}
+
+@keyframes progress {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -70px 0px;
+    }
+}
+
+.pr1,
+.pr2,
+.pr3,
+.pr4 {
+    background-image: -webkit-linear-gradient(top, #5cb85c 0, #449d44 100%);
+    background-image: -o-linear-gradient(top, #5cb85c 0, #449d44 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#5cb85c), to(#449d44));
+    background-image: linear-gradient(to bottom, #5cb85c 0, #449d44 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff449d44', GradientType=0);
+    background-repeat: repeat-x;
+}
+
+.pr5,
+.pr7 {
+    background-image: -webkit-linear-gradient(top, #f0ad4e 0, #ec971f 100%);
+    background-image: -o-linear-gradient(top, #f0ad4e 0, #ec971f 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f0ad4e), to(#ec971f));
+    background-image: linear-gradient(to bottom, #f0ad4e 0, #ec971f 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fff0ad4e', endColorstr='#ffec971f', GradientType=0);
+    background-repeat: repeat-x;
+}
+
+.pr8,
+.pr10,
+.pr12 {
+    background-image: -webkit-linear-gradient(top, #d9534f 0, #c9302c 100%);
+    background-image: -o-linear-gradient(top, #d9534f 0, #c9302c 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#d9534f), to(#c9302c));
+    background-image: linear-gradient(to bottom, #d9534f 0, #c9302c 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ffd9534f', endColorstr='#ffc9302c', GradientType=0);
+    background-repeat: repeat-x;
+}
+
+.pr6,
+.pr9,
+.pr11 {
+    background-image: -webkit-linear-gradient(top, #5bc0de 0, #31b0d5 100%);
+    background-image: -o-linear-gradient(top, #5bc0de 0, #31b0d5 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#5bc0de), to(#31b0d5));
+    background-image: linear-gradient(to bottom, #5bc0de 0, #31b0d5 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff31b0d5', GradientType=0);
+    background-repeat: repeat-x;
+}
+
+.progress {
+    height: 25px;
+    margin: 35px auto;
+    flex-basis: 100%;
+    background-color: #ddd;
+    border-radius: 3px;
+}
+
+.progress-bar-text {
+    line-height: 2.5;
+    color: #000;
+    font-weight: 700;
+}
+
+
+/* === experience === */
+
+article#experience {
+    min-height: 800px;
+    padding-top: 10px;
+}
+
+.experience-section {
+    background: url("../images/computer-1833058_1280.png") 100% 0 no-repeat fixed;
+    background-size: cover;
+    padding-top: 100px;
+    height: auto;
+}
+
+#experience #experience-container {
+    margin: 1em 5%;
+}
+
+#timeline ul {
+    position: relative;
+}
+
+#timeline ul:after {
+    content: " ";
+    width: 1px;
+    background: 1px #fec951;
+    height: 80%;
+    position: absolute;
+    top: 3em;
+    left: 5em;
+    z-index: 0;
+}
+
+#timeline ul a {
+    text-decoration: underline;
+    color: #34414c;
+    font-weight: 700;
+}
+
+#timeline ul .listing {
+    background: #ffffff;
+    border: 1px solid #d9dee9;
+    border-radius: .3em;
+    padding: 1em;
+    margin-bottom: 1em;
+    position: relative;
+    z-index: 1;
+    display: table;
+    width: 90%;
+}
+
+#timeline ul .listing img,
+#timeline ul .listing .info,
+#timeline ul .listing .job_type {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: .9em;
+    color: #9592ad;
+}
+
+#timeline ul .listing .image_wrapper {
+    width: 100px;
+}
+
+#timeline ul .listing .image_wrapper img {
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+    border-radius: .25em;
+    background: black;
+    height: 100px;
+}
+
+#timeline ul .listing .info {
+    line-height: 1.25;
+    width: 640px;
+    padding-left: 25px;
+    color: #34414c;
+}
+
+#timeline ul .listing .info .job_title {
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+#timeline ul .listing .info .job_info {
+    display: block;
+    margin-top: 10px;
+}
+
+#timeline ul .listing .info .job_info span {
+    margin: 0 .75em;
+}
+
+#timeline ul .listing .job_type {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: .75em;
+    position: relative;
+    white-space: nowrap;
+    padding-top: .6em;
+    width: 100px;
+}
+
+#timeline ul .listing .job_type:before {
+    content: " ";
+    background: #fd7473;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    position: absolute;
+    left: -20px;
+    top: 47px;
+}
+
+#timeline ul .listing .volunteer {
+    color: #fd7473;
+}
+
+#timeline ul .listing .volunteer:before {
+    background: #fd7473;
+}
+
+#timeline ul .listing .part_time {
+    color: #fec951;
+}
+
+#timeline ul .listing .part_time:before {
+    background: #fec951;
+}
+
+#timeline ul .listing .full_time {
+    color: #47b8e0;
+}
+
+#timeline ul .listing .full_time:before {
+    background: #47b8e0;
+}
+
+#timeline ul .listing .freelance {
+    color: #9f68d0;
+}
+
+#timeline ul .listing .freelance:before {
+    background: #9f68d0;
+}
+
+#timeline ul .date {
+    display: inline-block;
+    padding: .6em 0;
+    width: 20%;
+    background: #ffffff;
+    border: 2px solid #fd7576;
+    border-radius: 3em;
+    font-weight: 700;
+    font-size: .75em;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+    margin: 1em 0 2em 0;
+    color: black;
 }
 
 
@@ -831,6 +1151,7 @@ article#education {
     .about-me-section article,
     .education-section article,
     .skills-section article,
+    .experience-section article,
     .portfolio-section article,
     .contact-me-section article,
     footer .container {
@@ -954,6 +1275,97 @@ article#education {
     .education-section #edu-container img {
         margin: 0;
         width: 100%;
+    }
+    /* === skills === */
+    .skills-section {
+        height: auto;
+        padding-top: 30px;
+    }
+    article#skills {
+        height: auto;
+    }
+    #skill-progress {
+        justify-content: space-between;
+    }
+    #skill-bar-1,
+    #skill-bar-2 {
+        flex-basis: 48%;
+    }
+    .skills {
+        padding-bottom: 15px;
+    }
+    #skills #skill-progress {
+        padding: 0;
+    }
+    .progress-bar-text {
+        line-height: 1.5;
+    }
+    /*===experience section ====*/
+    .experience-section {
+        height: auto;
+        padding-top: 30px;
+    }
+    article#experience {
+        height: auto;
+    }
+    #timeline {
+        padding: 0;
+    }
+    #timeline ul {
+        padding: 5px;
+        margin: 0;
+    }
+    #timeline ul .listing {
+        width: 100%;
+    }
+    #timeline ul:after {
+        left: 2em;
+    }
+    #timeline ul .listing {
+        padding: 10px 5px;
+    }
+    #timeline ul .listing .image_wrapper {
+        margin: .5em .5em;
+        width: 50px;
+    }
+    #timeline ul .listing .image_wrapper img {
+        width: 50px;
+        height: 50px;
+    }
+    #timeline ul .listing .info {
+        width: 100%;
+        padding: .4em 0 0 .4em;
+    }
+    #timeline ul .listing .info .job_info {
+        width: 100%;
+        margin-top: 10px;
+        font-size: 1rem;
+    }
+    #timeline ul .listing .info .job_info a {
+        display: block;
+        margin: .75em;
+    }
+    #timeline ul .listing .info .job_info span {
+        margin: .7em;
+    }
+    #timeline ul .listing .info .job_title {
+        font-size: 1em;
+    }
+    #timeline ul .listing .job_type {
+        display: none;
+    }
+    #timeline ul .date {
+        padding: .6em;
+        width: 50%;
+        background: #ffffff;
+        border-radius: 3em;
+        font-weight: 700;
+        font-size: .75em;
+        text-align: center;
+        z-index: 2;
+        position: relative;
+        margin: 1em 0 2em 0;
+        color: #34324b;
     }
 }
 
