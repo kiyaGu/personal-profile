@@ -47,8 +47,9 @@ body {
     line-height: 150%;
     font: 200 1em/1.5em 'Raleway', Helvetica, sans-serif;
     font-size: 16px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, .9)), url(../images/code-938776.jpg) no-repeat center center fixed;
+    background: url(../images/wood-1759566.jpg) no-repeat center center fixed;
     background-size: cover;
+    /* background-size: 100%; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     position: absolute;
@@ -774,17 +775,17 @@ article#education {
 
 .education-section #edu-container img {
     align-self: center;
-    margin: 2em 8.63%;
-    width: 80%;
+    margin: 2em 15%;
+    width: 70%;
 }
 
 
 /*=========skills section layout ===========*/
 
 .skills-section {
-    background: url("../images/computer-1209641 2.jpg") 100% 0 no-repeat fixed;
+    background: url("../images/neo-urban-1734495.jpg") 100% 0 no-repeat fixed;
     background-size: cover;
-    padding-top: 100px;
+    padding-top: 70px;
 }
 
 #skills #skills-container {
@@ -941,7 +942,7 @@ article#experience {
 
 .experience-section {
     /* background: url("../images/computer-1833058_1280.png") 100% 0 no-repeat fixed; */
-    background-size: cover;
+    /* background-size: cover; */
     padding-top: 100px;
     min-height: 910px;
 }
@@ -1104,9 +1105,9 @@ article#experience {
 }
 
 .portfolio-section {
-    background: url(../images/monitor-933392_1920.jpg) 100% 0 repeat fixed;
+    background: url(../images/neo-urban-1734495.jpg) 100% 0 repeat fixed;
     background-size: cover;
-    padding-top: 100px;
+    padding-top: 75px;
 }
 
 .portfolio-section #portfolio-container {
@@ -1435,7 +1436,7 @@ footer p {
     .education-section {
         height: auto;
         padding-top: 30px;
-        min-height: 500px;
+        min-height: 750px;
     }
     article#education {
         height: auto;
@@ -1465,6 +1466,7 @@ footer p {
     .skills-section {
         height: auto;
         padding-top: 30px;
+        min-height: 750px;
     }
     article#skills {
         height: auto;
@@ -1489,6 +1491,7 @@ footer p {
     .experience-section {
         height: auto;
         padding-top: 30px;
+        min-height: 870px;
     }
     article#experience {
         height: auto;
@@ -1556,6 +1559,7 @@ footer p {
     .portfolio-section {
         height: auto;
         padding-top: 30px;
+        min-height: 700px;
     }
     #portfolio #portfolio-container {
         flex-direction: column;
