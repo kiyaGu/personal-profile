@@ -750,8 +750,8 @@ article#education {
 .education-section {
     /* background: url(../images/office-581131.jpg) 100% 0 no-repeat fixed; */
     background-size: cover;
-    padding-top: 100px;
-    min-height: 850px;
+    padding-top: 80px;
+    min-height: 910px;
 }
 
 .slider-education-pic,
@@ -786,6 +786,7 @@ article#education {
     background: url("../images/neo-urban-1734495.jpg") 100% 0 no-repeat fixed;
     background-size: cover;
     padding-top: 70px;
+    min-height: 800px;
 }
 
 #skills #skills-container {
@@ -944,7 +945,7 @@ article#experience {
     /* background: url("../images/computer-1833058_1280.png") 100% 0 no-repeat fixed; */
     /* background-size: cover; */
     padding-top: 100px;
-    min-height: 910px;
+    min-height: 950px;
 }
 
 #experience #experience-container {
@@ -1108,6 +1109,7 @@ article#experience {
     background: url(../images/neo-urban-1734495.jpg) 100% 0 repeat fixed;
     background-size: cover;
     padding-top: 75px;
+    min-height: 790px;
 }
 
 .portfolio-section #portfolio-container {
