@@ -52,9 +52,9 @@ body {
     /* background-size: 100%; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    /* position: absolute; */
+    /* width: 100%;
+    height: 100%; */
 }
 
 #wrapper {
@@ -389,7 +389,7 @@ hr {
 /* === home section layout === */
 
 .home-section {
-    background: url(../images/monitor-933392_1920.jpg) 100% 0 repeat fixed;
+    background: url(../images/monitor-933392_1920.jpg) 100% 0 no-repeat fixed;
     background-size: cover;
 }
 
@@ -1068,7 +1068,7 @@ article#experience {
 }
 
 .portfolio-section {
-    background: url(../images/neo-urban-1734495.jpg) 100% 0 repeat fixed;
+    background: url(../images/neo-urban-1734495.jpg) 100% 0 no-repeat fixed;
     background-size: cover;
     padding-top: 75px;
     min-height: 790px;
