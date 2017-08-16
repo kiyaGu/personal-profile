@@ -47,7 +47,7 @@ body {
     line-height: 150%;
     font: 200 1em/1.5em 'Raleway', Helvetica, sans-serif;
     font-size: 16px;
-    background: url(../images/wood-1759566.jpg) no-repeat center center fixed;
+    background: url(../images/wood-1759566.jpg) 100% 0 no-repeat fixed;
     background-size: cover;
     /* background-size: 100%; */
     -webkit-font-smoothing: antialiased;
@@ -1296,10 +1296,6 @@ footer p {
         display: absolute;
         padding-left: 20px;
     }
-    ul.nav {
-        display: absolute;
-        top: -20px;
-    }
     .navbar-fixed-top .container,
     ul.nav,
     ul.nav li {
@@ -1668,7 +1664,7 @@ footer p {
         margin: 10px 10px 15px 0;
         font-size: 16px;
     }
-    /* .home-sectio,
+    /* .home-section,
     #home {
         height: 100vh;
     } */

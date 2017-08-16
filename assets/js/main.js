@@ -2,7 +2,8 @@
 $(function($, window, document) {
     // The $ is now locally scoped 
     // Listen for the jQuery ready event on the document
-
+    $(".home-section").css("height", $(window).height());
+    $("#home").css("height", $(window).height());
     //typed.js 
     $(function() {
         $("#typed").typed({
@@ -95,7 +96,9 @@ $(function($, window, document) {
             // Scroll Down
             $('.navbar-fixed-top').removeClass('nav-down').addClass('nav-up animated fadeInDown');
             //to hide the navigation in small screens if it is shown
-            $('.navbar-wrapper ul').hide("slow");
+            if ($(window).height() < 767) {
+                $('.navbar-wrapper ul').hide("slow");
+            }
         } else {
             // Scroll Up
             if (st + $(window).height() < $(document).height()) {
@@ -294,12 +297,6 @@ $(function($, window, document) {
 
 if ($(window).height() > 568) {
     $(".home-section").css("height", $(window).height());
-    $(".about-me-section").css("height", $(window).height());
-    $(".portfolio-section").css("height", $(window).height());
     $("#intro-name").css("height", $(window).height() - 130 + "px");
-    //$("#container-row").css("paddingTop",($(window).height()/2)-70+"px"); 
-} else {
-    $(".home-section").css("height", $(window).height());
-    $("#intro-name").css("height", $(window).height() - 130 + "px");
-    //   $(".about-me-section").css("height",$(window).height()+50+"px");
+
 }
