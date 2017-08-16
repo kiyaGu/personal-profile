@@ -10,6 +10,11 @@ $(function($, window, document) {
             typeSpeed: 80
         });
     });
+    //for navigation menu in small screns
+    $('.collapsed').click(function() {
+        $('.navbar-wrapper ul').toggle("slow");
+    });
+
     //for animating the progress bar to different sizes
     window.addEventListener('scroll', function() {
         let place = document.body.scrollTop;
@@ -89,10 +94,13 @@ $(function($, window, document) {
         if (st > lastScrollTop && st > navbarHeight) {
             // Scroll Down
             $('.navbar-fixed-top').removeClass('nav-down').addClass('nav-up animated fadeInDown');
+            //to hide the navigation in small screens if it is shown
+            $('.navbar-wrapper ul').hide("slow");
         } else {
             // Scroll Up
             if (st + $(window).height() < $(document).height()) {
                 $('.navbar-fixed-top').removeClass('nav-up').addClass('nav-down');
+
             }
         }
 
