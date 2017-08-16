@@ -16,6 +16,22 @@ $(function($, window, document) {
         $('.navbar-wrapper ul').toggle("slow");
     });
 
+
+    //setting active li
+    $('#top-navigation li').click(function(event) {
+        let lists = document.querySelectorAll('#top-navigation li');
+        //make all links not-active
+        lists.forEach(function(element) {
+            $(element).removeClass('active');
+        });
+        //set the clicked li as active
+        $(this).addClass('active');
+    })
+
+
+
+
+
     //for animating the progress bar to different sizes
     window.addEventListener('scroll', function() {
         let place = document.body.scrollTop;
@@ -298,5 +314,4 @@ $(function($, window, document) {
 if ($(window).height() > 568) {
     $(".home-section").css("height", $(window).height());
     $("#intro-name").css("height", $(window).height() - 130 + "px");
-
 }
