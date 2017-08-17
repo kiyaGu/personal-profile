@@ -1071,7 +1071,8 @@ article#experience {
     background: url(../images/neo-urban-1734495.jpg) 100% 0 no-repeat fixed;
     background-size: cover;
     padding-top: 75px;
-    min-height: 790px;
+    /* min-height: 790px; */
+    height: auto;
 }
 
 .portfolio-section #portfolio-container {
@@ -1117,6 +1118,36 @@ article#experience {
 .slider-portfolio-pic .slide-item img {
     height: 400px;
     width: 90%;
+}
+
+#github-api-data {
+    display: flex;
+    flex-direction: column;
+    margin-left: 7em;
+}
+
+#github-api-data ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#github-api-data li {
+    flex-basis: 200px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    margin: .5em 0;
+}
+
+#github-api-data a {
+    text-decoration: none;
+    color: cornsilk;
+}
+
+#github-api-data a:hover {
+    color: #dd5638;
+    ;
 }
 
 

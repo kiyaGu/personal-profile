@@ -1,0 +1,11 @@
+<h2 class="text-success"><u>You can check out my projects</u> &#64;&nbsp;<i class="fa fa-github"></i></h2>
+<hr>
+<ul id="git-repo-list">
+    {{#each repos}}
+        <li >
+            <a class="git-repo-title" href={{this.html_url}}>
+            {{this.name}}</a>
+        </li>
+    {{/each}}
+</ul>
+<hr>

@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/kiyaGu/personal-profile#readme",
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "express-formidable": "^1.0.0",
+    "express-handlebars": "^3.0.0",
+    "node-fetch": "^1.7.2",
+    "node-pre-gyp": "^0.6.36",
+    "nodemon": "^1.11.0"
   }
 }

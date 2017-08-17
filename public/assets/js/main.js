@@ -29,9 +29,6 @@ $(function($, window, document) {
     })
 
 
-
-
-
     //for animating the progress bar to different sizes
     window.addEventListener('scroll', function() {
         let place = document.body.scrollTop;
@@ -112,7 +109,7 @@ $(function($, window, document) {
             // Scroll Down
             $('.navbar-fixed-top').removeClass('nav-down').addClass('nav-up animated fadeInDown');
             //to hide the navigation in small screens if it is shown
-            if ($(window).height() < 767) {
+            if ($(window).width() < 767) {
                 $('.navbar-wrapper ul').hide("slow");
             }
         } else {
