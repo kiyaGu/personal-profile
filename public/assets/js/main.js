@@ -79,6 +79,12 @@ $(function($, window, document) {
         });
     });
 
+    //to capitlise the list of the repos
+    let githubrepolist = document.querySelectorAll('#github-api-data ul li a');
+
+    githubrepolist.forEach(function(element) {
+        $(element).css('text-transform', 'capitalize');
+    });
     // Hide Header on scroll down
     let didScroll,
         lastScrollTop = 0,
