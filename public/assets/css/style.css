@@ -1632,17 +1632,20 @@ footer p {
         margin-bottom: 0;
     }
     .slider-portfolio-content {
-        max-height: 150px;
+        min-height: 120px;
         height: 130px;
-        padding-top: 0em;
+        padding-top: 0;
+        margin-bottom: 0;
     }
     .slider-portfolio-content #portfolio-content {
-        height: 120px;
+        height: 80px;
+        min-height: 80px;
+        max-height: 80px;
         font-size: 14px;
         padding: 0;
     }
-    #portfolio-heading {
-        margin: 0;
+    #portfolio #portfolio-heading {
+        margin: .8em 0 .5em 0;
         font-size: 16px;
         font-weight: 800;
     }

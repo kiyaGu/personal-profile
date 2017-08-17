@@ -237,7 +237,7 @@ $(function($, window, document) {
         '<strong>A Daily Planner application</strong>',
         '<strong>Horizon Tutoring</strong>',
         '<strong>Weather Forcaster</strong>',
-        '<strong>My daily quote</strong>: <em>A random quote generator.</em>',
+        '<strong>My daily quote</strong>: <span id="quote"><em>A&nbsp;random&nbsp;quote&nbsp;generator.</em></span>',
         '<strong>gtg Accountancy Service</strong>',
         '<strong>Post Code Finder</strong>', '<strong>IQRAA foundation UK</strong>'
     ];
