@@ -1140,11 +1140,6 @@ article#experience {
     margin: .5em 0;
 }
 
-
-/* #github-api-data h2 span {
-    border-bottom: 2px solid #fec951;
-} */
-
 #github-api-data h2 i {
     color: green;
     font-size: 1.3em;
@@ -1653,6 +1648,39 @@ footer p {
     }
     #portfolio-text-content hr:first-of-type {
         margin-bottom: 0;
+    }
+    #github-api-data {
+        margin-left: 2em;
+        margin-top: 2em;
+    }
+    #github-api-data ul {
+        margin-top: 0;
+    }
+    #github-api-data li {
+        flex-grow: 1;
+        flex-shrink: 0;
+        margin: .2em 0;
+    }
+    #github-api-data h2 i {
+        color: green;
+        font-size: 1.3em;
+    }
+    #github-api-data hr:first-of-type {
+        width: 90%;
+        margin-left: 0;
+        margin-top: -10px;
+    }
+    #github-api-data hr:last-of-type {
+        width: 90%;
+        margin-left: 0;
+    }
+    #github-api-data a {
+        text-decoration: none;
+        color: cornsilk;
+    }
+    #github-api-data a:hover {
+        color: #dd5638;
+        text-decoration: underline;
     }
     /* === contact me === */
     .contact-me-section {
