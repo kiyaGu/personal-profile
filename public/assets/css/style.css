@@ -1637,7 +1637,7 @@ footer p {
         padding-top: 0em;
     }
     .slider-portfolio-content #portfolio-content {
-        max-height: 150px;
+        min-height: 250px;
         font-size: 14px;
         padding: 0;
     }
