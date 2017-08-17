@@ -1632,8 +1632,8 @@ footer p {
         margin-bottom: 0;
     }
     .slider-portfolio-content {
-        min-height: 150px;
-        height: 150px;
+        max-height: 150px;
+        height: 130px;
         padding-top: 0em;
     }
     .slider-portfolio-content #portfolio-content {
