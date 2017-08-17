@@ -1632,12 +1632,12 @@ footer p {
         margin-bottom: 0;
     }
     .slider-portfolio-content {
-        min-height: 50px;
+        min-height: 150px;
         height: 150px;
         padding-top: 0em;
     }
     .slider-portfolio-content #portfolio-content {
-        min-height: 250px;
+        height: 150px;
         font-size: 14px;
         padding: 0;
     }
