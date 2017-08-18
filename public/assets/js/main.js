@@ -28,6 +28,43 @@ $(function($, window, document) {
         $(this).addClass('active');
     })
 
+    //to change the active navigation when the user scrolls to different sections
+    $(document).on("scroll", (event) => {
+        var scrollPos = $(document).scrollTop();
+
+        $('#top-navigation a').each(function() {
+            var currLink = $(this);
+
+            var refElement = $(currLink.attr("href"));
+            if (currLink[0].hash != "#education") {
+                if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+                    $('#top-navigation li').removeClass("active");
+                    $(currLink[0].parentElement).addClass("active");
+                    $('#top-navigation li#eduLi').removeClass("active");
+                } else {
+                    $(currLink[0].parentElement).removeClass("active");
+                    $('#top-navigation li#eduLi').addClass("active");
+                }
+            } else if (currLink[0].hash == "#education") {
+                $('#top-navigation li#eduLi').addClass("active");
+
+            } else {
+                $('#top-navigation li').removeClass("active");
+            }
+
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
 
     //for animating the progress bar to different sizes
     window.addEventListener('scroll', function() {
