@@ -47,14 +47,14 @@ body {
     line-height: 150%;
     font: 200 1em/1.5em 'Raleway', Helvetica, sans-serif;
     font-size: 16px;
-    background: url(../images/wood-1759566.jpg) 100% 0 repeat fixed;
+    background: url(../images/wood-1759566.jpg) repeat 0% 0% fixed;
     background-size: cover;
     /* background-size: 100%; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* position: absolute; */
-    /* width: 100%;
-    height: 100%; */
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 #wrapper {
@@ -327,7 +327,7 @@ hr {
 }
 
 .navbar {
-    background: url(../images/code-938776.jpg) 100% 0 no-repeat;
+    background: url(../images/code-938776.jpg) no-repeat 0% 0%;
     background-size: cover;
 }
 
@@ -389,7 +389,7 @@ hr {
 /* === home section layout === */
 
 .home-section {
-    background: url(../images/monitor-933392_1920.jpg) 100% 0 no-repeat fixed;
+    background: url(../images/7.jpg) repeat 0% 0% fixed;
     background-size: cover;
 }
 
@@ -562,7 +562,7 @@ hr {
 /* === about-me section layout === */
 
 .about-me-section {
-    background: url(../images/laptop-926775.jpg) 100% 0 no-repeat fixed;
+    background: url(../images/laptop-926775.jpg) no-repeat 0% 0% fixed;
     background-size: cover;
     padding-top: 150px;
 }
@@ -710,7 +710,7 @@ article#education {
 }
 
 .education-section {
-    /* background: url(../images/office-581131.jpg) 100% 0 no-repeat fixed; */
+    /* background: url(../images/office-581131.jpg) no-repeat 0% 0% fixed; */
     background-size: cover;
     padding-top: 80px;
     min-height: 910px;
@@ -745,7 +745,7 @@ article#education {
 /*=========skills section layout ===========*/
 
 .skills-section {
-    background: url("../images/neo-urban-1734495.jpg") 100% 0 no-repeat fixed;
+    background: url("../images/7.jpg") no-repeat 0% 0% fixed;
     background-size: cover;
     padding-top: 70px;
     min-height: 800px;
@@ -904,7 +904,7 @@ article#experience {
 }
 
 .experience-section {
-    /* background: url("../images/computer-1833058_1280.png") 100% 0 no-repeat fixed; */
+    /* background: url("../images/computer-1833058_1280.png") repeat 0% 0% fixed; */
     /* background-size: cover; */
     padding-top: 100px;
     min-height: 950px;
@@ -1068,7 +1068,7 @@ article#experience {
 }
 
 .portfolio-section {
-    background: url(../images/neo-urban-1734495.jpg) 100% 0 no-repeat fixed;
+    background: url(../images/neo-urban-1734495.jpg) no-repeat 0% 0% fixed;
     background-size: cover;
     padding-top: 75px;
     /* min-height: 790px; */
@@ -1171,7 +1171,7 @@ article#experience {
 }
 
 .contact-me-section {
-    /* background: url(../images/computer-1833058_1280.png) 100% 0 repeat fixed; */
+    background: url("../images/7.jpg") no-repeat 0% 0% fixed;
     background-size: cover;
     padding-top: 80px;
     width: auto;
@@ -1333,7 +1333,7 @@ footer p {
         padding-left: 2em;
     }
     .navbar-collapse {
-        background: url(../images/code-938776.jpg) 100% 0 no-repeat;
+        background: url(../images/code-938776.jpg) no-repeat 0% 0%;
         background-size: cover;
         display: absolute;
         padding-left: 20px;
