@@ -17,14 +17,56 @@ app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(formidable());
 
+
+//game operator and numbers
+let operators = ['+', '-', '*', '/', '%'];
+let index = Math.floor(Math.random() * (4 - 0) + 0);
+let random1 = Math.floor(Math.random() * (100 - 0) + 0);
+let random2 = Math.floor(Math.random() * (100 - 0) + 0);
+let selectedOperator = operators[index];
+let result;
+
+function roundToTwoDecPlace(res) {
+    return Math.round((res) * 100) / 100;
+}
+switch (selectedOperator) {
+    case '+':
+        result = roundToTwoDecPlace(random1 + random2);
+        break;
+    case '-':
+        result = roundToTwoDecPlace(random1 - random2);
+        break;
+    case '*':
+        result = roundToTwoDecPlace(random1 * random2);
+        break;
+    case '/':
+        if (random2 !== 0)
+            result = roundToTwoDecPlace(random1 / random2);
+        else
+            result = "NAN"
+        break;
+    case '%':
+        result = roundToTwoDecPlace(random1 % random2)
+}
+
+// result = random1 + operators[index] + random2;
+// console.log(random1, random2, selectedOperator, result);
+let given = {
+    operator: operators[index],
+    number1: random1,
+    number2: random2,
+    result: result
+};
+
 app.get('/', (req, res) => {
+
     const reposjson = fetch('https://api.github.com/users/kiyagu/repos')
         .then((res) => {
             return res.json();
         }).then((json) => {
-
             res.render('index', {
-                repos: json
+                repos: json,
+                inputGiven: given
             });
         });
 });
@@ -52,7 +94,7 @@ app.post('/message', function(req, res) {
     // send mail with defined transport object
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            res.end('{ "message": "Error: your mesage can\'t be send at the moment " }');
+            res.end('{ "message": "Error: your mesage could not be sent at the moment " }');
         }
         res.end('{ "message": "Thank you for contacting me, I will respond to you ASAP! :)" }');
     });

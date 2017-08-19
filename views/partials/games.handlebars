@@ -1,0 +1,38 @@
+<article id="game">
+    <div class="border"></div>
+    <div id="game-heading">
+                    <h2 class="text-success">
+                        <u>Game</u>
+                    </h2>
+                </div>
+    <div id="game-container">
+        
+        <form action="/game"  id="send_game_try" method="POST">
+        <p>Test your math ablity by guessing the result of the <span>given math operation</span></p>
+         
+            <ul><li><span>N.B</span>&nbsp;:</li>
+                <li>-&nbsp;&nbsp;&nbsp;Don't cheat <span>yourself</span> by using&nbsp;&nbsp;<i class="fa fa-lg fa-calculator" aria-hidden="true"></i>&nbsp;&nbsp;is not allowed</li>
+                <li>-&nbsp;&nbsp;&nbsp;If you think the operation is not allowed just put NAN</li>
+            </ul>
+        
+        <div class="form-group">
+            <label for="guess" >Given:</label>
+            <input type="text" id="guess" name="guess" class="form-control" placeholder="{{inputGiven.number1 }} {{inputGiven.operator}}  {{inputGiven.number2}}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="score"> Guess: </label>
+            <input type="text" id="score" name="name" class="form-control" placeholder="Put what is in your mind">
+        </div>
+        
+        <div class="form-group">
+            <button class="btn btn-success" type="submit" id="game-submit-score">
+                Get your score <i class="fa fa-user-secret" aria-hidden="true"></i>
+            </button>
+        </div>
+        <p id="gameMessage"></p>
+        </form>
+        <div id="result-and-leaderBoard">{{> leaderBoard}}</div>
+    </div>
+    <!--===game==-->
+</article>
+<!--===article==-->
