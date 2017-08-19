@@ -469,9 +469,9 @@ $(document).ready(function() {
             });
     }
 
-    //handling game guess submit
-    let btnSubmitGuess = document.querySelector('#game-submit-score');
-    btnSubmitGuess.addEventListener('click', function(e) {
+    //handling game answer submit
+    let btnSubmitanswer = document.querySelector('#game-submit-score');
+    btnSubmitanswer.addEventListener('click', function(e) {
         e.preventDefault();
         // send message to server
         let form = document.querySelector('#send_game_try');

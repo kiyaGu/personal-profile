@@ -23,7 +23,7 @@ let operators, index, random1, random2, selectedOperator, given, rusult;
 
 function mathGame(callback) {
     let operators = ['+', '-', '*', '/', '%'];
-    let index = Math.floor(Math.random() * (4 - 0) + 0);
+    let index = Math.floor(Math.random() * (5 - 0) + 0);
     let random1 = Math.floor(Math.random() * (100 - 0) + 0);
     let random2 = Math.floor(Math.random() * (100 - 0) + 0);
     let selectedOperator = operators[index];
@@ -118,13 +118,13 @@ app.post('/message', function(req, res) {
 
 
 });
-//to handle game guess submission
+//to handle game answer submission
 app.post('/game', function(req, res) {
     let prevResult = result;
     mathGame(function() {
         { //to pass it as a json
             given = JSON.stringify(given);
-            if (prevResult === Number(req.fields.guess)) {
+            if (prevResult === Number(req.fields.answer)) {
                 //success message and new operator and operands for the next game
                 res.end('{"verdict":"Well done, keep playing!!!","inputGiven":' + given + '}');
             } else {
