@@ -1838,10 +1838,13 @@ footer p {
     }
     #send_game_try ul li:nth-child(2),
     #send_game_try ul li:nth-child(3) {
-        padding-left: 1em;
+        padding-left: .2em;
     }
     #send_game_try ul li {
         padding: 5px 0;
+    }
+    #send_game_try ul li i {
+        font-size: inherit;
     }
     #game .form-group {
         margin-bottom: .5em;
