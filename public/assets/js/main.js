@@ -36,9 +36,9 @@ $(document).ready(function() {
         //to make the navigation resume link to stay active for the sections education, skills and experience
         resumeSecHeight = eduSection.height() + skillsSection.height() + experienceSection.height()
         $('#top-navigation a').each(function() {
-            var currLink = $(this);
+            let currLink = $(this);
 
-            var refElement = $(currLink.attr("href"));
+            let refElement = $(currLink.attr("href"));
 
             if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
                 $('#top-navigation li').removeClass("active");
@@ -96,7 +96,7 @@ $(document).ready(function() {
         $('section[data-type="background"]').each(function() {
             let $bgobj = $(this); // assigning the object
             $(window).scroll(function() {
-                //scroll the background at var speed
+                //scroll the background at let speed
                 // the yPos is a negative value because we're scrolling it up
                 let yPos = -(($window.scrollTop() - $bgobj.offset().top) / $bgobj.data('speed'));
                 // put together our final background position
@@ -358,8 +358,8 @@ $(document).ready(function() {
         for validating the form and submitting it
               ===================================*/
 
-    let btnSubmit = document.querySelector('#send-button');
-    btnSubmit.addEventListener('click', function(e) {
+    let btnSubmitMessage = document.querySelector('#send-button');
+    btnSubmitMessage.addEventListener('click', function(e) {
         e.preventDefault();
         let parent = document.querySelector('#contact-me #contact-form');
 
@@ -444,9 +444,9 @@ $(document).ready(function() {
 
         } else {
             // send message to server
-            var form = document.querySelector('form');
-            var formActionUrl = form.action;
-            var formData = new FormData(form);
+            let form = document.querySelector('#send_message');
+            let formActionUrl = form.action;
+            let formData = new FormData(form);
             //send the endpoint and the form
             messages(formActionUrl, formData);
         }
@@ -461,7 +461,41 @@ $(document).ready(function() {
                 res.json()
                     .then(function(json) {
                         alert(json.message);
-                        document.querySelector('form').reset();
+                        document.querySelector('#send_message').reset();
+                    })
+            })
+            .catch(function(err) {
+                console.error(err)
+            });
+    }
+
+    //handling game guess submit
+    let btnSubmitGuess = document.querySelector('#game-submit-score');
+    btnSubmitGuess.addEventListener('click', function(e) {
+        e.preventDefault();
+        // send message to server
+        let form = document.querySelector('#send_game_try');
+        let formActionUrl = form.action;
+        let formData = new FormData(form);
+        //send the endpoint and the form
+        gameResult(formActionUrl, formData);
+    });
+    //to make post request to the server
+    function gameResult(url, data) {
+        fetch(url, {
+                method: 'POST',
+                body: data
+            })
+            .then(function(res) {
+                res.json()
+                    .then(function(json) {
+                        //display success or error
+                        document.querySelector('#gameMessage').innerHTML = json.verdict;
+                        //reset the fields
+                        document.querySelector('#send_game_try').reset();
+                        //display new operator and operands
+                        let given = json.inputGiven.number1 + " " + json.inputGiven.operator + " " + json.inputGiven.number2;
+                        document.querySelector('#given').setAttribute('placeholder', given);
                     })
             })
             .catch(function(err) {

@@ -19,47 +19,64 @@ app.use(formidable());
 
 
 //game operator and numbers
-let operators = ['+', '-', '*', '/', '%'];
-let index = Math.floor(Math.random() * (4 - 0) + 0);
-let random1 = Math.floor(Math.random() * (100 - 0) + 0);
-let random2 = Math.floor(Math.random() * (100 - 0) + 0);
-let selectedOperator = operators[index];
-let result;
+let operators, index, random1, random2, selectedOperator, given, rusult;
+
+function mathGame(callback) {
+    let operators = ['+', '-', '*', '/', '%'];
+    let index = Math.floor(Math.random() * (4 - 0) + 0);
+    let random1 = Math.floor(Math.random() * (100 - 0) + 0);
+    let random2 = Math.floor(Math.random() * (100 - 0) + 0);
+    let selectedOperator = operators[index];
+    switch (selectedOperator) {
+        case '+':
+            result = roundToTwoDecPlace(random1 + random2);
+            break;
+        case '-':
+            result = roundToTwoDecPlace(random1 - random2);
+            break;
+        case '*':
+            result = roundToTwoDecPlace(random1 * random2);
+            break;
+        case '/':
+            if (random2 !== 0)
+                result = roundToTwoDecPlace(random1 / random2);
+            else
+                result = "NAN"
+            break;
+        case '%':
+            result = roundToTwoDecPlace(random1 % random2)
+    }
+    given = {
+        operator: operators[index],
+        number1: random1,
+        number2: random2,
+        result: result
+    };
+    if (arguments.length == 1)
+        callback();
+}
+// let operators = ['+', '-', '*', '/', '%'];
+// let index = Math.floor(Math.random() * (4 - 0) + 0);
+// let random1 = Math.floor(Math.random() * (100 - 0) + 0);
+// let random2 = Math.floor(Math.random() * (100 - 0) + 0);
+// let selectedOperator = operators[index];
+// let result;
 
 function roundToTwoDecPlace(res) {
     return Math.round((res) * 100) / 100;
 }
-switch (selectedOperator) {
-    case '+':
-        result = roundToTwoDecPlace(random1 + random2);
-        break;
-    case '-':
-        result = roundToTwoDecPlace(random1 - random2);
-        break;
-    case '*':
-        result = roundToTwoDecPlace(random1 * random2);
-        break;
-    case '/':
-        if (random2 !== 0)
-            result = roundToTwoDecPlace(random1 / random2);
-        else
-            result = "NAN"
-        break;
-    case '%':
-        result = roundToTwoDecPlace(random1 % random2)
-}
-
+mathGame();
 // result = random1 + operators[index] + random2;
 // console.log(random1, random2, selectedOperator, result);
-let given = {
-    operator: operators[index],
-    number1: random1,
-    number2: random2,
-    result: result
-};
+// let given = {
+//     operator: operators[index],
+//     number1: random1,
+//     number2: random2,
+//     result: result
+// };
 
 app.get('/', (req, res) => {
-
+    mathGame();
     const reposjson = fetch('https://api.github.com/users/kiyagu/repos')
         .then((res) => {
             return res.json();
@@ -76,7 +93,7 @@ app.post('/message', function(req, res) {
         host: 'smtp.gmail.com',
         port: 465,
         secure: true,
-        auth: { //use environment variables for security
+        auth: { //use environment letiables for security
             user: process.env.USER_NAME,
             pass: process.env.EMAIL_PASS
         }
@@ -101,7 +118,23 @@ app.post('/message', function(req, res) {
 
 
 });
+//to handle game guess submission
+app.post('/game', function(req, res) {
+    let prevResult = result;
+    mathGame(function() {
+        { //to pass it as a json
+            given = JSON.stringify(given);
+            if (prevResult === Number(req.fields.guess)) {
+                //success message and new operator and operands for the next game
+                res.end('{"verdict":"Well done, keep playing!!!","inputGiven":' + given + '}');
+            } else {
+                //error message and new operator and operands for the next game
+                res.end('{"verdict":"Wrong, the answer is => <span>  ' + prevResult + '</span>","inputGiven":' + given + '}');
+            }
+        }
+    })
 
+});
 app.listen(process.env.PORT || 3333, () => {
     console.log('Server is listening on port 3333. Ready to accept requests!');
 });

@@ -1168,7 +1168,7 @@ article#experience {
 /*=====game section layout=========*/
 
 #game {
-    height: 500px;
+    height: auto;
 }
 
 #game #game-container {
@@ -1212,7 +1212,7 @@ article#experience {
     text-align: center;
 }
 
-.form-group #guess {
+.form-group #given {
     background: 0;
     border: 0;
     width: 100%;
@@ -1221,7 +1221,7 @@ article#experience {
     height: auto;
 }
 
-.form-group #guess::placeholder {
+.form-group #given::placeholder {
     color: cornsilk;
     font-size: 1.2em;
 }
@@ -1787,7 +1787,6 @@ footer p {
     #github-api-data hr:first-of-type {
         width: 90%;
         margin: 3px 0 1em 0;
-        /* margin-bottom: 1em; */
     }
     #github-api-data hr:last-of-type {
         width: 90%;
@@ -1800,6 +1799,65 @@ footer p {
     #github-api-data a:hover {
         color: #dd5638;
         text-decoration: underline;
+    }
+    /*=====game section layout=========*/
+    #game-section {
+        height: auto;
+    }
+    #game {
+        height: auto;
+    }
+    #game #game-container {
+        flex-direction: column;
+    }
+    #game-section {
+        padding-top: 70px;
+    }
+    #result-and-leaderBoard {
+        flex-basis: 100%;
+    }
+    .form-group #guess::placeholder {
+        color: #fff !important;
+        font-size: 1.2em;
+    }
+    #send_game_try {
+        flex-basis: 60%;
+        text-align: center;
+    }
+    #send_game_try p:first-of-type {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    #send_game_try span {
+        font-weight: bold;
+        color: #F55D3E;
+        border-bottom: 1px solid #fec85d;
+    }
+    #send_game_try ul {
+        margin-left: 0;
+    }
+    #send_game_try ul li:nth-child(2),
+    #send_game_try ul li:nth-child(3) {
+        padding-left: 1em;
+    }
+    #send_game_try ul li {
+        padding: 5px 0;
+    }
+    #game .form-group {
+        margin-bottom: .5em;
+        margin-left: .5em;
+    }
+    #game .form-group #score {
+        padding-right: 0;
+    }
+    #game .form-group button {
+        margin-left: 6em;
+    }
+    #gameMessage {
+        margin-bottom: 0;
+    }
+    #send_game_try ul li i {
+        color: #fec85d;
     }
     /* === contact me === */
     #contact-me-section {
