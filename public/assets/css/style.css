@@ -1768,7 +1768,7 @@ footer p {
     }
     #github-api-data {
         margin-left: 2em;
-        margin-top: 2.5em;
+        margin-top: 3em;
     }
     #github-api-data h2 {
         margin-bottom: .5em;
@@ -1783,12 +1783,11 @@ footer p {
     }
     #github-api-data h2 i {
         color: green;
-        font-size: 1.3em;
     }
     #github-api-data hr:first-of-type {
         width: 90%;
-        margin: 0;
-        margin-bottom: 1em;
+        margin: 3px 0 1em 0;
+        /* margin-bottom: 1em; */
     }
     #github-api-data hr:last-of-type {
         width: 90%;
