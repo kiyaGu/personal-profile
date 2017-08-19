@@ -1,27 +1,28 @@
 {
-  "name": "kiya_personal_portfolio_page",
-  "version": "1.0.0",
-  "description": "This is a portfolio page built as part of CYF summar brake project ",
-  "main": "index.html",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kiyaGu/personal-profile.git"
-  },
-  "author": "Kiya Gur",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kiyaGu/personal-profile/issues"
-  },
-  "homepage": "https://github.com/kiyaGu/personal-profile#readme",
-  "dependencies": {
-    "express": "^4.15.4",
-    "express-formidable": "^1.0.0",
-    "express-handlebars": "^3.0.0",
-    "node-fetch": "^1.7.2",
-    "node-pre-gyp": "^0.6.36",
-    "nodemon": "^1.11.0"
-  }
+    "name": "kiya_personal_portfolio_page",
+    "version": "1.0.0",
+    "description": "This is a portfolio page built as part of CYF summar brake project ",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kiyaGu/personal-profile.git"
+    },
+    "author": "Kiya Gur",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/kiyaGu/personal-profile/issues"
+    },
+    "homepage": "https://github.com/kiyaGu/personal-profile#readme",
+    "dependencies": {
+        "express": "^4.15.4",
+        "express-formidable": "^1.0.0",
+        "express-handlebars": "^3.0.0",
+        "node-fetch": "^1.7.2",
+        "node-pre-gyp": "^0.6.36",
+        "nodemailer": "^4.0.1",
+        "nodemon": "^1.11.0"
+    }
 }

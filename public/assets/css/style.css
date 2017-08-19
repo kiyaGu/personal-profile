@@ -1076,7 +1076,7 @@ article#experience {
 }
 
 #portfolio-section #portfolio-container {
-    height: 400px;
+    height: 350px;
 }
 
 #portfolio-section h2 {
@@ -1239,6 +1239,23 @@ article#experience {
 
 #contact-me .container {
     padding-top: 10px;
+}
+
+#contact-form .error-animate {
+    border: 1.5px solid red !important;
+    text-transform: capitalize;
+    -vendor-animation-duration: 2s;
+    -vendor-animation-iteration-count: 3;
+    animation-duration: 2s;
+    animation-iteration-count: 3;
+}
+
+#contact-form #required {
+    margin: 0;
+}
+
+#contact-form .required {
+    color: red;
 }
 
 #social-link-bottom>ul {
@@ -1633,7 +1650,7 @@ footer p {
     }
     .slider-portfolio-content {
         min-height: 120px;
-        height: 130px;
+        height: 120px;
         padding-top: 0;
         margin-bottom: 0;
     }
@@ -1643,6 +1660,7 @@ footer p {
         max-height: 80px;
         font-size: 14px;
         padding: 0;
+        margin-bottom: 0;
     }
     #portfolio #portfolio-heading {
         margin: .8em 0 .5em 0;
@@ -1654,7 +1672,10 @@ footer p {
     }
     #github-api-data {
         margin-left: 2em;
-        margin-top: 2em;
+        margin-top: 2.5em;
+    }
+    #github-api-data h2 {
+        margin-bottom: .5em;
     }
     #github-api-data ul {
         margin-top: 0;
@@ -1670,8 +1691,8 @@ footer p {
     }
     #github-api-data hr:first-of-type {
         width: 90%;
-        margin-left: 0;
-        margin-top: -10px;
+        margin: 0;
+        margin-bottom: 1em;
     }
     #github-api-data hr:last-of-type {
         width: 90%;
@@ -1742,10 +1763,6 @@ footer p {
         margin: 10px 10px 15px 0;
         font-size: 16px;
     }
-    /* #home-section,
-    #home {
-        height: 100vh;
-    } */
     #home #introduction {
         padding-top: 0;
         margin: 0 7%;
