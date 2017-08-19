@@ -1123,6 +1123,9 @@ article#experience {
     width: 80%;
 }
 
+
+/*=======github repos========*/
+
 #github-api-data {
     display: flex;
     flex-direction: column;
@@ -1141,6 +1144,14 @@ article#experience {
     flex-grow: 1;
     flex-shrink: 0;
     margin: .5em 0;
+}
+
+#github-api-data h2 {
+    color: inherit;
+}
+
+#github-api-data h2 span {
+    color: #fec951;
 }
 
 #github-api-data h2 i {
@@ -1173,12 +1184,16 @@ article#experience {
 
 #game #game-container {
     display: flex;
-    width: 100%;
     justify-content: space-around;
 }
 
-#game #game-heading {
+#game #game-heading,
+#game #game-container {
     margin: .5em 5%;
+}
+
+#game #game-heading {
+    margin-bottom: 0;
 }
 
 #game-section {
@@ -1238,7 +1253,7 @@ article#experience {
 
 #send_game_try span {
     font-weight: bold;
-    color: #F55D3E;
+    color: inherit;
     border-bottom: 1px solid #fec85d;
 }
 
@@ -1494,6 +1509,7 @@ footer p {
     #skills-section article,
     #experience-section article,
     #portfolio-section article,
+    #game-section article,
     #contact-me-section article,
     footer .container {
         width: 95%;
@@ -1759,7 +1775,7 @@ footer p {
         margin-bottom: 0;
     }
     #portfolio #portfolio-heading {
-        margin: .8em 0 .5em 0;
+        /* margin: .8em 0 .5em 0; */
         font-size: 16px;
         font-weight: 800;
     }
@@ -1813,32 +1829,30 @@ footer p {
     #game-section {
         padding-top: 70px;
     }
-    #result-and-leaderBoard {
-        flex-basis: 100%;
+    #game-section #game-heading,
+    #game-container,
+    {
+        margin: 1em 5%;
     }
-    .form-group #guess::placeholder {
+    #result-and-leaderBoard {
+        flex-basis: 90%;
+    }
+    .form-group #answer::placeholder {
         color: #fff !important;
         font-size: 1.2em;
     }
     #send_game_try {
-        flex-basis: 60%;
+        flex-basis: 90%;
         text-align: center;
     }
     #send_game_try p:first-of-type {
         margin-bottom: 0;
-        padding-bottom: 0;
-    }
-    #send_game_try span {
-        font-weight: bold;
-        color: #F55D3E;
-        border-bottom: 1px solid #fec85d;
+        padding: 0 1.5em;
+        text-align: justify;
     }
     #send_game_try ul {
         margin-left: 0;
-    }
-    #send_game_try ul li:nth-child(2),
-    #send_game_try ul li:nth-child(3) {
-        padding-left: .2em;
+        padding-left: 2em;
     }
     #send_game_try ul li {
         padding: 5px 0;
@@ -1944,6 +1958,9 @@ footer p {
     .hire-me hr:last-of-type {
         margin-top: .5em;
         margin-bottom: 0;
+    }
+    #game .form-group button {
+        padding: .5em 1em;
     }
     .badge.social {
         font-size: 14px;
