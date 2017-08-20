@@ -1355,7 +1355,7 @@ article#experience {
     padding-top: 10px;
 }
 
-#contact-form .error-animate {
+.error-animate {
     border: 1.5px solid red !important;
     text-transform: capitalize;
     -vendor-animation-duration: 2s;

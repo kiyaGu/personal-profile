@@ -360,15 +360,16 @@ $(document).ready(function() {
 
     let btnSubmitMessage = document.querySelector('#send-button');
     btnSubmitMessage.addEventListener('click', function(e) {
+
         e.preventDefault();
         let parent = document.querySelector('#contact-me #contact-form');
 
         //if the error is already displayed and the user submits agains
         //remove the previous error and check again
-        if (parent.contains(document.querySelector('#errorContainer'))) {
-            parent.removeChild(document.querySelector('#errorContainer'));
-        }
-        let name = document.querySelector('#name');
+        // if (parent.contains(document.querySelector('#errorContainer'))) {
+        //     parent.removeChild(document.querySelector('#errorContainer'));
+        // }
+        let name = document.querySelector('#name-email');
         let email = document.querySelector('#email');
         let phoneNumber = document.querySelector('#subject');
         let message = document.querySelector('#message');
@@ -422,10 +423,11 @@ $(document).ready(function() {
 
         //if there is any error in the above validation display error
         if (elementNode.length > 0) {
+
             elementNode.forEach(function(element) {
                 // setElementAttribute(element,"placeholder",);
                 setElementAttribute(element, "class", "animated pulse error-animate");
-                if (element.getAttribute('id') === 'name') {
+                if (element.getAttribute('id') === 'name-email') {
                     setElementAttribute(element, "placeholder", nameError);
                 } else if (element.getAttribute('id') === 'email') {
                     if (!(emailError)) {
@@ -473,15 +475,42 @@ $(document).ready(function() {
     let btnSubmitanswer = document.querySelector('#game-submit-score');
     btnSubmitanswer.addEventListener('click', function(e) {
         e.preventDefault();
+        let name = document.querySelector('#playerName');
+        let answer = document.querySelector('#answer');
+        let gameError = false;
+        if (name.value === "") {
+            setElementAttribute(name, "class", "animated pulse error-animate");
+            setElementAttribute(name, "placeholder", "To play you need to put your name");
+            gameError = true;
+        } else {
+            name.classList.remove("error-animate");
+        }
+        if (answer.value == "") {
+            answer.value = "";
+            setElementAttribute(answer, "class", "animated pulse error-animate");
+            setElementAttribute(answer, "placeholder", "You should at least guess!!!");
+            gameError = true;
+        } else if (isNaN(parseInt(answer.value))) {
+            if (answer.value.toUpperCase() !== "NAN") {
+                answer.value = "";
+                setElementAttribute(answer, "class", "animated pulse error-animate");
+                setElementAttribute(answer, "placeholder", "put a number or NAN");
+                gameError = true;
+            } else {
+                answer.classList.remove("error-animate");
+            }
+        } else {
+            answer.classList.remove("error-animate");
+        }
+        if (!(gameError)) {
+            // send message to server
+            let form = document.querySelector('#send_game_try');
+            let formActionUrl = form.action;
+            let formData = new FormData(form);
+            //send the endpoint and the form
+            gameResult(formActionUrl, formData);
+        }
 
-        sessionStorage.setItem("player", $('#name').val());
-
-        // send message to server
-        let form = document.querySelector('#send_game_try');
-        let formActionUrl = form.action;
-        let formData = new FormData(form);
-        //send the endpoint and the form
-        gameResult(formActionUrl, formData);
     });
     //to make post request to the server
     function gameResult(url, data) {
@@ -507,7 +536,8 @@ $(document).ready(function() {
                         //         //display success or error
                         document.querySelector('#gameMessage').innerHTML = json.verdict;
                         //         //reset the fields
-                        document.querySelector('#send_game_try').reset();
+                        $('#answer').val("");
+                        setElementAttribute(answer, "placeholder", "Put what is in your mind");
                         //         //display new operator and operands
                         let given = json.inputGiven.number1 + " " + json.inputGiven.operator + " " + json.inputGiven.number2;
                         //         console.log(json.currentPlayer.name, json.currentPlayer.score);

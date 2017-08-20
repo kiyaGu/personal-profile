@@ -21,7 +21,6 @@ app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(formidable());
 app.use(session({
-    cookieName: 'currentPlayerName',
     secret: '0GBlJZ9EKBt2Zbi2flRPvztczCewBxXK', // CHANGE THIS!
     duration: 30 * 60 * 1000,
     activeDuration: 5 * 60 * 1000
@@ -125,13 +124,18 @@ var Players = function(name, score) {
 let currentPlayer;
 app.post('/game', function(req, res) {
 
+
+
+    //req.session.username
+    // console.log(req.session_state.player);
+
     let prevResult = result;
     mathGame(function() {
         { //to pass it as a json
             //check if the user is not new
-            console.log(req.session_state.player);
-            if (!(req.session_state.player) && req.fields.playerName !== "" && req.session_state.player !== req.fields.playerName) {
-                req.session_state.player = req.fields.playerName;
+
+            if (!(req.session_state.player) && req.fields.name !== "") {
+                req.session_state.player = req.fields.name;
                 currentPlayer = new Players(req.session_state.player, score);
                 // app.locals.player.push(currentPlayer);
                 //if (req.session_state.player != req.fields.name || req.fields.name != "") 
