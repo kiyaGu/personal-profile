@@ -14,13 +14,16 @@
                 <li>-&nbsp;&nbsp;&nbsp;Don't cheat <span>yourself</span> by using &nbsp;<i class="fa fa-lg fa-calculator" aria-hidden="true"></i>&nbsp;&nbsp;</li>
                 <li>-&nbsp;&nbsp;&nbsp;If you think the operation is not allowed just put NAN</li>
             </ul>
-        
         <div class="form-group">
             <label for="answer" >Given:</label>
             <input type="text" id="given" name="given" class="form-control" placeholder="{{inputGiven.number1 }} {{inputGiven.operator}}  {{inputGiven.number2}}" readonly>
         </div>
         <div class="form-group">
-            <label for="score"> Answer: </label>
+            <label for="name" >Name:</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Your name / nickname">
+        </div>
+        <div class="form-group">
+            <label for="answer"> Answer:</label>
             <input type="text" id="answer" name="answer" class="form-control" placeholder="Put what is in your mind">
         </div>
         
@@ -31,7 +34,7 @@
         </div>
         <p id="gameMessage"></p>
         </form>
-        <div id="result-and-leaderBoard">{{> leaderBoard}}</div>
+        <div id="result-and-leaderBoard" class = "hidden">{{> leaderBoard}}</div>
     </div>
     <!--===game==-->
 </article>

@@ -5,18 +5,22 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const formidable = require('express-formidable');
 const nodemailer = require('nodemailer');
+const session = require('client-sessions');
 const projectRoot = path.resolve(__dirname, '')
 const app = express();
 app.use(express.static('public/css'));
 
-// app.use(express.static(path.join(__dirname, '/public'), { 'extensions': ['html'] }));
-// app.use(express.static(path.join(__dirname, '/public')));
+
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(formidable());
-
+app.use(session({
+    secret: '0GBlJZ9EKBt2Zbi2flRPvztczCewBxXK', // CHANGE THIS!
+    duration: 30 * 60 * 1000,
+    activeDuration: 5 * 60 * 1000
+}));
 
 //game operator and numbers
 let operators, index, random1, random2, selectedOperator, given, rusult;
@@ -41,7 +45,7 @@ function mathGame(callback) {
             if (random2 !== 0)
                 result = roundToTwoDecPlace(random1 / random2);
             else
-                result = "NAN"
+                result = NAN;
             break;
         case '%':
             result = roundToTwoDecPlace(random1 % random2)
@@ -55,25 +59,10 @@ function mathGame(callback) {
     if (arguments.length == 1)
         callback();
 }
-// let operators = ['+', '-', '*', '/', '%'];
-// let index = Math.floor(Math.random() * (4 - 0) + 0);
-// let random1 = Math.floor(Math.random() * (100 - 0) + 0);
-// let random2 = Math.floor(Math.random() * (100 - 0) + 0);
-// let selectedOperator = operators[index];
-// let result;
 
 function roundToTwoDecPlace(res) {
     return Math.round((res) * 100) / 100;
 }
-mathGame();
-// result = random1 + operators[index] + random2;
-// console.log(random1, random2, selectedOperator, result);
-// let given = {
-//     operator: operators[index],
-//     number1: random1,
-//     number2: random2,
-//     result: result
-// };
 
 app.get('/', (req, res) => {
     mathGame();
@@ -118,18 +107,61 @@ app.post('/message', function(req, res) {
 
 
 });
-//to handle game answer submission
+
+let score = 0;
+
+//player constructor
+
+var Players = function(name, score) {
+        this.name = name;
+        this.score = score;
+    }
+    //to handle game answer submission
+let currentPlayer;
 app.post('/game', function(req, res) {
+
+
+
+    //req.session.username
+    // console.log(req.session_state.player);
+
     let prevResult = result;
     mathGame(function() {
         { //to pass it as a json
+            //check if the user is not new
+
+            if (!(req.session_state.player) && req.fields.name !== "") {
+                req.session_state.player = req.fields.name;
+                currentPlayer = new Players(req.session_state.player, score);
+                //if (req.session_state.player != req.fields.name || req.fields.name != "") 
+            } else {
+                currentPlayer = JSON.parse(currentPlayer)
+                    // console.log(currentPlayer);
+            }
+
+
             given = JSON.stringify(given);
+            // currentPlayer = JSON.stringify(currentPlayer);
             if (prevResult === Number(req.fields.answer)) {
                 //success message and new operator and operands for the next game
-                res.end('{"verdict":"Well done, keep playing!!!","inputGiven":' + given + '}');
+                currentPlayer.score = ++currentPlayer.score;
+                // currentPlayer.name = req.session_state.player;
+                currentPlayer = JSON.stringify(currentPlayer);
+                // console.log(currentPlayer.score)
+                res.end('{"verdict":"Well done, keep playing!!!","inputGiven":' + given + ',"currentPlayer":' + currentPlayer + '}');
             } else {
                 //error message and new operator and operands for the next game
-                res.end('{"verdict":"Wrong, the answer is => <span>  ' + prevResult + '</span>","inputGiven":' + given + '}');
+                if (currentPlayer.score > 0) {
+                    currentPlayer.score = --currentPlayer.score;
+                } else {
+                    currentPlayer.score = 0;
+                }
+                // currentPlayer.name = req.session_state.player;
+                currentPlayer = JSON.stringify(currentPlayer);
+                res.render('index', {
+                    player: JSON.parse(currentPlayer)
+                });
+                res.end('{"verdict":"Wrong, the answer is => <span>  ' + prevResult + '</span>","inputGiven":' + given + ',"currentPlayer":' + currentPlayer + '}');
             }
         }
     })

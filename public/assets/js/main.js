@@ -473,6 +473,9 @@ $(document).ready(function() {
     let btnSubmitanswer = document.querySelector('#game-submit-score');
     btnSubmitanswer.addEventListener('click', function(e) {
         e.preventDefault();
+
+        sessionStorage.setItem("player", $('#name').val());
+
         // send message to server
         let form = document.querySelector('#send_game_try');
         let formActionUrl = form.action;
@@ -489,12 +492,16 @@ $(document).ready(function() {
             .then(function(res) {
                 res.json()
                     .then(function(json) {
+                        console.log(json.currentPlayer);
+                        //display leaderboard
+                        $('#result-and-leaderBoard').removeClass('hidden');
                         //display success or error
                         document.querySelector('#gameMessage').innerHTML = json.verdict;
                         //reset the fields
                         document.querySelector('#send_game_try').reset();
                         //display new operator and operands
                         let given = json.inputGiven.number1 + " " + json.inputGiven.operator + " " + json.inputGiven.number2;
+                        console.log(json.currentPlayer.name, json.currentPlayer.score);
                         document.querySelector('#given').setAttribute('placeholder', given);
                     })
             })

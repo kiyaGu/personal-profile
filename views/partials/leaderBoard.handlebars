@@ -1,13 +1,13 @@
-<h2 class="text-success hidden">Leader Board &nbsp;&nbsp;<i class="fa fa-lg fa-users" aria-hidden="true"></i></h2>
-<hr class="hidden">
+<h2 class="text-success">Leader Board &nbsp;&nbsp;<i class="fa fa-lg fa-users" aria-hidden="true"></i></h2>
+<hr>
 <ul id="leaderBoard-list">
-    {{#each leader}}
+    {{#each player}}
         <li >
             <p class="leader">
-            {{this.html_url}} +
-            {{this.name}}
+            {{this.name}} +
+            {{this.score}}
             </p>
         </li>
     {{/each}}
 </ul>
-<hr class="hidden">
+<hr>

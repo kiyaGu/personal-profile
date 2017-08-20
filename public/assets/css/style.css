@@ -1817,6 +1817,9 @@ footer p {
         text-decoration: underline;
     }
     /*=====game section layout=========*/
+    .form-group input {
+        height: 20px;
+    }
     #game-section {
         height: auto;
     }
@@ -1827,7 +1830,7 @@ footer p {
         flex-direction: column;
     }
     #game-section {
-        padding-top: 70px;
+        padding-top: 40px;
     }
     #game-section #game-heading,
     #game-container,
@@ -1837,9 +1840,8 @@ footer p {
     #result-and-leaderBoard {
         flex-basis: 90%;
     }
-    .form-group #answer::placeholder {
-        color: #fff !important;
-        font-size: 1.2em;
+    .form-group #guess::placeholder {
+        color: cornsilk !important;
     }
     #send_game_try {
         flex-basis: 90%;
