@@ -490,18 +490,27 @@ $(document).ready(function() {
                 body: data
             })
             .then(function(res) {
+                console.log(res);
+
+
+                ///
+
+
                 res.json()
                     .then(function(json) {
-                        console.log(json.currentPlayer);
-                        //display leaderboard
-                        $('#result-and-leaderBoard').removeClass('hidden');
-                        //display success or error
+
+                        //         console.log(shrinkr);
+                        //         //display leaderboard
+                        //         // $('#result-and-leaderBoard').removeClass('hidden');
+
+                        //         // document.querySelector('#leader').innerHTML = json.currentPlayer.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + json.currentPlayer.score;
+                        //         //display success or error
                         document.querySelector('#gameMessage').innerHTML = json.verdict;
-                        //reset the fields
+                        //         //reset the fields
                         document.querySelector('#send_game_try').reset();
-                        //display new operator and operands
+                        //         //display new operator and operands
                         let given = json.inputGiven.number1 + " " + json.inputGiven.operator + " " + json.inputGiven.number2;
-                        console.log(json.currentPlayer.name, json.currentPlayer.score);
+                        //         console.log(json.currentPlayer.name, json.currentPlayer.score);
                         document.querySelector('#given').setAttribute('placeholder', given);
                     })
             })

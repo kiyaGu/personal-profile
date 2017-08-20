@@ -6,10 +6,14 @@ const exphbs = require('express-handlebars');
 const formidable = require('express-formidable');
 const nodemailer = require('nodemailer');
 const session = require('client-sessions');
+const fs = require('fs');
 const projectRoot = path.resolve(__dirname, '')
 const app = express();
+
+
 app.use(express.static('public/css'));
 
+app.locals.player = [];
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
@@ -45,7 +49,7 @@ function mathGame(callback) {
             if (random2 !== 0)
                 result = roundToTwoDecPlace(random1 / random2);
             else
-                result = NAN;
+                result = NAN
             break;
         case '%':
             result = roundToTwoDecPlace(random1 % random2)
@@ -63,7 +67,7 @@ function mathGame(callback) {
 function roundToTwoDecPlace(res) {
     return Math.round((res) * 100) / 100;
 }
-
+mathGame();
 app.get('/', (req, res) => {
     mathGame();
     const reposjson = fetch('https://api.github.com/users/kiyagu/repos')
@@ -133,22 +137,26 @@ app.post('/game', function(req, res) {
             if (!(req.session_state.player) && req.fields.name !== "") {
                 req.session_state.player = req.fields.name;
                 currentPlayer = new Players(req.session_state.player, score);
+                // app.locals.player.push(currentPlayer);
                 //if (req.session_state.player != req.fields.name || req.fields.name != "") 
             } else {
-                currentPlayer = JSON.parse(currentPlayer)
-                    // console.log(currentPlayer);
+                // currentPlayer = JSON.parse(currentPlayer);
+                // console.log(currentPlayer);
             }
 
 
             given = JSON.stringify(given);
-            // currentPlayer = JSON.stringify(currentPlayer);
+            currentPlayer = JSON.stringify(currentPlayer);
             if (prevResult === Number(req.fields.answer)) {
                 //success message and new operator and operands for the next game
                 currentPlayer.score = ++currentPlayer.score;
                 // currentPlayer.name = req.session_state.player;
-                currentPlayer = JSON.stringify(currentPlayer);
+                // currentPlayer = JSON.stringify(currentPlayer);
                 // console.log(currentPlayer.score)
-                res.end('{"verdict":"Well done, keep playing!!!","inputGiven":' + given + ',"currentPlayer":' + currentPlayer + '}');
+
+                res.send('{"verdict":"Well done, keep playing!!!","inputGiven":' + given + ',"currentPlayer":' + currentPlayer + '}');
+                // currentPlayer = JSON.parse(currentPlayer);
+                // app.locals.player.push(currentPlayer);
             } else {
                 //error message and new operator and operands for the next game
                 if (currentPlayer.score > 0) {
@@ -157,14 +165,59 @@ app.post('/game', function(req, res) {
                     currentPlayer.score = 0;
                 }
                 // currentPlayer.name = req.session_state.player;
-                currentPlayer = JSON.stringify(currentPlayer);
-                res.render('index', {
-                    player: JSON.parse(currentPlayer)
-                });
-                res.end('{"verdict":"Wrong, the answer is => <span>  ' + prevResult + '</span>","inputGiven":' + given + ',"currentPlayer":' + currentPlayer + '}');
+                // currentPlayer = JSON.stringify(currentPlayer);
+
+                // res.render('index', {
+                //     player: currentPlayer
+                // });
+                res.send('{"verdict":"Wrong, the answer is => <span>  ' + prevResult + '</span>","inputGiven":' + given + ',"currentPlayer":' + currentPlayer + '}');
+                // currentPlayer = JSON.parse(currentPlayer);
+                // app.locals.player.push(currentPlayer);
             }
+            app.locals.player.push(currentPlayer);
+            // console.log(app.locals.player);
+
+            // res.render('partials/leaderBoard', {
+            //     player: currentPlayer
+            // });
+
         }
     })
+
+
+
+
+    let parsedFile = {};
+    fs.readFile('data/players.json', (error, file) => {
+        if (error) throw err
+            //if the file is not empty
+        if (file.toString() !== "") {
+            parsedFile = JSON.parse(file);
+
+        }
+
+
+        //computed property [] as key
+        //let player = currentPlayer;
+        // let test = { players: [] };
+        let obj = {};
+
+        // currentPlayer = JSON.parse(currentPlayer);
+        //if there exsits an old post append thenew one to it
+        if (parsedFile !== {}) {
+
+            obj = Object.assign(parsedFile, JSON.parse(currentPlayer));
+            console.log("concaten", obj);
+        } else {
+            obj = JSON.parse(currentPlayer);
+
+        }
+        fs.writeFile('data/players.json', JSON.stringify(obj), function(error) {
+            if (error) {
+                console.log(error);
+            }
+        });
+    });
 
 });
 app.listen(process.env.PORT || 3333, () => {
