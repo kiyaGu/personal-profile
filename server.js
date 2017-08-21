@@ -28,8 +28,7 @@ app.use(session({
 }));
 
 //game operator and numbers
-let operators, index, random1, random2, selectedOperator, result, prevResult;
-let given = {};
+let given;
 
 function mathGame(callback) {
     let operators = ['+', '-', '*', '/', '%'];
@@ -58,8 +57,9 @@ function mathGame(callback) {
         case '%':
             result = roundToTwoDecPlace(random1 % random2)
     }
+
     given = {
-        operator: operators[index],
+        operator: selectedOperator,
         number1: random1,
         number2: random2,
         givenResult: result
@@ -73,9 +73,11 @@ function mathGame(callback) {
 function roundToTwoDecPlace(res) {
     return Math.round((res) * 100) / 100;
 }
+
+
+mathGame();
 app.get('/', (req, res) => {
     mathGame();
-    prevResult = given.givenResult;
     const reposjson = fetch('https://api.github.com/users/kiyagu/repos')
         .then((res) => {
             return res.json();
@@ -86,6 +88,8 @@ app.get('/', (req, res) => {
             });
         });
 });
+
+
 app.post('/message', function(req, res) {
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
@@ -129,9 +133,12 @@ var Players = function(name, score) {
     //to handle game answer submission
 let currentPlayer;
 app.post('/game', function(req, res) {
-    prevResult = given.givenResult;
-    mathGame(function() {
+    let prevResult = result;
 
+
+    mathGame(function() {
+        // prevResult = given.givenResult;
+        // given = given;
         let parsedFile = {};
         fs.readFile('data/players.json', (error, file) => {
             if (error) throw err
@@ -142,7 +149,7 @@ app.post('/game', function(req, res) {
                 for (; index < parsedFile.length; index++) {
                     if (parsedFile[index].name === req.fields.playerName) {
                         if (prevResult === Number(req.fields.answer)) {
-                            parsedFile[index].score++;
+                            ++parsedFile[index].score;
                             //prepare response
                             let successResponse = JSON.stringify({
                                 verdict: "Well done, keep playing!!!",
@@ -150,9 +157,10 @@ app.post('/game', function(req, res) {
                                 currentPlayer: parsedFile[index]
                             });
                             res.send(successResponse);
+                            res.end();
                         } else {
                             if (parsedFile[index].score > 0) {
-                                parsedFile[index].score = --parsedFile[index].score;
+                                --parsedFile[index].score;
                             } else {
                                 parsedFile[index].score = 0;
                             }
@@ -162,6 +170,7 @@ app.post('/game', function(req, res) {
                                 currentPlayer: parsedFile[index]
                             });
                             res.send(ErrorResponse);
+                            res.end();
                         }
                         break;
                     }
@@ -169,13 +178,15 @@ app.post('/game', function(req, res) {
                 if (index == parsedFile.length) {
                     currentPlayer = new Players(req.fields.playerName, 0);
                     if (prevResult === Number(req.fields.answer)) {
-                        currentPlayer.score++;
+                        ++currentPlayer.score;
                         let successResponse = JSON.stringify({
                             verdict: "Well done, keep playing!!!",
                             inputGiven: given,
                             currentPlayer: currentPlayer
                         });
+
                         res.send(successResponse);
+                        res.end();
                     } else {
 
                         let ErrorResponse = JSON.stringify({
@@ -184,16 +195,15 @@ app.post('/game', function(req, res) {
                             currentPlayer: currentPlayer
                         });
                         res.send(ErrorResponse);
+                        res.end();
                     }
                     parsedFile.push(currentPlayer);
                 }
 
             } else {
-
                 currentPlayer = new Players(req.fields.playerName, 0);
-
                 if (prevResult === Number(req.fields.answer)) {
-                    currentPlayer.score++;
+                    ++currentPlayer.score;
                     let successResponse = JSON.stringify({
                         verdict: "Well done, keep playing!!!",
                         inputGiven: given,
@@ -218,6 +228,7 @@ app.post('/game', function(req, res) {
             });
         });
     }); //mathgame
+
 });
 app.listen(process.env.PORT || 3333, () => {
     console.log('Server is listening on port 3333. Ready to accept requests!');

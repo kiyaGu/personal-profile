@@ -536,6 +536,7 @@ $(document).ready(function() {
                         //         //display success or error
                         document.querySelector('#gameMessage').innerHTML = json.verdict;
                         //         //reset the fields
+
                         $('#answer').val("");
                         setElementAttribute(answer, "placeholder", "Put what is in your mind");
                         //         //display new operator and operands
