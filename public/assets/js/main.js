@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     // The $ is now locally scoped 
     // Listen for the jQuery ready event on the document
     $("#home-section").css("height", $(window).height());
@@ -519,7 +520,7 @@ $(document).ready(function() {
                 body: data
             })
             .then(function(res) {
-                console.log(res);
+                // console.log(res);
 
 
                 ///
@@ -543,6 +544,30 @@ $(document).ready(function() {
                         let given = json.inputGiven.number1 + " " + json.inputGiven.operator + " " + json.inputGiven.number2;
                         //         console.log(json.currentPlayer.name, json.currentPlayer.score);
                         document.querySelector('#given').setAttribute('placeholder', given);
+                    })
+                    .then(function() {
+                        $.getJSON("data/players.json", function(data) {
+
+                            //sort the data according to their score
+                            // sort by value
+                            data.sort(function(a, b) {
+                                return b.score - a.score;
+                            });
+                            //check if it has child
+                            if ($("#leaderBoard-list").children().length >= 1) {
+                                $("#leaderBoard-list li").remove();
+                            }
+
+                            $.each(data, function(key, val) {
+                                $("<li id='" + key + "'><span class='player-name'>" + val.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + val.score + "</span></li>").appendTo('#leaderBoard-list');
+                            });
+
+                            // document.querySelector("#leaderBoard-list").appendChild(items.join(""));
+
+
+                            // $("#leaderBoard-list").html(data);
+                            // alert("Load was performed.");
+                        });
                     })
             })
             .catch(function(err) {

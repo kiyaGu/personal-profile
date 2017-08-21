@@ -1275,6 +1275,27 @@ article#experience {
     display: none;
 }
 
+#leaderBoard-list {
+    list-style: none;
+    padding-left: 1em;
+}
+
+#leaderBoard-list li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1em;
+    font-weight: 800;
+}
+
+#leaderBoard-list li .player-name {
+    color: #98B57F;
+    text-transform: capitalize;
+}
+
+#leaderBoard-list li .player-score {
+    color: #CF4A39;
+}
+
 
 /* === contact-me section layout === */
 

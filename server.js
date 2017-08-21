@@ -7,10 +7,11 @@ const formidable = require('express-formidable');
 const nodemailer = require('nodemailer');
 const session = require('client-sessions');
 const fs = require('fs');
-const projectRoot = path.resolve(__dirname, '')
+const projectRoot = path.resolve(__dirname, '');
+var partial = require('express-partial');
 const app = express();
 
-
+app.use(partial());
 app.use(express.static('public/css'));
 
 app.locals.player = [];
@@ -78,13 +79,23 @@ function roundToTwoDecPlace(res) {
 mathGame();
 app.get('/', (req, res) => {
     mathGame();
+    let playersFile;
+    fs.readFile(__dirname + '/public/data/players.json', (error, file) => {
+        if (error) console.log(error);
+        //if the file is not empty
+        playersFile = JSON.parse(file);
+        playersFile.sort(function(a, b) {
+            return b.score - a.score;
+        });
+    }); //fs.read
     const reposjson = fetch('https://api.github.com/users/kiyagu/repos')
         .then((res) => {
             return res.json();
         }).then((json) => {
             res.render('index', {
                 repos: json,
-                inputGiven: given
+                inputGiven: given,
+                playersList: playersFile
             });
         });
 });
@@ -122,15 +133,17 @@ app.post('/message', function(req, res) {
 
 });
 
-let score = 0;
+
+
 
 //player constructor
-
 var Players = function(name, score) {
-        this.name = name;
-        this.score = score;
-    }
-    //to handle game answer submission
+    this.name = name;
+    this.score = score;
+}
+
+
+//to handle game answer submission
 let currentPlayer;
 app.post('/game', function(req, res) {
     let prevResult = result;
@@ -140,7 +153,7 @@ app.post('/game', function(req, res) {
         // prevResult = given.givenResult;
         // given = given;
         let parsedFile = {};
-        fs.readFile('data/players.json', (error, file) => {
+        fs.readFile(__dirname + '/public/data/players.json', (error, file) => {
             if (error) throw err
                 //if the file is not empty
             parsedFile = JSON.parse(file);
@@ -221,7 +234,7 @@ app.post('/game', function(req, res) {
                 parsedFile.push(currentPlayer);
             }
             //update or insert new player to the players.json file 
-            fs.writeFile('data/players.json', JSON.stringify(parsedFile), function(error) {
+            fs.writeFile(__dirname + '/public/data/players.json', JSON.stringify(parsedFile), function(error) {
                 if (error) {
                     console.log(error);
                 }
@@ -229,7 +242,11 @@ app.post('/game', function(req, res) {
         });
     }); //mathgame
 
+
+
+
 });
+
 app.listen(process.env.PORT || 3333, () => {
     console.log('Server is listening on port 3333. Ready to accept requests!');
 });
