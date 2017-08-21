@@ -28,14 +28,17 @@ app.use(session({
 }));
 
 //game operator and numbers
-let operators, index, random1, random2, selectedOperator, given, rusult;
+let operators, index, random1, random2, selectedOperator, result, prevResult;
+let given = {};
 
 function mathGame(callback) {
     let operators = ['+', '-', '*', '/', '%'];
+    //to select a random operator
     let index = Math.floor(Math.random() * (5 - 0) + 0);
     let random1 = Math.floor(Math.random() * (100 - 0) + 0);
     let random2 = Math.floor(Math.random() * (100 - 0) + 0);
     let selectedOperator = operators[index];
+
     switch (selectedOperator) {
         case '+':
             result = roundToTwoDecPlace(random1 + random2);
@@ -59,8 +62,10 @@ function mathGame(callback) {
         operator: operators[index],
         number1: random1,
         number2: random2,
-        result: result
+        givenResult: result
     };
+
+    //execute a callbac if it exists
     if (arguments.length == 1)
         callback();
 }
@@ -68,9 +73,9 @@ function mathGame(callback) {
 function roundToTwoDecPlace(res) {
     return Math.round((res) * 100) / 100;
 }
-mathGame();
 app.get('/', (req, res) => {
     mathGame();
+    prevResult = given.givenResult;
     const reposjson = fetch('https://api.github.com/users/kiyagu/repos')
         .then((res) => {
             return res.json();
@@ -124,67 +129,9 @@ var Players = function(name, score) {
     //to handle game answer submission
 let currentPlayer;
 app.post('/game', function(req, res) {
-
-    let prevResult = result;
-    // mathGame(function() {
-    //     { //to pass it as a json
-    //         //check if the user is not new
-    //         // console.log(req.session_state.player);
-    //         if (req.fields.playerName !== "") {
-    //             // req.session_state.player = req.fields.playerName;
-    //             currentPlayer = new Players(req.fields.playerName, score);
-    //             console.log(currentPlayer);
-    //             // app.locals.player.push(currentPlayer);
-    //             //if (req.session_state.player != req.fields.name || req.fields.name != "") 
-    //         }
-    //         //else {
-    //         //     currentPlayer = JSON.parse(currentPlayer);
-    //         //     // console.log(currentPlayer);
-    //         // }
-
-
-    //         given = JSON.stringify(given);
-    //         // currentPlayer = JSON.stringify(currentPlayer);
-    //         if (prevResult === Number(req.fields.answer)) {
-    //             //success message and new operator and operands for the next game
-    //             currentPlayer.score = ++currentPlayer.score;
-    //             // currentPlayer.name = req.session_state.player;
-    //             // currentPlayer = JSON.stringify(currentPlayer);
-    //             // console.log(currentPlayer.score)
-
-    //             res.send('{"verdict":"Well done, keep playing!!!","inputGiven":' + given + ',"currentPlayer":' + currentPlayer + '}');
-    //             // currentPlayer = JSON.parse(currentPlayer);
-    //             // app.locals.player.push(currentPlayer);
-    //         } else {
-    //             //error message and new operator and operands for the next game
-    //             if (currentPlayer.score > 0) {
-    //                 currentPlayer.score = --currentPlayer.score;
-    //             } else {
-    //                 currentPlayer.score = 0;
-    //             }
-    //             // currentPlayer.name = req.session_state.player;
-    //             // currentPlayer = JSON.stringify(currentPlayer);
-
-    //             // res.render('index', {
-    //             //     player: currentPlayer
-    //             // });
-    //             res.send('{"verdict":"Wrong, the answer is => <span>  ' + prevResult + '</span>","inputGiven":' + given + ',"currentPlayer":' + currentPlayer + '}');
-    //             // currentPlayer = JSON.parse(currentPlayer);
-    //             // app.locals.player.push(currentPlayer);
-    //         }
-    //         app.locals.player.push(currentPlayer);
-    //         // console.log(app.locals.player);
-
-    //         // res.render('partials/leaderBoard', {
-    //         //     player: currentPlayer
-    //         // });
-
-    //     }
-    // })
-
-
-
+    prevResult = given.givenResult;
     mathGame(function() {
+
         let parsedFile = {};
         fs.readFile('data/players.json', (error, file) => {
             if (error) throw err
@@ -221,7 +168,6 @@ app.post('/game', function(req, res) {
                 }
                 if (index == parsedFile.length) {
                     currentPlayer = new Players(req.fields.playerName, 0);
-
                     if (prevResult === Number(req.fields.answer)) {
                         currentPlayer.score++;
                         let successResponse = JSON.stringify({
@@ -255,7 +201,6 @@ app.post('/game', function(req, res) {
                     });
                     res.send(successResponse);
                 } else {
-
                     let ErrorResponse = JSON.stringify({
                         verdict: "Wrong, the answer is => <span>" + prevResult + "</span>",
                         inputGiven: given,
