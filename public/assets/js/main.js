@@ -38,9 +38,7 @@ $(document).ready(function() {
         resumeSecHeight = eduSection.height() + skillsSection.height() + experienceSection.height()
         $('#top-navigation a').each(function() {
             let currLink = $(this);
-
             let refElement = $(currLink.attr("href"));
-
             if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
                 $('#top-navigation li').removeClass("active");
                 $(currLink[0].parentElement).addClass("active");
@@ -52,9 +50,7 @@ $(document).ready(function() {
             } else {
                 $(currLink[0].parentElement).removeClass("active");
             }
-
         });
-
     });
 
 
