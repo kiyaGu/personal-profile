@@ -1,12 +1,10 @@
 const express = require('express');
-const request = require('request');
-const fetch = require('node-fetch');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const formidable = require('express-formidable');
 const nodemailer = require('nodemailer');
-const session = require('client-sessions');
 const GitHubApi = require('github');
+const sendEmail = require('./public/assets/js/sendEmail');
 const fs = require('fs');
 const projectRoot = path.resolve(__dirname, '');
 const github = new GitHubApi({
@@ -30,12 +28,7 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(formidable());
-app.use(session({
-    cookieName: 'currentPlayerName',
-    secret: '0GBlJZ9EKBt2Zbi2flRPvztczCewBxXK', // CHANGE THIS!
-    duration: 30 * 60 * 1000,
-    activeDuration: 5 * 60 * 1000
-}));
+
 
 //an object to hold the generated operators, operand and the calculated result
 let given;
@@ -99,89 +92,57 @@ function mathGame(callback) {
 }
 
 
-
-mathGame();
 app.get('/', (req, res) => {
+    //to give the user the initial numbers and the operator 
     mathGame();
+    //to collect the list of players and their score
     let playersFile;
     fs.readFile(__dirname + '/public/data/players.json', (error, file) => {
-        if (error) console.log(error);
-        //if the file is not empty
+        if (error) {
+            console.log("File not found");
+        }
+        //if the file exists
         playersFile = JSON.parse(file);
+        //sort the returned file based on the players score descendingly
         playersFile.sort(function(a, b) {
             return b.score - a.score;
         });
     }); //fs.read
-    const reposjson = fetch('https://api.github.com/users/kiyagu/repos', {
-            headers: {
-                type: "basic",
-                username: process.env.USER_NAME,
-                password: process.env.PASS
-            }
-        })
-        .then((res) => {
-            return res.json();
-        }).then((json) => {
+    //fetch all the repository of the user kiyagu
+    github.repos.getAll({})
+        .then((repos) => { //server the index view with the given variables
             res.render('index', {
-                repos: json,
+                repos: repos.data,
                 inputGiven: given,
                 playersList: playersFile
             });
-        });
-});
-
-
-app.post('/message', function(req, res) {
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: { //use environment variables for security
-            user: process.env.USER_NAME,
-            pass: process.env.EMAIL_PASS
-        }
-    });
-
-    // setup email data
-    let mailOptions = {
-        from: req.fields.name + "<hamilee.kiya@gmail.com>", // sender address
-        to: 'hamilee.kiya@gmail.com', // list of receivers
-        subject: req.fields.subject, // Subject line
-        text: req.fields.message + "\nSent by :" + req.fields.email, // message body
-
-    };
-
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            res.end('{ "message": "Error: your mesage could not be sent at the moment " }');
-        }
-        res.end('{ "message": "Thank you for contacting me, I will respond to you ASAP! :)" }');
-    });
-
-
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 });
 
 
 
+//to send the email that is sent through the contact me form
+app.post('/message', (req, res) => { sendEmail(req, res); });
 
+/*===============
+        game ===================*/
 //player constructor
 var Players = function(name, score) {
     this.name = name;
     this.score = score;
 }
 
-
 //to handle game answer submission
 let currentPlayer;
 app.post('/game', function(req, res) {
+    //assign the result of the operands displayed to the user for later comparison
     let prevResult = result;
-
-
+    //execute the mathGame() with the given callback
     mathGame(function() {
-        // prevResult = given.givenResult;
-        // given = given;
+        //read pla
         let parsedFile = {};
         fs.readFile(__dirname + '/public/data/players.json', (error, file) => {
             if (error) throw err

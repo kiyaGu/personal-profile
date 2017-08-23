@@ -405,7 +405,7 @@ $(document).ready(function() {
         if (name.value === "") {
             elementNode.push(name);
         } else {
-            document.querySelector('#name').classList.remove("error-animate");
+            document.querySelector('#name-email').classList.remove("error-animate");
         }
         //validate email address
         if (email.value === "") {

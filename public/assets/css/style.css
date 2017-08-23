@@ -1244,6 +1244,10 @@ article#experience {
     text-decoration: underline;
 }
 
+#github-read-me-container hr {
+    margin-top: 5em;
+}
+
 #github-read-me-container .close {
     margin: 5px 10px;
     color: #aaaaaa;
@@ -1939,6 +1943,14 @@ footer p {
         color: #dd5638;
         text-decoration: underline;
     }
+    /*=======github readme =========*/
+    #github-read-me .close i {
+        right: 0px;
+        top: 10px;
+    }
+    #github-read-me-container hr {
+        margin-top: 2em;
+    }
     /*=====game section layout=========*/
     .form-group input {
         height: 20px;
@@ -2050,11 +2062,6 @@ footer p {
         margin: 1%;
         padding-left: 0;
         margin-top: 2px;
-    }
-    /*=======github readme =========*/
-    #github-read-me .close i {
-        right: 0px;
-        top: 10px;
     }
 }
 
