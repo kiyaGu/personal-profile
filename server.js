@@ -8,7 +8,9 @@ const sendEmail = require('./public/assets/js/sendEmail');
 const mathGame = require('./public/assets/js/mathGame');
 const readPlayersList = require('./public/assets/js/readPlayersList');
 const saveToPlayersListFile = require('./public/assets/js/saveToPlayersListFile');
-const projectRoot = path.resolve(__dirname, '');
+const checkMathGameResult = require('./public/assets/js/checkMathGameResult');
+const recordNewPlayer = require('./public/assets/js/recordNewPlayer');
+// const projectRoot = path.resolve(__dirname, '');
 const github = new GitHubApi({
     headers: { //to get the decoded content of the readme files
         "accept": "application/vnd.github.V3.raw",
@@ -27,7 +29,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(formidable());
 
 
-let given;
+let given; //to hold the operator, the operands and the result of the math game
 app.get('/', (req, res) => {
     //to give the user the initial numbers and the operator 
     mathGame((given) => {
@@ -53,11 +55,6 @@ app.post('/message', (req, res) => { sendEmail(req, res); });
 
 /*===============
         game ===================*/
-//player constructor
-var Players = function(name, score) {
-    this.name = name;
-    this.score = score;
-}
 
 //to handle game answer submission
 let currentPlayer;
@@ -70,77 +67,10 @@ app.post('/game', function(req, res) {
         let playersFile = {};
         readPlayersList().then((playersFile) => {
             if (playersFile.length > 0) {
-                let index = 0
-                for (; index < playersFile.length; index++) {
-                    if (playersFile[index].name.toLowerCase() === req.fields.playerName.toLowerCase()) {
-                        if (prevResult === Number(req.fields.answer)) {
-                            ++playersFile[index].score;
-                            //prepare response
-                            let successResponse = JSON.stringify({
-                                verdict: "Well done, keep playing!!!",
-                                inputGiven: given,
-                                currentPlayer: playersFile[index]
-                            });
-                            res.send(successResponse);
-                            res.end();
-                        } else {
-                            if (playersFile[index].score > 0) {
-                                --playersFile[index].score;
-                            } else {
-                                playersFile[index].score = 0;
-                            }
-                            let ErrorResponse = JSON.stringify({
-                                verdict: "Wrong, the answer is => <span>" + prevResult + "</span>",
-                                inputGiven: given,
-                                currentPlayer: playersFile[index]
-                            });
-                            res.send(ErrorResponse);
-                            res.end();
-                        }
-                        break;
-                    }
-                }
-                if (index == playersFile.length) {
-                    currentPlayer = new Players(req.fields.playerName, 0);
-                    if (prevResult === Number(req.fields.answer)) {
-                        ++currentPlayer.score;
-                        let successResponse = JSON.stringify({
-                            verdict: "Well done, keep playing!!!",
-                            inputGiven: given,
-                            currentPlayer: currentPlayer
-                        });
-                        res.send(successResponse);
-                        res.end();
-                    } else {
-                        let ErrorResponse = JSON.stringify({
-                            verdict: "Wrong, the answer is => <span>" + prevResult + "</span>",
-                            inputGiven: given,
-                            currentPlayer: currentPlayer
-                        });
-                        res.send(ErrorResponse);
-                        res.end();
-                    }
-                    playersFile.push(currentPlayer);
-                }
-            } else {
-                currentPlayer = new Players(req.fields.playerName, 0);
-                if (prevResult === Number(req.fields.answer)) {
-                    ++currentPlayer.score;
-                    let successResponse = JSON.stringify({
-                        verdict: "Well done, keep playing!!!",
-                        inputGiven: given,
-                        currentPlayer: currentPlayer
-                    });
-                    res.send(successResponse);
-                } else {
-                    let ErrorResponse = JSON.stringify({
-                        verdict: "Wrong, the answer is => <span>" + prevResult + "</span>",
-                        inputGiven: given,
-                        currentPlayer: currentPlayer
-                    });
-                    res.send(ErrorResponse);
-                }
-                playersFile.push(currentPlayer);
+
+                playersFile = checkMathGameResult(playersFile, given, req, res, prevResult);
+            } else { //if no player is recorded
+                playersFile = recordNewPlayer(playersFile, given, req, res, prevResult);
             }
             saveToPlayersListFile(playersFile);
         });
@@ -148,19 +78,16 @@ app.post('/game', function(req, res) {
 }); //game
 //github readme
 app.post('/getReadmedata', (req, res) => {
-    // let url = "https://api.github.com/repos/" + req.fields.owner + "/" + req.fields.repo + "/readme";
     let readme = github.repos.getReadme({
         owner: req.fields.owner,
         repo: req.fields.repo
     }, function(errorr, response) {
-        console.log(response);
         res.send(response);
-        res.end();
     });
 
 });
 
 process.setMaxListeners(0);
-app.listen(process.env.PORT || 3333, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('Server is listening on port 3333. Ready to accept requests!');
 });

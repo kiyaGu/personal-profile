@@ -1176,6 +1176,11 @@ article#experience {
     margin-top: -8px;
 }
 
+#github-api-data hr:last-of-type {
+    width: 90%;
+    margin-right: 20px;
+}
+
 #github-api-data a {
     text-decoration: none;
     color: cornsilk;
@@ -1246,6 +1251,7 @@ article#experience {
 
 #github-read-me-container hr {
     margin-top: 5em;
+    width: 70%;
 }
 
 #github-read-me-container .close {
@@ -1548,15 +1554,15 @@ footer .container {
     background: transparent;
 }
 
-footer .container p a {
+footer #footer-link {
     color: #fec85d;
 }
 
-footer .container p a:visited {
+footer #footer-link :visited {
     color: cornsilk;
 }
 
-footer .container p a:hover {
+footer #footer-link :hover {
     color: #dd5638;
 }
 
@@ -1930,10 +1936,6 @@ footer p {
     #github-api-data hr:first-of-type {
         width: 90%;
         margin: 3px 0 1em 0;
-    }
-    #github-api-data hr:last-of-type {
-        width: 90%;
-        margin-left: 0;
     }
     #github-api-data a {
         text-decoration: none;
