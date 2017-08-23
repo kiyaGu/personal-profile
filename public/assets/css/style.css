@@ -1116,11 +1116,11 @@ article#experience {
 }
 
 #portfolio-pic {
-    flex-basis: 70%;
+    flex-basis: 65%;
 }
 
 #portfolio-text-content {
-    flex-basis: 25%;
+    flex-basis: 30%;
     width: 100%;
 }
 
@@ -1226,17 +1226,19 @@ article#experience {
 }
 
 #github-read-me-container {
-    margin: 1em 2%;
+    margin: .5em 2%;
     padding: 3em 5% 0 5%;
 }
 
 #github-read-me-container h2 {
     text-decoration: underline;
+    margin-top: 1.5em;
+    margin-left: 5%;
 }
 
 #github-read-me-container #read-me-content,
 #github-read-me-container #read-me-link {
-    margin-left: 5%;
+    margin-left: 8%;
 }
 
 #github-read-me-container #read-me-link {
@@ -1251,7 +1253,12 @@ article#experience {
 
 #github-read-me-container hr {
     margin-top: 5em;
-    width: 70%;
+    width: 100%;
+}
+
+#github-read-me-container hr:first-of-type {
+    margin-top: 1.5em;
+    margin-bottom: 3em;
 }
 
 #github-read-me-container .close {
@@ -1952,6 +1959,10 @@ footer p {
     }
     #github-read-me-container hr {
         margin-top: 2em;
+    }
+    #github-read-me-container hr:first-of-type {
+        margin-top: .5em;
+        margin-bottom: 1em;
     }
     /*=====game section layout=========*/
     .form-group input {

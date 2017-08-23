@@ -10,7 +10,17 @@ function readPlayersList() {
             playersFile.sort(function(a, b) {
                 return b.score - a.score;
             });
-            return playersFile;
+            //display only the top 10 players
+            //if it is less than 10 no need to filter the top 10
+            if (playersFile.length > 10) {
+                let topTenPlayers = [];
+                for (let i = 0; i < 10; i++) {
+                    topTenPlayers.push(playersFile[i]);
+                }
+                return topTenPlayers;
+            } else {
+                return playersFile;
+            }
         });
 }
 module.exports = readPlayersList;
