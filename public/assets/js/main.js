@@ -93,11 +93,11 @@ $(document).ready(function() {
         // Cache the Window object
         let $window = $(window);
         // Parallax Backgrounds
-        // Tutorial: http://code.tutsplus.com/tutorials/a-simple-parallax-scrolling-technique--net-27641
+        // source: http://code.tutsplus.com/tutorials/a-simple-parallax-scrolling-technique--net-27641
         $('section[data-type="background"]').each(function() {
             let $bgobj = $(this); // assigning the object
             $(window).scroll(function() {
-                //scroll the background at let speed
+                //scroll the background at var speed
                 // the yPos is a negative value because we're scrolling it up
                 let yPos = -(($window.scrollTop() - $bgobj.offset().top) / $bgobj.data('speed'));
                 // put together our final background position
@@ -110,7 +110,6 @@ $(document).ready(function() {
 
     //to capitlise the list of the repos
     let githubrepolist = document.querySelectorAll('#github-api-data ul li a');
-
     githubrepolist.forEach(function(element) {
         $(element).css('text-transform', 'capitalize');
     });
@@ -169,7 +168,29 @@ $(document).ready(function() {
         });
     });
 
-    //for animating the education images and content
+    //setting different color of the player score based on the score
+    let playerScore = document.querySelectorAll('#leaderBoard-list .player-score');
+    playerScore.forEach((score) => {
+        if (score.innerHTML == 0) {
+            //make the color of the score cornsilk
+            score.className = 'player-score-zero';
+        }
+    });
+
+    //for the modal
+    let modal = document.getElementById('github-read-me');
+    let span = document.getElementsByClassName("close")[0];
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+            modal.style.display = "none";
+        }
+        //when the user clicks anywhere outside of the modal, close the modal
+    window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        //for animating the education images and content
 
     let educationImgArray = [
         "certifi_1.jpg", "certifi_2.jpg",
@@ -364,12 +385,6 @@ $(document).ready(function() {
 
         e.preventDefault();
         let parent = document.querySelector('#contact-me #contact-form');
-
-        //if the error is already displayed and the user submits agains
-        //remove the previous error and check again
-        // if (parent.contains(document.querySelector('#errorContainer'))) {
-        //     parent.removeChild(document.querySelector('#errorContainer'));
-        // }
         let name = document.querySelector('#name-email');
         let email = document.querySelector('#email');
         let phoneNumber = document.querySelector('#subject');
@@ -511,7 +526,6 @@ $(document).ready(function() {
             //send the endpoint and the form
             gameResult(formActionUrl, formData);
         }
-
     });
     //to make post request to the server
     function gameResult(url, data) {
@@ -522,21 +536,12 @@ $(document).ready(function() {
             .then(function(res) {
                 res.json()
                     .then(function(json) {
-
-                        //         console.log(shrinkr);
-                        //         //display leaderboard
-                        //         // $('#result-and-leaderBoard').removeClass('hidden');
-
-                        //         // document.querySelector('#leader').innerHTML = json.currentPlayer.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + json.currentPlayer.score;
-                        //         //display success or error
                         document.querySelector('#gameMessage').innerHTML = json.verdict;
-                        //         //reset the fields
-
+                        //reset the answer fields
                         $('#answer').val("");
                         setElementAttribute(answer, "placeholder", "Put what is in your mind");
-                        //         //display new operator and operands
+                        //display new operator and operands
                         let given = json.inputGiven.number1 + " " + json.inputGiven.operator + " " + json.inputGiven.number2;
-                        //         console.log(json.currentPlayer.name, json.currentPlayer.score);
                         document.querySelector('#given').setAttribute('placeholder', given);
                     })
                     .then(function() {
@@ -565,15 +570,9 @@ $(document).ready(function() {
                 console.error(err)
             });
     }
-
-
-
     // github-readme
-    // let btngithub = document.querySelectorAll('#git-repo-list li');
     $('#git-repo-list li').click(function(event) {
-
         event.preventDefault();
-        // alert(this);
         let githubReponame = this.querySelector('a').innerHTML.trim();
         let githubRepoHref = this.querySelector('a').getAttribute('href');
         $.ajax({
@@ -594,35 +593,4 @@ $(document).ready(function() {
 
             });
     });
-
-
-    //setting different color of the player score based on the score
-
-    let playerScore = document.querySelectorAll('#leaderBoard-list .player-score');
-    playerScore.forEach((score) => {
-        if (score.innerHTML == 0) {
-            //make the color of the score cornsilk
-            score.className = 'player-score-zero';
-        }
-    });
-
-
-
-
-
-
-    //for the modal
-
-    let modal = document.getElementById('github-read-me');
-    let span = document.getElementsByClassName("close")[0];
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-            modal.style.display = "none";
-        }
-        //when the user clicks anywhere outside of the modal, close the modal
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
 }); //document ready

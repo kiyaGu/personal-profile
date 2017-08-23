@@ -21,7 +21,6 @@ github.authenticate({
 })
 const app = express();
 
-
 app.use(express.static('public/css'));
 
 app.locals.player = [];
@@ -38,52 +37,67 @@ app.use(session({
     activeDuration: 5 * 60 * 1000
 }));
 
-//game operator and numbers
+//an object to hold the generated operators, operand and the calculated result
 let given;
+//for generating random operands
+function generateRandomOperands() {
+    //pick two integers between 0 and 100
+    let number1 = Math.floor(Math.random() * (100 - 0) + 0);
+    let number2 = Math.floor(Math.random() * (100 - 0) + 0);
+    return {
+        random1: number1,
+        random2: number2
+    }
+}
 
-function mathGame(callback) {
+//for generating the operator
+function chooseOperator() {
     let operators = ['+', '-', '*', '/', '%'];
     //to select a random operator
     let index = Math.floor(Math.random() * (5 - 0) + 0);
-    let random1 = Math.floor(Math.random() * (100 - 0) + 0);
-    let random2 = Math.floor(Math.random() * (100 - 0) + 0);
-    let selectedOperator = operators[index];
+    return operators[index];
+}
+//to round the given number to two decimal place
+function roundToTwoDecPlace(res) {
+    return Math.round((res) * 100) / 100;
+}
+//for calculating math results
+function mathGame(callback) {
+    let selectedOperator = chooseOperator();
+    let operands = generateRandomOperands();
 
     switch (selectedOperator) {
         case '+':
-            result = roundToTwoDecPlace(random1 + random2);
+            result = roundToTwoDecPlace(operands.random1 + operands.random2);
             break;
         case '-':
-            result = roundToTwoDecPlace(random1 - random2);
+            result = roundToTwoDecPlace(operands.random1 - operands.random2);
             break;
         case '*':
-            result = roundToTwoDecPlace(random1 * random2);
+            result = roundToTwoDecPlace(operands.random1 * operands.random2);
             break;
         case '/':
-            if (random2 !== 0)
-                result = roundToTwoDecPlace(random1 / random2);
+            if (operands.random2 !== 0)
+                result = roundToTwoDecPlace(operands.random1 / operands.random2);
             else
                 result = NAN
             break;
         case '%':
-            result = roundToTwoDecPlace(random1 % random2)
+            result = roundToTwoDecPlace(operands.random1 % operands.random2)
     }
 
     given = {
         operator: selectedOperator,
-        number1: random1,
-        number2: random2,
+        number1: operands.random1,
+        number2: operands.random2,
         givenResult: result
     };
 
-    //execute a callbac if it exists
+    //execute a callback if there is
     if (arguments.length == 1)
         callback();
 }
 
-function roundToTwoDecPlace(res) {
-    return Math.round((res) * 100) / 100;
-}
 
 
 mathGame();
@@ -176,7 +190,7 @@ app.post('/game', function(req, res) {
             if (parsedFile.length > 0) {
                 let index = 0
                 for (; index < parsedFile.length; index++) {
-                    if (parsedFile[index].name === req.fields.playerName) {
+                    if (parsedFile[index].name.toLowerCase() === req.fields.playerName.toLowerCase()) {
                         if (prevResult === Number(req.fields.answer)) {
                             ++parsedFile[index].score;
                             //prepare response
