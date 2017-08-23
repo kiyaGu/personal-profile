@@ -18,8 +18,8 @@ const github = new GitHubApi({
 });
 github.authenticate({
     type: "basic",
-    username: process.env.USER_NAME,
-    password: process.env.PASS
+    username: process.env.GITHUB_USERNAME,
+    password: process.env.GITHUB_PASSWORD
 })
 const app = express();
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
