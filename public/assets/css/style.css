@@ -49,7 +49,6 @@ body {
     font-size: 16px;
     background: url(../images/wood-1759566.jpg) repeat 0% 0% fixed;
     background-size: cover;
-    /* background-size: 100%; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     position: absolute;
@@ -70,8 +69,7 @@ body {
 #skills-section,
 #experience-section,
 #portfolio-section,
-#game-section,
-#contact-me-section {
+#game-section {
     height: 100vh;
     width: 100vw;
     -moz-box-sizing: border-box;
@@ -84,7 +82,7 @@ body {
 #education-section article,
 #skills-section article,
 #experience-section article,
-#portfolio-section article,
+#portfolio,
 #game-section article,
 #contact-me-section article,
 footer .container {
@@ -98,6 +96,14 @@ footer .container {
     flex-direction: column;
 }
 
+#github-read-me {
+    margin: 0 8.63%;
+    color: cornsilk;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #home-section article:after,
 #about-me-section article:after,
 #education-section article:after,
@@ -106,7 +112,7 @@ footer .container {
 #portfolio-section article:after,
 #game-section article:after,
 #contact-me-section article:after,
-footer .container {
+footer .container:after {
     content: " ";
     display: block;
     clear: both;
@@ -229,6 +235,10 @@ button .btn:focus {
 .btn-success {
     background: #79b044;
     border: none;
+}
+
+.hidden {
+    display: none;
 }
 
 .hire-me button:hover {
@@ -547,6 +557,7 @@ hr {
 
 #move-down {
     margin-top: 4em;
+    margin-left: 40%;
 }
 
 #move-down button {
@@ -1176,7 +1187,97 @@ article#experience {
 }
 
 
+/*=====githubrepo readme ====*/
+
+#github-read-me {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#portfolio-section #github-read-me-container {
+    margin: 2em 5%;
+    background-size: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .9)), url(../images/dark-bg.jpg);
+    border-radius: 3px;
+    min-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+#github-read-me-container h2:first-letter {
+    text-transform: capitalize;
+}
+
+#github-read-me-container {
+    margin: 1em 2%;
+    padding: 3em 5% 0 5%;
+}
+
+#github-read-me-container h2 {
+    text-decoration: underline;
+}
+
+#github-read-me-container #read-me-content,
+#github-read-me-container #read-me-link {
+    margin-left: 5%;
+}
+
+#github-read-me-container #read-me-link {
+    text-decoration: none;
+    color: #98B57F;
+}
+
+#github-read-me-container #read-me-link:hover {
+    color: #DF4848;
+    text-decoration: underline;
+}
+
+#github-read-me-container .close {
+    margin: 5px 10px;
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#github-read-me .close i {
+    color: #fec85d;
+    font-size: 24px;
+    float: right;
+    margin-right: 5%;
+    position: absolute;
+    right: -30px;
+    top: 10px;
+}
+
+#github-read-me .close i:hover,
+#github-read-me .close i:focus {
+    color: #DF4848;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
 /*=====game section layout=========*/
+
+#game-section {
+    /* background: url("../images/computer-1833058_1280.png") repeat 0% 0% fixed; */
+    /* background-size: cover; */
+    padding-top: 100px;
+    min-height: 800px;
+}
 
 #game {
     height: auto;
@@ -1212,6 +1313,7 @@ article#experience {
 
 #game .form-group button {
     color: #000;
+    margin-left: 1em;
 }
 
 #result-and-leaderBoard i {
@@ -1271,10 +1373,6 @@ article#experience {
     color: #fec85d;
 }
 
-.hidden {
-    display: none;
-}
-
 #leaderBoard-list {
     list-style: none;
     padding-left: 1em;
@@ -1292,7 +1390,11 @@ article#experience {
     text-transform: capitalize;
 }
 
-#leaderBoard-list li .player-score {
+.player-score {
+    color: cornsilk;
+}
+
+.player-score-zero {
     color: #CF4A39;
 }
 
@@ -1891,7 +1993,7 @@ footer p {
         padding-right: 0;
     }
     #game .form-group button {
-        margin-left: 6em;
+        margin-left: 5em;
     }
     #gameMessage {
         margin-bottom: 0;
@@ -1948,6 +2050,11 @@ footer p {
         margin: 1%;
         padding-left: 0;
         margin-top: 2px;
+    }
+    /*=======github readme =========*/
+    #github-read-me .close i {
+        right: 0px;
+        top: 10px;
     }
 }
 

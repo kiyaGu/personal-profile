@@ -6,12 +6,22 @@ const exphbs = require('express-handlebars');
 const formidable = require('express-formidable');
 const nodemailer = require('nodemailer');
 const session = require('client-sessions');
+const GitHubApi = require('github');
 const fs = require('fs');
 const projectRoot = path.resolve(__dirname, '');
-var partial = require('express-partial');
+const github = new GitHubApi({
+    headers: { //to get the decoded content of the readme files
+        "accept": "application/vnd.github.V3.raw",
+    }
+});
+github.authenticate({
+    type: "basic",
+    username: process.env.USER_NAME,
+    password: process.env.PASS
+})
 const app = express();
 
-app.use(partial());
+
 app.use(express.static('public/css'));
 
 app.locals.player = [];
@@ -88,7 +98,13 @@ app.get('/', (req, res) => {
             return b.score - a.score;
         });
     }); //fs.read
-    const reposjson = fetch('https://api.github.com/users/kiyagu/repos')
+    const reposjson = fetch('https://api.github.com/users/kiyagu/repos', {
+            headers: {
+                type: "basic",
+                username: process.env.USER_NAME,
+                password: process.env.PASS
+            }
+        })
         .then((res) => {
             return res.json();
         }).then((json) => {
@@ -241,12 +257,32 @@ app.post('/game', function(req, res) {
             });
         });
     }); //mathgame
+}); //game
+
+//github readme
 
 
 
+app.post('/getReadmedata', (req, res) => {
+    // let url = "https://api.github.com/repos/" + req.fields.owner + "/" + req.fields.repo + "/readme";
+    let readme = github.repos.getReadme({
+        owner: req.fields.owner,
+        repo: req.fields.repo
+    }, function(errorr, response) {
+        console.log(response);
+        res.send(response);
+        res.end();
+    });
 
 });
-
+// app.get('/getReadme', (req, res) => {
+//     res.render('githubReadme');
+// });
+// app.get('/githubreadmeBack', (req, res) => {
+//     // res.setHeader("Content-Type", "text/html");
+//     res.redirect('index');
+// });
+process.setMaxListeners(0);
 app.listen(process.env.PORT || 3333, () => {
     console.log('Server is listening on port 3333. Ready to accept requests!');
 });

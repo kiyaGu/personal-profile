@@ -520,12 +520,6 @@ $(document).ready(function() {
                 body: data
             })
             .then(function(res) {
-                // console.log(res);
-
-
-                ///
-
-
                 res.json()
                     .then(function(json) {
 
@@ -547,26 +541,23 @@ $(document).ready(function() {
                     })
                     .then(function() {
                         $.getJSON("data/players.json", function(data) {
-
                             //sort the data according to their score
                             // sort by value
                             data.sort(function(a, b) {
                                 return b.score - a.score;
                             });
-                            //check if it has child
+                            //check if it has child - remove the previous list
                             if ($("#leaderBoard-list").children().length >= 1) {
                                 $("#leaderBoard-list li").remove();
                             }
-
                             $.each(data, function(key, val) {
-                                $("<li id='" + key + "'><span class='player-name'>" + val.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + val.score + "</span></li>").appendTo('#leaderBoard-list');
+                                if (val.score == 0) { //make the color of the score cornsilk
+                                    $("<li id='" + key + "'><span class='player-name'>" + val.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + val.score + "</span></li>").appendTo('#leaderBoard-list');
+                                } else {
+                                    $("<li id='" + key + "'><span class='player-name'>" + val.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + val.score + "</span></li>").appendTo('#leaderBoard-list');
+                                }
+
                             });
-
-                            // document.querySelector("#leaderBoard-list").appendChild(items.join(""));
-
-
-                            // $("#leaderBoard-list").html(data);
-                            // alert("Load was performed.");
                         });
                     })
             })
@@ -575,4 +566,63 @@ $(document).ready(function() {
             });
     }
 
-});
+
+
+    // github-readme
+    // let btngithub = document.querySelectorAll('#git-repo-list li');
+    $('#git-repo-list li').click(function(event) {
+
+        event.preventDefault();
+        // alert(this);
+        let githubReponame = this.querySelector('a').innerHTML.trim();
+        let githubRepoHref = this.querySelector('a').getAttribute('href');
+        $.ajax({
+                method: "POST",
+                url: "/getReadmedata",
+                data: { owner: "KiyaGu", repo: githubReponame, url: githubRepoHref }
+            })
+            .done(function(res) {
+                //to remove the header from the content that is sent
+                let n = res.data.indexOf("\n");
+                let content = res.data.substr(n);
+                document.querySelector('#github-read-me').style.display = "block";
+                // let response = JSON.parse(request.responseText);
+                document.querySelector('#read-me-heading').innerHTML = githubReponame;
+                $('#read-me-content').html(content);
+                document.querySelector('#read-me-link').innerHTML = "You can check it out here";
+                document.querySelector('#read-me-link').setAttribute('href', githubRepoHref);
+
+            });
+    });
+
+
+    //setting different color of the player score based on the score
+
+    let playerScore = document.querySelectorAll('#leaderBoard-list .player-score');
+    playerScore.forEach((score) => {
+        if (score.innerHTML == 0) {
+            //make the color of the score cornsilk
+            score.className = 'player-score-zero';
+        }
+    });
+
+
+
+
+
+
+    //for the modal
+
+    let modal = document.getElementById('github-read-me');
+    let span = document.getElementsByClassName("close")[0];
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+            modal.style.display = "none";
+        }
+        //when the user clicks anywhere outside of the modal, close the modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}); //document ready
