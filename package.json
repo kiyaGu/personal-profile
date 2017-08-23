@@ -23,7 +23,6 @@
         "express-handlebars": "^3.0.0",
         "github": "^9.3.1",
         "node-pre-gyp": "^0.6.36",
-        "nodemailer": "^4.0.1",
-        "nodemon": "^1.11.0"
+        "nodemailer": "^4.0.1"
     }
 }
