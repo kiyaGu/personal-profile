@@ -1243,10 +1243,13 @@ article#experience {
 
 #github-read-me-container #read-me-link {
     text-decoration: none;
+}
+
+#github-read-me-container #read-me-link span {
     color: #98B57F;
 }
 
-#github-read-me-container #read-me-link:hover {
+#github-read-me-container #read-me-link span:hover {
     color: #DF4848;
     text-decoration: underline;
 }
@@ -1284,6 +1287,11 @@ article#experience {
     color: #DF4848;
     text-decoration: none;
     cursor: pointer;
+}
+
+#read-me-link i {
+    color: #fec85d !important;
+    font-size: 1.7em;
 }
 
 

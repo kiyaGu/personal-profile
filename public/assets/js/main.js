@@ -584,7 +584,7 @@ $(document).ready(function() {
                 // let response = JSON.parse(request.responseText);
                 document.querySelector('#read-me-heading').innerHTML = githubReponame;
                 $('#read-me-content').html(content);
-                document.querySelector('#read-me-link').innerHTML = "You can check it out here";
+                document.querySelector('#read-me-link').innerHTML = "<span>You can check it out here</span>&nbsp;&nbsp;<i class='fa fa-lg fa-smile-o' aria-hidden='true'></i>";
                 document.querySelector('#read-me-link').setAttribute('href', githubRepoHref);
 
             });
