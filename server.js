@@ -17,7 +17,7 @@ const github = new GitHubApi({
     }
 });
 github.authenticate({
-    type: "Basic",
+    type: "basic",
     username: process.env.USER_NAME,
     password: process.env.PASS
 })
