@@ -10,6 +10,7 @@ const readPlayersList = require('./public/assets/js/readPlayersList');
 const saveToPlayersListFile = require('./public/assets/js/saveToPlayersListFile');
 const checkMathGameResult = require('./public/assets/js/checkMathGameResult');
 const recordNewPlayer = require('./public/assets/js/recordNewPlayer');
+const fetch = require('node-fetch');
 const convertMd = require("convert-md");
 const github = new GitHubApi({
     headers: { //to get the decoded content of the readme files
@@ -82,7 +83,7 @@ app.post('/getReadmedata', (req, res) => {
         owner: req.fields.owner,
         repo: req.fields.repo
     }, function(errorr, response) {
-
+        //convert the fetched md file to html
         convertMd(response.data, {
                 type: "html"
             })

@@ -1259,11 +1259,11 @@ article#experience {
 }
 
 #github-read-me-container hr {
-    margin-top: 3em;
     width: 100%;
 }
 
 #github-read-me-container hr:last-of-type {
+    margin-top: 5em;
     margin-bottom: 5em;
 }
 

@@ -50,12 +50,14 @@
     <footer>
         {{> footer}}
     </footer>
-     <!--=============script section===========-->
+    <!--=============script section===========-->
     <!--=======jQuery CORE JAVASRIPT checks the if it was catched before else download it=====-->
      <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
      crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script type="text/javascript" src="/assets/libraries/typed.js"></script>
     <!--=======custome CORE JAVASRIPT=====-->
-    <script src="/assets/js/main.js"></script>
-    <!-- <script src="server.js"></script> --> 
+    {{!-- <script src="/assets/js/main.js"></script> --}}
+    <!--==========browserify bundeled main.js with its requires==========-->
+     <script src="/assets/js/bundle.js"></script>
+     
