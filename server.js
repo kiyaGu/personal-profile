@@ -10,7 +10,7 @@ const readPlayersList = require('./public/assets/js/readPlayersList');
 const saveToPlayersListFile = require('./public/assets/js/saveToPlayersListFile');
 const checkMathGameResult = require('./public/assets/js/checkMathGameResult');
 const recordNewPlayer = require('./public/assets/js/recordNewPlayer');
-// const projectRoot = path.resolve(__dirname, '');
+const convertMd = require("convert-md");
 const github = new GitHubApi({
     headers: { //to get the decoded content of the readme files
         "accept": "application/vnd.github.V3.raw",
@@ -27,7 +27,6 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(formidable());
-
 
 let given; //to hold the operator, the operands and the result of the math game
 app.get('/', (req, res) => {
@@ -78,11 +77,23 @@ app.post('/game', function(req, res) {
 }); //game
 //github readme
 app.post('/getReadmedata', (req, res) => {
+
     let readme = github.repos.getReadme({
         owner: req.fields.owner,
         repo: req.fields.repo
     }, function(errorr, response) {
-        res.send(response);
+
+        convertMd(response.data, {
+                type: "html"
+            })
+            .then(stream => {
+                //send the content of the readme in the html format
+                res.send(stream.content);
+            })
+            .catch(err => {
+                console.error(err)
+            })
+
     });
 
 });

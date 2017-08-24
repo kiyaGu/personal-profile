@@ -1219,26 +1219,30 @@ article#experience {
     display: flex;
     flex-direction: column;
     position: relative;
+    padding: 3em 5% 3em 8%;
 }
 
-#github-read-me-container h2:first-letter {
+#github-read-me-container h1:first-letter {
     text-transform: capitalize;
 }
 
-#github-read-me-container {
-    margin: .5em 2%;
-    padding: 3em 5% 0 5%;
-}
-
-#github-read-me-container h2 {
+#github-read-me-container h1 {
     text-decoration: underline;
     margin-top: 1.5em;
-    margin-left: 5%;
+    margin-left: 0;
+    font-size: 2em;
+    text-align: left;
+    color: #fec951;
 }
 
 #github-read-me-container #read-me-content,
+{
+    margin-left: 5%;
+}
+
+#github-read-me-container #read-me-content :not(h1),
 #github-read-me-container #read-me-link {
-    margin-left: 8%;
+    margin-left: 5.5%;
 }
 
 #github-read-me-container #read-me-link {
@@ -1255,8 +1259,12 @@ article#experience {
 }
 
 #github-read-me-container hr {
-    margin-top: 5em;
+    margin-top: 3em;
     width: 100%;
+}
+
+#github-read-me-container hr:last-of-type {
+    margin-bottom: 5em;
 }
 
 #github-read-me-container hr:first-of-type {
