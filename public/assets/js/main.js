@@ -1,6 +1,8 @@
 $(document).ready(function() {
     /*====Browsers don't have the require method defined, but Node.js does. 
-    With Browserify you can write code that uses require in the same way that you would use it in Node. 
+    With Browserify you can write code that uses require in the same way that you would use it in Node.
+    1.  npm install --global browserify 
+    2. browserify main.js -o bundle.js //by >cd to the directory public/assets/js/
     =========*/
     const animateTheProgressbar = require("./animateTheProgressbar");
     //to hide the navbar when the user scrolls down but to show it when they scroll up
