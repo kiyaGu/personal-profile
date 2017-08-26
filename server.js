@@ -83,9 +83,10 @@ app.post('/game', function(req, res) {
 
 
 //to populate the leaders board with up-to-date result
-app.get('/leaderBoard', function(req, res) {
+app.get('/game', function(req, res) {
     readPlayersList()
         .then((playersCollection) => {
+            console.log(playersCollection);
             res.send(playersCollection);
         })
 

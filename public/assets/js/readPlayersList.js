@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 const Player = require('./mongoosePlayerSchema');
 
 function readPlayersList() {
-    mongoose.connect('mongodb://localhost:27017/players');
+    mongoose.connect(process.env.MONGODB_URI);
     let db = mongoose.connection;
-    return Player.find(function(err, playersCollection) {
+    return Player.find({}, function(err, playersCollection) {
         if (err) return console.error(err);
         //close the connection
         db.close();

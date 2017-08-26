@@ -15,7 +15,7 @@ function submitGameResult(url, data) {
                     document.querySelector('#given').setAttribute('placeholder', given);
                 })
                 .then(function() {
-                    $.get("/leaderBoard", function(data) {
+                    $.get("/game", function(data) {
                         if ($("#leaderBoard-list").children().length >= 1) {
                             $("#leaderBoard-list li").remove();
                         }
