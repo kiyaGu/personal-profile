@@ -15,24 +15,18 @@ function submitGameResult(url, data) {
                     document.querySelector('#given').setAttribute('placeholder', given);
                 })
                 .then(function() {
-                    $.getJSON("data/players.json", function(data) {
-                        //sort the data according to their score
-                        // sort by value
-                        data.sort(function(a, b) {
-                            return b.score - a.score;
-                        });
-                        //check if it has child - remove the previous list
+                    $.get("/leaderBoard", function(data) {
                         if ($("#leaderBoard-list").children().length >= 1) {
                             $("#leaderBoard-list li").remove();
                         }
-                        $.each(data, function(key, val) {
-                            if (val.score == 0) { //make the color of the score cornsilk
-                                $("<li id='" + key + "'><span class='player-name'>" + val.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + val.score + "</span></li>").appendTo('#leaderBoard-list');
+                        //display only the top 10 players
+                        for (let index = 0; index < 10; index++) {
+                            if (data[index].score == 0) { //make the color of the score cornsilk
+                                $("<li id='" + index + "'><span class='player-name'>" + data[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + data[index].score + "</span></li>").appendTo('#leaderBoard-list');
                             } else {
-                                $("<li id='" + key + "'><span class='player-name'>" + val.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + val.score + "</span></li>").appendTo('#leaderBoard-list');
+                                $("<li id='" + index + "'><span class='player-name'>" + data[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + data[index].score + "</span></li>").appendTo('#leaderBoard-list');
                             }
-
-                        });
+                        }
                     });
                 })
         })

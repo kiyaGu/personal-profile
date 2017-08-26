@@ -5,9 +5,11 @@ var Players = function(name, score) {
     this.score = score;
 }
 
-function recordNewPlayer(playersFile, given, req, res, prevResult) {
+function recordNewPlayer(given, req, res, prevResult) {
+
     currentPlayer = new Players(req.fields.playerName, 0);
     if (prevResult === Number(req.fields.answer)) {
+
         ++currentPlayer.score;
         let successResponse = JSON.stringify({
             verdict: "Well done, keep playing!!!",
@@ -16,6 +18,7 @@ function recordNewPlayer(playersFile, given, req, res, prevResult) {
         });
         res.send(successResponse);
     } else {
+
         let ErrorResponse = JSON.stringify({
             verdict: "Wrong, the answer is => <span>" + prevResult + "</span>",
             inputGiven: given,
@@ -23,8 +26,7 @@ function recordNewPlayer(playersFile, given, req, res, prevResult) {
         });
         res.send(ErrorResponse);
     }
-    playersFile.push(currentPlayer);
-    return playersFile;
+    return currentPlayer;
 }
 
 module.exports = recordNewPlayer;

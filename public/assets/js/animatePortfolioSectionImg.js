@@ -33,7 +33,7 @@ function animatePortfolioSectionImg() {
                 function() {
                     // fadeIn the next elemnt by replacing a string in the src attribute of the image
                     $(".slider-portfolio-pic .slide-item img").attr("src", "assets/images/" + portfolioImgArray[x]).fadeIn(3000, "linear", function() {
-                        x++;
+                        ++x;
                     });
                 });
         } else { // if i is larger than the array length of the array set i to 0 and restart the transition again
@@ -51,7 +51,7 @@ function animatePortfolioSectionImg() {
                 function() {
                     // fadeIn the next elemnt by replacing a string in the src attribute of the image
                     $(".slider-portfolio-content #portfolio-heading").html(portfolioDesHeadingArray[y]).fadeIn(3000, "linear", function() {
-                        y++;
+                        ++y;
                     });
                 });
         } else { // if i is larger than the array length of the array set i to 0 and restart the transition again
@@ -70,7 +70,7 @@ function animatePortfolioSectionImg() {
                 function() {
                     // fadeIn the next elemnt by replacing a string in the src attribute of the image
                     $(".slider-portfolio-content #portfolio-content").html(portfolioDesContentArray[z]).fadeIn(3000, "linear", function() {
-                        z++;
+                        ++z;
                     });
                 });
         } else { // if i is larger than the array length of the array set i to 0 and restart the transition again

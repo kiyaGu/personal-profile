@@ -2,29 +2,32 @@ const formidable = require('express-formidable');
 const recordNewPlayer = require('./recordNewPlayer');
 
 function checkMathGameResult(playersFile, given, req, res, prevResult) {
-    let index = 0
+    let index = 0,
+        player;
     for (; index < playersFile.length; index++) {
+
         if (playersFile[index].name.toLowerCase() === req.fields.playerName.toLowerCase()) {
+            player = playersFile[index];
             if (prevResult === Number(req.fields.answer)) {
-                ++playersFile[index].score;
+                ++player.score;
                 //prepare response
                 let successResponse = JSON.stringify({
                     verdict: "Well done, keep playing!!!",
                     inputGiven: given,
-                    currentPlayer: playersFile[index]
+                    currentPlayer: player
                 });
                 res.send(successResponse);
                 res.end();
             } else {
-                if (playersFile[index].score > 0) {
-                    --playersFile[index].score;
+                if (player.score > 0) {
+                    --player.score;
                 } else {
-                    playersFile[index].score = 0;
+                    player.score = 0;
                 }
                 let ErrorResponse = JSON.stringify({
                     verdict: "Wrong, the answer is => <span>" + prevResult + "</span>",
                     inputGiven: given,
-                    currentPlayer: playersFile[index]
+                    currentPlayer: player
                 });
                 res.send(ErrorResponse);
                 res.end();
@@ -34,8 +37,9 @@ function checkMathGameResult(playersFile, given, req, res, prevResult) {
 
     } //for loop
     if (index == playersFile.length) { //file not empty but new player
-        playersFile = recordNewPlayer(playersFile, given, req, res, prevResult);
+        player = recordNewPlayer(given, req, res, prevResult);
     }
-    return playersFile;
+
+    return player;
 }
 module.exports = checkMathGameResult;

@@ -59,18 +59,19 @@ $(document).ready(function() {
     hideNavbarOnScrollDown();
     //to smothly scroll the page when navigated from one section to other
     smothlyScroll();
-    //setting different color of the player score based on the score
-    changePlayersScoreDisplayColor();
+
     //for animating the education images and content
     animateEducationSectionImg();
     //for animating the portfolio images and content 
     animatePortfolioSectionImg();
-    // validate the contact me form when submitted
-    validateContactMeFormSubmit();
-    //handling game answer submit
-    validateGameResultFormSubmition();
     // github-readme
     displayGithubReadmeContent();
+    //handling game answer submit
+    validateGameResultFormSubmition();
+    //setting different color of the player score based on the score
+    changePlayersScoreDisplayColor();
+    // validate the contact me form when submitted
+    validateContactMeFormSubmit();
     //to capitlise the list of the repos
     let githubrepolist = document.querySelectorAll('#github-api-data ul li a');
     githubrepolist.forEach(function(element) {

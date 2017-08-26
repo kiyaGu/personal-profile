@@ -22,12 +22,7 @@ function displayGithubReadmeContent() {
                 data: { owner: "KiyaGu", repo: githubReponame, url: githubRepoHref }
             })
             .done(function(res) {
-                //to remove the header from the content that is sent
-                // let n = res.data.indexOf("\n");
-                // let content = res.data.substr(n);
                 document.querySelector('#github-read-me').style.display = "block";
-                // let response = JSON.parse(request.responseText);
-                // document.querySelector('#read-me-heading').innerHTML = githubReponame;
                 $('#read-me-content').html(res);
                 document.querySelector('#read-me-link').innerHTML = "<span>You can check it out here</span>&nbsp;&nbsp;<i class='fa fa-lg fa-smile-o' aria-hidden='true'></i>";
                 document.querySelector('#read-me-link').setAttribute('href', githubRepoHref);

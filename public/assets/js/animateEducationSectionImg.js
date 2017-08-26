@@ -33,7 +33,7 @@ function animateEducationSectionImg() {
                 function() {
                     // fadeIn the next elemnt by replacing a string in the src attribute of the image
                     $(".slider-education-pic .education-image img").attr("src", "assets/images/" + educationImgArray[i]).fadeIn(3000, "linear", function() {
-                        i++;
+                        ++i;
                     });
                 });
         } else { // if i is larger than the array length of the array set i to 0 and restart the transition again
@@ -51,7 +51,7 @@ function animateEducationSectionImg() {
                 function() {
                     // fadeIn the next elemnt by replacing a string in the src attribute of the image
                     $(".slider-education-content #edu-heading").html(eduDiscriptionHeadingArray[j]).fadeIn(3000, "linear", function() {
-                        j++;
+                        ++j;
                     });
                 });
         } else { // if i is larger than the array length of the array set i to 0 and restart the transition again
@@ -70,7 +70,7 @@ function animateEducationSectionImg() {
                 function() {
                     // fadeIn the next elemnt by replacing a string in the src attribute of the image
                     $(".slider-education-content #edu-content").html(eduDiscriptionContentArray[k]).fadeIn(3000, "linear", function() {
-                        k++;
+                        ++k;
                     });
                 });
         } else { // if i is larger than the array length of the array set i to 0 and restart the transition again

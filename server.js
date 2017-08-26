@@ -35,12 +35,16 @@ app.get('/', (req, res) => {
     mathGame((given) => {
         //fetch all the repository of the user kiyagu
         readPlayersList().then((playersFile) => { //after getting the players list with their score
+            let topTenPlayers = [];
+            for (let index = 0; index < 10; index++) {
+                topTenPlayers.push(playersFile[index]);
+            }
             github.repos.getAll({}) //collect the repos
                 .then((repos) => { //serve the index view with the given variables
                     res.render('index', {
                         repos: repos.data,
                         inputGiven: given,
-                        playersList: playersFile
+                        playersList: topTenPlayers
                     });
                 })
                 .catch((err) => {
@@ -64,19 +68,28 @@ app.post('/game', function(req, res) {
     //execute the mathGame() with the given callback
     mathGame(function(given) {
         //read pla
-        let playersFile = {};
+        // let playersFile = {};
         readPlayersList()
             .then((playersFile) => {
                 if (playersFile.length > 0) {
-
                     playersFile = checkMathGameResult(playersFile, given, req, res, prevResult);
                 } else { //if no player is recorded
-                    playersFile = recordNewPlayer(playersFile, given, req, res, prevResult);
+                    playersFile = recordNewPlayer(given, req, res, prevResult);
                 }
-                saveToPlayersListFile(playersFile);
+                saveToPlayersListFile(playersFile)
             });
     }); //mathgame
 }); //game
+
+
+//to populate the leaders board with up-to-date result
+app.get('/leaderBoard', function(req, res) {
+    readPlayersList()
+        .then((playersCollection) => {
+            res.send(playersCollection);
+        })
+
+});
 //github readme
 app.post('/getReadmedata', (req, res) => {
 
