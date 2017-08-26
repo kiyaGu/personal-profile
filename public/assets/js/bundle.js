@@ -523,7 +523,7 @@
                             //reset the answer fields
                             $('#answer').val("");
 
-                            $('#answer').attr("placeholder", "Put what is in your mind");
+                            answer.setAttribute("placeholder", "Put what is in your mind");
                             //display new operator and operands
                             let given = json.inputGiven.number1 + " " + json.inputGiven.operator + " " + json.inputGiven.number2;
                             document.querySelector('#given').setAttribute('placeholder', given);
