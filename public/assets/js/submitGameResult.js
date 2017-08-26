@@ -20,7 +20,7 @@ function submitGameResult(url, data) {
                             $("#leaderBoard-list li").remove();
                         }
                         //display only the top 10 players
-                        for (let index = 0; index < 10; index++) {
+                        for (let index = 0; index < data.length; index++) {
                             if (data[index].score == 0) { //make the color of the score cornsilk
                                 $("<li id='" + index + "'><span class='player-name'>" + data[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + data[index].score + "</span></li>").appendTo('#leaderBoard-list');
                             } else {
