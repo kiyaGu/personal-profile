@@ -24,6 +24,8 @@
         "express-formidable": "^1.0.0",
         "express-handlebars": "^3.0.0",
         "github": "^9.3.1",
+        "mongodb": "^2.2.31",
+        "mongoose": "^4.11.8",
         "node-fetch": "^1.7.2",
         "node-pre-gyp": "^0.6.36",
         "nodemailer": "^4.0.1"

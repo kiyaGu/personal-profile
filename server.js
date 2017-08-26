@@ -65,15 +65,16 @@ app.post('/game', function(req, res) {
     mathGame(function(given) {
         //read pla
         let playersFile = {};
-        readPlayersList().then((playersFile) => {
-            if (playersFile.length > 0) {
+        readPlayersList()
+            .then((playersFile) => {
+                if (playersFile.length > 0) {
 
-                playersFile = checkMathGameResult(playersFile, given, req, res, prevResult);
-            } else { //if no player is recorded
-                playersFile = recordNewPlayer(playersFile, given, req, res, prevResult);
-            }
-            saveToPlayersListFile(playersFile);
-        });
+                    playersFile = checkMathGameResult(playersFile, given, req, res, prevResult);
+                } else { //if no player is recorded
+                    playersFile = recordNewPlayer(playersFile, given, req, res, prevResult);
+                }
+                saveToPlayersListFile(playersFile);
+            });
     }); //mathgame
 }); //game
 //github readme
