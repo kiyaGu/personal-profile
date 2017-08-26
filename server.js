@@ -86,7 +86,6 @@ app.post('/game', function(req, res) {
 app.get('/game', function(req, res) {
     readPlayersList()
         .then((playersCollection) => {
-            console.log(playersCollection);
             res.send(playersCollection);
         })
 
