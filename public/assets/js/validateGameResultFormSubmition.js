@@ -10,22 +10,22 @@ function validateGameResultFormSubmition() {
         let answer = document.querySelector('#answer');
         let gameError = false;
         if (name.value === "") {
-            setElementAttribute(name, "class", "animated pulse error-animate");
-            setElementAttribute(name, "placeholder", "To play you need to put your name");
+            name.setAttribute("class", "animated pulse error-animate");
+            name.setAttribute("placeholder", "To play you need to put your name");
             gameError = true;
         } else {
             name.classList.remove("error-animate");
         }
         if (answer.value == "") {
             answer.value = "";
-            setElementAttribute(answer, "class", "animated pulse error-animate");
-            setElementAttribute(answer, "placeholder", "You should at least guess!!!");
+            answer.setAttribute("class", "animated pulse error-animate");
+            answer.setAttribute("placeholder", "You should at least guess!!!");
             gameError = true;
         } else if (isNaN(parseInt(answer.value))) {
             if (answer.value.toUpperCase() !== "NAN") {
                 answer.value = "";
-                setElementAttribute(answer, "class", "animated pulse error-animate");
-                setElementAttribute(answer, "placeholder", "put a number or NAN");
+                answer.setAttribute("class", "animated pulse error-animate");
+                answer.setAttribute("placeholder", "put a number or NAN");
                 gameError = true;
             } else {
                 answer.classList.remove("error-animate");

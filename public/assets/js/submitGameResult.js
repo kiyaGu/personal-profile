@@ -9,13 +9,13 @@ function submitGameResult(url, data) {
                     document.querySelector('#gameMessage').innerHTML = json.verdict;
                     //reset the answer fields
                     $('#answer').val("");
-                    setElementAttribute(answer, "placeholder", "Put what is in your mind");
+                    answer.setAttribute("placeholder", "Put what is in your mind");
                     //display new operator and operands
                     let given = json.inputGiven.number1 + " " + json.inputGiven.operator + " " + json.inputGiven.number2;
                     document.querySelector('#given').setAttribute('placeholder', given);
                 })
                 .then(function() {
-                    $.get("/game", function(data) {
+                    $.get("/leadersborard", function(data) {
                         if ($("#leaderBoard-list").children().length >= 1) {
                             $("#leaderBoard-list li").remove();
                         }

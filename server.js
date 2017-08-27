@@ -72,24 +72,26 @@ app.post('/game', function(req, res) {
         readPlayersList()
             .then((playersFile) => {
                 if (playersFile.length > 0) {
-                    playersFile = checkMathGameResult(playersFile, given, req, res, prevResult);
+                    checkMathGameResult(playersFile, given, req, res, prevResult);
                 } else { //if no player is recorded
-                    playersFile = recordNewPlayer(given, req, res, prevResult);
+                    recordNewPlayer(given, req, res, prevResult);
                 }
-                saveToPlayersListFile(playersFile)
+                // saveToPlayersListFile(playersFile);
+                // console.log("save", playersFile);
             });
     }); //mathgame
 }); //game
 
 
 //to populate the leaders board with up-to-date result
-app.get('/game', function(req, res) {
-    readPlayersList()
-        .then((playersCollection) => {
-            res.send(playersCollection);
-        })
+// app.get('/leadersborard', function(req, res) {
+//     readPlayersList()
+//         .then((playersCollection) => {
+//             console.log("read", playersCollection)
+//             res.send(playersCollection);
+//         })
 
-});
+// });
 //github readme
 app.post('/getReadmedata', (req, res) => {
 

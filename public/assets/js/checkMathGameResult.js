@@ -1,5 +1,6 @@
 const formidable = require('express-formidable');
 const recordNewPlayer = require('./recordNewPlayer');
+const saveToPlayersListFile = require('./saveToPlayersListFile');
 
 function checkMathGameResult(playersFile, given, req, res, prevResult) {
     let index = 0,
@@ -14,8 +15,9 @@ function checkMathGameResult(playersFile, given, req, res, prevResult) {
                 let successResponse = JSON.stringify({
                     verdict: "Well done, keep playing!!!",
                     inputGiven: given,
-                    currentPlayer: player
+                    playersCollection: playersFile
                 });
+                saveToPlayersListFile(player);
                 res.send(successResponse);
                 res.end();
             } else {
@@ -27,8 +29,9 @@ function checkMathGameResult(playersFile, given, req, res, prevResult) {
                 let ErrorResponse = JSON.stringify({
                     verdict: "Wrong, the answer is => <span>" + prevResult + "</span>",
                     inputGiven: given,
-                    currentPlayer: player
+                    playersCollection: playersFile
                 });
+                saveToPlayersListFile(player);
                 res.send(ErrorResponse);
                 res.end();
             } //else
@@ -40,6 +43,6 @@ function checkMathGameResult(playersFile, given, req, res, prevResult) {
         player = recordNewPlayer(given, req, res, prevResult);
     }
 
-    return player;
+    // return player;
 }
 module.exports = checkMathGameResult;

@@ -519,29 +519,43 @@
                 .then(function(res) {
                     res.json()
                         .then(function(json) {
+                            console.log(json);
                             document.querySelector('#gameMessage').innerHTML = json.verdict;
                             //reset the answer fields
                             $('#answer').val("");
-
                             answer.setAttribute("placeholder", "Put what is in your mind");
                             //display new operator and operands
                             let given = json.inputGiven.number1 + " " + json.inputGiven.operator + " " + json.inputGiven.number2;
                             document.querySelector('#given').setAttribute('placeholder', given);
-                        })
-                        .then(function() {
-                            $.get("/game", function(data) {
-                                if ($("#leaderBoard-list").children().length >= 1) {
-                                    $("#leaderBoard-list li").remove();
-                                }
-                                //display only the top 10 players
-                                for (let index = 0; index < data.length; index++) {
-                                    if (data[index].score == 0) { //make the color of the score cornsilk
-                                        $("<li id='" + index + "'><span class='player-name'>" + data[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + data[index].score + "</span></li>").appendTo('#leaderBoard-list');
+
+                            // $.get("/leadersborard", function(data) {
+
+                            let playersCollection = json.playersCollection;
+                            if ($("#leaderBoard-list").children().length >= 1) {
+                                $("#leaderBoard-list li").remove();
+                            }
+                            //display only the top 10 players
+                            if (playersCollection.length > 10) {
+                                for (let index = 0; index < 10; index++) {
+                                    if (playersCollection[index].score == 0) { //make the color of the score cornsilk
+                                        $("<li id='" + index + "'><span class='player-name'>" + playersCollection[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
                                     } else {
-                                        $("<li id='" + index + "'><span class='player-name'>" + data[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + data[index].score + "</span></li>").appendTo('#leaderBoard-list');
+                                        $("<li id='" + index + "'><span class='player-name'>" + playersCollection[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
                                     }
                                 }
-                            });
+
+                            } else {
+
+                                playersCollection.forEach((element) => {
+
+                                    if (element.score == 0) { //make the color of the score cornsilk
+                                        $("<li id='" + playersCollection.indexOf(element) + "'><span class='player-name'>" + element.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
+                                    } else {
+                                        $("<li id='" + playersCollection.indexOf(element) + "'><span class='player-name'>" + element.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
+                                    }
+                                })
+                            }
+                            // });
                         })
                 })
                 .catch(function(err) {

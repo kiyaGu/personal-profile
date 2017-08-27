@@ -84,20 +84,20 @@
 
              elementNode.forEach(function(element) {
                  // setElementAttribute(element,"placeholder",);
-                 setElementAttribute(element, "class", "animated pulse error-animate");
+                 element.setAttribute("class", "animated pulse error-animate");
                  if (element.getAttribute('id') === 'name-email') {
-                     setElementAttribute(element, "placeholder", nameError);
+                     element.setAttribute("placeholder", nameError);
                  } else if (element.getAttribute('id') === 'email') {
                      if (!(emailError)) {
                          element.value = "";
-                         setElementAttribute(element, "placeholder", emailFormError);
+                         element.setAttribute("placeholder", emailFormError);
                      } else {
-                         setElementAttribute(element, "placeholder", emailEmpty);
+                         element.setAttribute("placeholder", emailEmpty);
                      }
                  } else if (element.getAttribute('id') === 'subject') {
-                     setElementAttribute(element, "placeholder", subjectError);
+                     element.setAttribute("placeholder", subjectError);
                  } else if (element.getAttribute('id') === 'message') {
-                     setElementAttribute(element, "placeholder", mesBodyError);
+                     element.setAttribute("placeholder", mesBodyError);
                  }
 
              });
