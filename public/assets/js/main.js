@@ -25,13 +25,7 @@ $(document).ready(function() {
     const changeActiveTopNavigation = require('./changeActiveTopNavigation');
     //to smothly scroll the page when navigated from one section to other
     const smothlyScroll = require('./smothlyScroll');
-    /*==========================
-          functions for assigning attributes to DOM elements
-                ===================================*/
-    //to assign attribute to node elements
-    let setElementAttribute = function(element, attribute, value) {
-        element.setAttribute(attribute, value);
-    };
+
     /*===============
             landing page typewriter 
                    ===================*/
