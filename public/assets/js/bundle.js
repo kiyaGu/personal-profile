@@ -519,7 +519,6 @@
                 .then(function(res) {
                     res.json()
                         .then(function(json) {
-                            console.log(json);
                             document.querySelector('#gameMessage').innerHTML = json.verdict;
                             //reset the answer fields
                             $('#answer').val("");
@@ -527,10 +526,12 @@
                             //display new operator and operands
                             let given = json.inputGiven.number1 + " " + json.inputGiven.operator + " " + json.inputGiven.number2;
                             document.querySelector('#given').setAttribute('placeholder', given);
-
-                            // $.get("/leadersborard", function(data) {
-
+                            //the current players collection
                             let playersCollection = json.playersCollection;
+                            //sort the list based on the score hitgh -> low
+                            playersCollection.sort(function(a, b) {
+                                return b.score - a.score;
+                            });
                             if ($("#leaderBoard-list").children().length >= 1) {
                                 $("#leaderBoard-list li").remove();
                             }
@@ -544,8 +545,7 @@
                                     }
                                 }
 
-                            } else {
-
+                            } else { //if there are less than 10 players
                                 playersCollection.forEach((element) => {
 
                                     if (element.score == 0) { //make the color of the score cornsilk
@@ -555,7 +555,6 @@
                                     }
                                 })
                             }
-                            // });
                         })
                 })
                 .catch(function(err) {

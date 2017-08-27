@@ -67,8 +67,6 @@ app.post('/game', function(req, res) {
     let prevResult = result;
     //execute the mathGame() with the given callback
     mathGame(function(given) {
-        //read pla
-        // let playersFile = {};
         readPlayersList()
             .then((playersFile) => {
                 if (playersFile.length > 0) {
@@ -76,22 +74,10 @@ app.post('/game', function(req, res) {
                 } else { //if no player is recorded
                     recordNewPlayer(given, req, res, prevResult);
                 }
-                // saveToPlayersListFile(playersFile);
-                // console.log("save", playersFile);
             });
     }); //mathgame
 }); //game
 
-
-//to populate the leaders board with up-to-date result
-// app.get('/leadersborard', function(req, res) {
-//     readPlayersList()
-//         .then((playersCollection) => {
-//             console.log("read", playersCollection)
-//             res.send(playersCollection);
-//         })
-
-// });
 //github readme
 app.post('/getReadmedata', (req, res) => {
 
