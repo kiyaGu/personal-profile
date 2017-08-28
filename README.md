@@ -4,6 +4,7 @@ The following technologies have been in one way or the other used for constructi
 #### Frontend 
   * HTML5
   * CSS3
+  * [FontAwsome](http://fontawesome.io/) - Used some from thier icon library, such as social media links
   * [express-handlebar](https://github.com/ericf/express-handlebars) as a templating engine
   * [Browserify](http://browserify.org/) - To use the power of 'require' in the client/browser side in the same way that it is used in NodeJS at the backend and it helped very much in code refactoring.
   * vanila JavaScript - For adding some behaviour to the frontend and for handling some logics such as form validation, accessing DOM elements and setting attributes, etc.

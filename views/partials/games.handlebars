@@ -6,36 +6,35 @@
                     </h2>
                 </div>
     <div id="game-container">
-        
         <form action="/game"  id="send_game_try" method="POST">
-        <p>Test your math ablity by answering the result of the given math operation</p>
-         
+            <p>Test your math ablity by answering the result of the given math operation</p>
             <ul><li><span>N.B</span>&nbsp;:</li>
                 <li>-&nbsp;&nbsp;&nbsp;Don't cheat <span>yourself</span> by using &nbsp;<i class="fa fa-md fa-calculator" aria-hidden="true"></i>&nbsp;&nbsp;</li>
                 <li>-&nbsp;&nbsp;&nbsp;If you think the operation is not allowed just put NAN</li>
                 <li>-&nbsp;&nbsp;&nbsp;If your answer includes decimal places round them to <span>two</span> decilmal places</li>
             </ul>
-        <div class="form-group">
-            <label for="answer" >Given:</label>
-            <input type="text" id="given" name="given" class="form-control" placeholder="{{inputGiven.number1 }} {{inputGiven.operator}}  {{inputGiven.number2}}" readonly>
-        </div>
-        <div class="form-group">
-            <label for="playerName" >Name:</label>
-            <input type="text" id="playerName" name="playerName" class="form-control" placeholder="Your name / nickname">
-        </div>
-        <div class="form-group">
-            <label for="answer"> Answer:</label>
-            <input type="text" id="answer" name="answer" class="form-control" placeholder="Put what is in your mind">
-        </div>
-        
-        <div class="form-group">
-            <button class="btn btn-success" type="submit" id="game-submit-score">
-                Submit Your answer <i class="fa fa-user-secret" aria-hidden="true"></i>
-            </button>
-        </div>
-        <p id="gameMessage"></p>
+            <div class="form-group">
+                <label for="answer" >Given:</label>
+                <input type="text" id="given" name="given" class="form-control" placeholder="{{inputGiven.number1 }} {{inputGiven.operator}}  {{inputGiven.number2}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="playerName" >Name:</label>
+                <input type="text" id="playerName" name="playerName" class="form-control" placeholder="Your name / nickname">
+            </div>
+            <div class="form-group">
+                <label for="answer"> Answer:</label>
+                <input type="text" id="answer" name="answer" class="form-control" placeholder="Put what is in your mind">
+            </div>     
+            <div class="form-group">
+                <button class="btn btn-success" type="submit" id="game-submit-score">
+                    Submit Your answer <i class="fa fa-user-secret" aria-hidden="true"></i>
+                </button>
+            </div>
+            <p id="gameMessage"></p>
         </form>
-        <div id="result-and-leaderBoard">{{> leaderBoard }}</div>
+        <div id="result-and-leaderBoard">
+            {{> leaderBoard }}
+        </div><!--===leaderBoard==-->
     </div>
     <!--===game==-->
 </article>
