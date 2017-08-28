@@ -1,5 +1,5 @@
 # Personal portfolio page
-This is a repository for holding my personal portfolio page project. The project/application is constructed throught using different technologies. 
+This is a repository for holding my personal portfolio page project. The project/application is constructed through using different technologies. 
 The following technologies have been in one way or the other used for constructing the application:
 #### Frontend 
   * HTML5
