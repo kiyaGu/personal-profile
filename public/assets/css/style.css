@@ -47,7 +47,7 @@ body {
     line-height: 150%;
     font: 200 1em/1.5em 'Raleway', Helvetica, sans-serif;
     font-size: 16px;
-    background: url(../images/wood-1759566.jpg) repeat 0% 0% fixed;
+    background: url(../images/wood.jpg) repeat 0% 0% fixed;
     background-size: cover;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -1331,7 +1331,7 @@ article#experience {
 }
 
 #game-section {
-    background: url("../images/game.jpg") no-repeat 0% 0% fixed;
+    background: url("../images/game1.jpg") no-repeat 0% 0% fixed;
     background-size: cover;
     padding-top: 100px;
 }
