@@ -10,5 +10,4 @@ function smothlyScroll() {
         });
     });
 }
-
 module.exports = smothlyScroll;

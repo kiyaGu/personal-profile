@@ -6,7 +6,6 @@ function checkMathGameResult(playersFile, given, req, res, prevResult) {
     let index = 0,
         player;
     for (; index < playersFile.length; index++) {
-
         if (playersFile[index].name.toLowerCase() === req.fields.playerName.toLowerCase()) {
             player = playersFile[index];
             if (prevResult === Number(req.fields.answer)) {
@@ -37,12 +36,9 @@ function checkMathGameResult(playersFile, given, req, res, prevResult) {
             } //else
             break;
         } //outer if
-
     } //for loop
     if (index == playersFile.length) { //file not empty but new player
         player = recordNewPlayer(given, req, res, prevResult);
     }
-
-    // return player;
 }
 module.exports = checkMathGameResult;

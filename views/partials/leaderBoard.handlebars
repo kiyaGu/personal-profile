@@ -1,12 +1,15 @@
 <h2 class="text-success">Leaders&#39; Board &nbsp;&nbsp;<i class="fa  fa-users" aria-hidden="true"></i></h2>
 <hr>
 <ul id="leaderBoard-list">
-        {{#each playersList}}   
+    {{#each playersList}}   
         <li >
-            <span class="player-name">{{this.name}}</span>
-            <span class="player-score">{{this.score}} </span>
-                
+            <span class="player-name">
+                {{this.name}}
+            </span>
+            <span class="player-score">
+                {{this.score}}
+            </span>
         </li>
-         {{/each}}      
+    {{/each}}      
 </ul>
 <hr>

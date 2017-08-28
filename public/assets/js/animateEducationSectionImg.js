@@ -6,7 +6,6 @@ function animateEducationSectionImg() {
         "certifi_5.jpg", "micro2.jpg"
     ];
     let eduDiscriptionHeadingArray = [
-
         'Udemy Certificate',
         'Udemy Certificate',
         'Udemy Certificate',
@@ -21,12 +20,10 @@ function animateEducationSectionImg() {
         'A certificate for successfully completing &quot;The complete Web developer course&quot; Udemy online course.',
         'Bsc degree in computer Science<br>Majoring in software Engineering'
     ]
-
     let i = 0,
         j = 0,
         k = 0; // used to accesses the array elements for the comming three functions
     function education_slide() {
-
         if (i < educationImgArray.length) {
             //fadeOut the current picture and when done as a callback function fadeIn a new image
             $(".slider-education-pic .education-image img").fadeOut(1000, "swing",
@@ -43,8 +40,6 @@ function animateEducationSectionImg() {
                     $(".slider-education-pic .education-image img").attr("src", "assets/images/" + educationImgArray[i]).fadeIn(3000, "linear");
                 });
         }
-
-
         if (j < eduDiscriptionHeadingArray.length) {
             //fadeOut the current picture and when done as a callback function fadeIn a new image
             $(".slider-education-content #edu-heading").fadeOut(1000, "swing",
@@ -61,9 +56,6 @@ function animateEducationSectionImg() {
                     $(".slider-education-content #edu-heading").html(eduDiscriptionHeadingArray[j]).fadeIn(3000, "linear");
                 });
         }
-
-
-
         if (k < eduDiscriptionContentArray.length) {
             //fadeOut the current picture and when done as a callback function fadeIn a new image
             $(".slider-education-content #edu-content").fadeOut(1000, "swing",

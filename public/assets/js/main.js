@@ -3,7 +3,7 @@ $(document).ready(function() {
     With Browserify you can write code that uses require in the same way that you would use it in Node.
     1.  npm install --global browserify 
     2. browserify main.js -o bundle.js //by >cd to the directory public/assets/js/
-    =========*/
+    =======================*/
     const animateTheProgressbar = require("./animateTheProgressbar");
     //to hide the navbar when the user scrolls down but to show it when they scroll up
     const hideNavbarOnScrollDown = require("./hideNavbarOnScrollDown");
@@ -53,7 +53,6 @@ $(document).ready(function() {
     hideNavbarOnScrollDown();
     //to smothly scroll the page when navigated from one section to other
     smothlyScroll();
-
     //for animating the education images and content
     animateEducationSectionImg();
     //for animating the portfolio images and content 
@@ -71,9 +70,4 @@ $(document).ready(function() {
     githubrepolist.forEach(function(element) {
         $(element).css('text-transform', 'capitalize');
     });
-    // if ($(window).height() > 568) {
-    //     $("#home-section").css("height", $(window).height());
-    //     $("#intro-name").css("height", $(window).height() - 130 + "px");
-    // }
-
 }); //document ready

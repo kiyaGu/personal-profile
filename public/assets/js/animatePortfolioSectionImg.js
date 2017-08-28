@@ -26,7 +26,6 @@ function animatePortfolioSectionImg() {
         y = 0,
         z = 0; // used to accesses the array elements for the comming three functions
     function portfolio_slide() {
-
         if (x < portfolioImgArray.length) {
             //fadeOut the current picture and when done as a callback function fadeIn a new image
             $(".slider-portfolio-pic .slide-item img").fadeOut(1000, "swing",
@@ -43,8 +42,6 @@ function animatePortfolioSectionImg() {
                     $(".slider-portfolio-pic .slide-item img").attr("src", "assets/images/" + portfolioImgArray[x]).fadeIn(3000, "linear");
                 });
         }
-
-
         if (y < portfolioDesHeadingArray.length) {
             //fadeOut the current picture and when done as a callback function fadeIn a new image
             $(".slider-portfolio-content #portfolio-heading").fadeOut(1000, "swing",
@@ -61,9 +58,6 @@ function animatePortfolioSectionImg() {
                     $(".slider-portfolio-content #portfolio-heading").html(portfolioDesHeadingArray[y]).fadeIn(3000, "linear");
                 });
         }
-
-
-
         if (z < portfolioDesContentArray.length) {
             //fadeOut the current picture and when done as a callback function fadeIn a new image
             $(".slider-portfolio-content #portfolio-content").fadeOut(1000, "swing",

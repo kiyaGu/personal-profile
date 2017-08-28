@@ -13,16 +13,13 @@ function sendEmail(req, res) {
             pass: process.env.EMAIL_PASS
         }
     });
-
     // setup email data
     let mailOptions = {
         from: req.fields.name + "<hamilee.kiya@gmail.com>", // sender address
         to: 'hamilee.kiya@gmail.com', // list of receivers
         subject: req.fields.subject, // Subject line
         text: req.fields.message + "\nSent by :" + req.fields.email, // message body
-
     };
-
     // send mail with defined transport object
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {

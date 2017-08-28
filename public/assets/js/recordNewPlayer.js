@@ -10,7 +10,6 @@ function recordNewPlayer(given, req, res, prevResult) {
     let playersFile;
     currentPlayer = new Players(req.fields.playerName, 0);
     if (prevResult === Number(req.fields.answer)) {
-
         ++currentPlayer.score;
         let playersFile = saveToPlayersListFile(currentPlayer);
         let successResponse = JSON.stringify({
@@ -18,7 +17,6 @@ function recordNewPlayer(given, req, res, prevResult) {
             inputGiven: given,
             playersCollection: playersFile
         });
-
         res.send(successResponse);
     } else {
         playersFile = saveToPlayersListFile(currentPlayer);
@@ -27,10 +25,8 @@ function recordNewPlayer(given, req, res, prevResult) {
             inputGiven: given,
             playersCollection: playersFile
         });
-
         res.send(ErrorResponse);
     }
-    // return currentPlayer;
 }
 
 module.exports = recordNewPlayer;

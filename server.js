@@ -13,8 +13,10 @@ const recordNewPlayer = require('./public/assets/js/recordNewPlayer');
 const fetch = require('node-fetch');
 const convertMd = require("convert-md");
 const mongoose = require('mongoose');
+
 mongoose.connect(process.env.MONGODB_URI);
 let db = mongoose.connection;
+//instance to access the github API
 const github = new GitHubApi({
     headers: { //to get the decoded content of the readme files
         "accept": "application/vnd.github.V3.raw",
@@ -37,23 +39,24 @@ app.get('/', (req, res) => {
     //to give the user the initial numbers and the operator 
     mathGame((given) => {
         //fetch all the repository of the user kiyagu
-        readPlayersList().then((playersFile) => { //after getting the players list with their score
-            let topTenPlayers = [];
-            for (let index = 0; index < 10; index++) {
-                topTenPlayers.push(playersFile[index]);
-            }
-            github.repos.getAll({}) //collect the repos
-                .then((repos) => { //serve the index view with the given variables
-                    res.render('index', {
-                        repos: repos.data,
-                        inputGiven: given,
-                        playersList: topTenPlayers
-                    });
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        })
+        readPlayersList()
+            .then((playersFile) => { //after getting the players list with their score
+                let topTenPlayers = [];
+                for (let index = 0; index < 10; index++) {
+                    topTenPlayers.push(playersFile[index]);
+                }
+                github.repos.getAll({}) //collect the repos
+                    .then((repos) => { //serve the index view with the given variables
+                        res.render('index', {
+                            repos: repos.data,
+                            inputGiven: given,
+                            playersList: topTenPlayers
+                        });
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            })
     });
 });
 
@@ -83,7 +86,6 @@ app.post('/game', function(req, res) {
 
 //github readme
 app.post('/getReadmedata', (req, res) => {
-
     let readme = github.repos.getReadme({
         owner: req.fields.owner,
         repo: req.fields.repo
@@ -99,9 +101,7 @@ app.post('/getReadmedata', (req, res) => {
             .catch(err => {
                 console.error(err)
             })
-
     });
-
 });
 
 process.setMaxListeners(0);
