@@ -12,6 +12,9 @@ const checkMathGameResult = require('./public/assets/js/checkMathGameResult');
 const recordNewPlayer = require('./public/assets/js/recordNewPlayer');
 const fetch = require('node-fetch');
 const convertMd = require("convert-md");
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI);
+let db = mongoose.connection;
 const github = new GitHubApi({
     headers: { //to get the decoded content of the readme files
         "accept": "application/vnd.github.V3.raw",

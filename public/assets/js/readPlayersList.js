@@ -1,10 +1,7 @@
-const mongoose = require('mongoose');
 //our collection model
 const Player = require('./mongoosePlayerSchema');
 
 function readPlayersList() {
-    mongoose.connect(process.env.MONGODB_URI);
-    let db = mongoose.connection;
     return Player.find({}, function(err, playersCollection) {
         if (err) return console.error(err);
         return playersCollection;

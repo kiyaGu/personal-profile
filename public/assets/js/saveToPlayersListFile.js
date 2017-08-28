@@ -1,11 +1,7 @@
-// const fs = require('fs');
-const mongoose = require('mongoose');
 const Player = require('./mongoosePlayerSchema');
 const readPlayersList = require('./readPlayersList');
 //an object to hold the generated operators, operand and the calculated result
 function saveToPlayersListFile(currentPlayer) {
-    mongoose.connect(process.env.MONGODB_URI);
-    // let db = mongoose.connection;
     readPlayersList().then((players) => {
         let i = 0;
         for (; i < players.length; i++) {
