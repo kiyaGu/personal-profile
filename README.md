@@ -16,4 +16,5 @@ The following technologies have been in one way or the other used for constructi
   * [convert-md](https://www.npmjs.com/package/convert-md) - A NodeJS package that converts markdown written files to either HTML,PDF or PNG. Used to convert the README.md files to HTML. 
   * [express-formidable](https://www.npmjs.com/package/express-formidable) - An express middleware for parsing form data.
   * [mongoosejs](http://mongoosejs.com/) - An elegant mongodb object modeling for NodeJS. It used to construct the Players database, which is used to store the results of the game and to populate the leaders' board entry.
+  * [cookie-parser](https://www.npmjs.com/package/cookie-parser) - A Nodejs cookie parser package that is used to set and parse cookies for uniqely identifying players of the math game.
 

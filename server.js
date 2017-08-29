@@ -40,7 +40,7 @@ app.use(function(req, res, next) {
         // no: set a new cookie
         var randomNumber = Math.random().toString();
         randomNumber = randomNumber.substring(2, randomNumber.length);
-        res.cookie('currentPlayer', randomNumber, { expire: new Date() + 9999 });
+        res.cookie('currentPlayer', randomNumber, { expires: new Date(new Date().setFullYear(new Date().getFullYear() + 1)) });
 
     }
     next(); // <-- important!
