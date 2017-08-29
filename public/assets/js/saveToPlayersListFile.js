@@ -6,7 +6,8 @@ function saveToPlayersListFile(currentPlayer) {
         .then((players) => {
             let i = 0;
             for (; i < players.length; i++) {
-                if (players[i].name.toLowerCase() === currentPlayer.name.toLowerCase()) {
+                if (players[i].name.toLowerCase() === currentPlayer.name.toLowerCase() &&
+                    players[i].cookieId === currentPlayer.cookieId) {
                     players[i].score = currentPlayer.score;
                     players[i].save((err) => {
                         if (err)

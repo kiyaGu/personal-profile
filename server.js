@@ -32,22 +32,19 @@ const app = express();
 app.use(cookieParser());
 
 // set a cookie
-// app.use('/game', function(req, res, next) {
-//     // check if client sent cookie
-//     // re.clearCookie('currentPlayer');
-//     let cookie = req.cookies.currentPlayer;
-//     if (cookie === undefined) {
-//         // no: set a new cookie
-//         var randomNumber = Math.random().toString();
-//         randomNumber = randomNumber.substring(2, randomNumber.length);
-//         res.cookie('currentPlayer', randomNumber, { expire: new Date() + 9999, path: '/game' });
-//         console.log(req.cookies.currentPlayer, 'cookie created successfully');
-//     } else {
-//         // yes, cookie was already present
-//         console.log('cookie exists', req.cookies);
-//     }
-//     next(); // <-- important!
-// });
+app.use('/game', function(req, res, next) {
+    // check if client sent cookie
+    // res.clearCookie('currentPlayer');
+    let cookie = req.cookies.currentPlayer;
+    if (cookie === undefined) {
+        // no: set a new cookie
+        var randomNumber = Math.random().toString();
+        randomNumber = randomNumber.substring(2, randomNumber.length);
+        res.cookie('currentPlayer', randomNumber, { expire: new Date() + 9999, path: '/game' });
+
+    }
+    next(); // <-- important!
+});
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
@@ -62,6 +59,7 @@ app.get('/', (req, res) => {
         //fetch all the repository of the user kiyagu
         readPlayersCollection()
             .then((playersFile) => { //after getting the players list with their score
+                // console.log(playersFile);
                 let topTenPlayers = [];
                 for (let index = 0; index < 10; index++) {
                     topTenPlayers.push(playersFile[index]);
@@ -92,7 +90,6 @@ let currentPlayer;
 app.post('/game', function(req, res) {
     //assign the result of the operands displayed to the user for later comparison
     let prevResult = result;
-    // console.log(req.cookies.currentPlayer, "at game", req)
     //execute the mathGame() with the given callback
     mathGame(function(given) {
         readPlayersCollection()
@@ -100,7 +97,8 @@ app.post('/game', function(req, res) {
                 if (playersFile.length > 0) {
                     checkMathGameResult(playersFile, given, req, res, prevResult);
                 } else { //if no player is recorded
-                    recordNewPlayer(given, req, res, prevResult);
+                    let playersFile = [];
+                    recordNewPlayer(playersFile, given, req, res, prevResult);
                 }
             });
     }); //mathgame

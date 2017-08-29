@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 //creating our player schema
 let playerSchema = new Schema({
     name: String,
-    score: Number
+    score: Number,
+    cookieId: Number
 });
 //creating our model using our schema
 let Player = mongoose.model('Player', playerSchema);

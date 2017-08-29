@@ -15,16 +15,20 @@
              //display new operator and operands
              let given = res.inputGiven.number1 + " " + res.inputGiven.operator + " " + res.inputGiven.number2;
              document.querySelector('#given').setAttribute('placeholder', given);
-             //the current players collection
-             let playersCollection = res.playersCollection;
-             //sort the list based on the score hitgh -> low
-
-             playersCollection.sort(function(a, b) {
-                 return b.score - a.score;
-             });
+             //clear the previous leaders' board entry
              if ($("#leaderBoard-list").children().length >= 1) {
                  $("#leaderBoard-list li").remove();
              }
+             //the current players collection
+             let playersCollection = res.playersCollection;
+             //sort the list based on the score hitgh -> low
+             if (playersCollection.length >= 2) {
+                 playersCollection.sort(function(a, b) {
+                     return b.score - a.score;
+                 });
+             }
+
+
              //display only the top 10 players
              if (playersCollection.length > 10) {
                  for (let index = 0; index < 10; index++) {

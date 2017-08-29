@@ -6,7 +6,8 @@ function checkMathGameResult(playersFile, given, req, res, prevResult) {
     let index = 0,
         player;
     for (; index < playersFile.length; index++) {
-        if (playersFile[index].name.toLowerCase() === req.fields.playerName.toLowerCase()) {
+        if (playersFile[index].name.toLowerCase() === req.fields.playerName.toLowerCase() &&
+            playersFile[index].cookieId == req.cookies.currentPlayer.trim()) {
             player = playersFile[index];
             if (prevResult === Number(req.fields.answer)) {
                 ++player.score;
@@ -38,7 +39,7 @@ function checkMathGameResult(playersFile, given, req, res, prevResult) {
         } //outer if
     } //for loop
     if (index == playersFile.length) { //file not empty but new player
-        player = recordNewPlayer(given, req, res, prevResult);
+        player = recordNewPlayer(playersFile, given, req, res, prevResult);
     }
 }
 module.exports = checkMathGameResult;
