@@ -489,9 +489,6 @@
                     data: content
                 })
                 .done(function(res) {
-                    //  res.json()
-                    //  .then(function(res) {
-                    console.log(res)
                     res = JSON.parse(res);
                     document.querySelector('#gameMessage').innerHTML = res.verdict;
                     //reset the answer fields
@@ -532,7 +529,6 @@
                             }
                         })
                     }
-                    //  })
                 })
                 .catch(function(err) {
                     console.error(err)
