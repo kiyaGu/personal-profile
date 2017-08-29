@@ -1,19 +1,3 @@
-function getCurrentPlayerCookie(cookieName) {
-    var name = cookieName + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
 function submitGameResult(endPoint, content) {
     $.ajax({
             url: endPoint,
@@ -44,20 +28,18 @@ function submitGameResult(endPoint, content) {
                     return b.score - a.score;
                 });
             }
-            //get the cookie value for the current player
-            let cookieId = getCurrentPlayerCookie("currentPlayer");
-
             //display only the top 10 players
             if (playersCollection.length > 10) {
                 for (let index = 0; index < 10; index++) {
                     if (playersCollection[index].score == 0) { //make the color of the score cornsilk
-                        if (playersCollection[index].name.toLowerCase() === (content.playerName + "-" + cookieId.substring(0, 3))) {
+                        if (playersCollection[index].name === res.currentPlayer.name) {
                             $("<li id='" + index + "'><span class='currentPlayer'> You </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
                         } else {
                             $("<li id='" + index + "'><span class='player-name'>" + playersCollection[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
                         }
                     } else {
-                        if (playersCollection[index].name.toLowerCase() === (content.playerName + "-" + cookieId.substring(0, 3))) {
+
+                        if (playersCollection[index].name === res.currentPlayer.name) {
                             $("<li id='" + index + "'><span class='currentPlayer'> You </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
                         } else {
                             $("<li id='" + index + "'><span class='player-name'>" + playersCollection[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
@@ -69,14 +51,13 @@ function submitGameResult(endPoint, content) {
                 playersCollection.forEach((element) => {
 
                     if (element.score == 0) { //make the color of the score cornsilk
-                        if (element.name.toLowerCase() === (content.playerName + "-" + cookieId.substring(0, 3))) {
-                            console.log(res.cookies);
+                        if (element.name === res.currentPlayer.name) {
                             $("<li id='" + playersCollection.indexOf(element) + "'><span class='currentPlayer '> You </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
                         } else {
                             $("<li id='" + playersCollection.indexOf(element) + "'><span class='player-name'>" + element.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
                         }
                     } else {
-                        if (element.name.toLowerCase() === (content.playerName + "-" + cookieId.substring(0, 3))) {
+                        if (element.name === res.currentPlayer.name) {
                             $("<li id='" + playersCollection.indexOf(element) + "'><span class='currentPlayer'> You </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
                         } else {
                             $("<li id='" + playersCollection.indexOf(element) + "'><span class='player-name'>" + element.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');

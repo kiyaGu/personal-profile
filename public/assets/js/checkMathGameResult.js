@@ -16,7 +16,8 @@ function checkMathGameResult(playersFile, given, req, res, prevResult) {
                 let successResponse = JSON.stringify({
                     verdict: "Well done, keep playing!!!",
                     inputGiven: given,
-                    playersCollection: playersFile
+                    playersCollection: playersFile,
+                    currentPlayer: player
                 });
                 saveToPlayersListFile(player);
                 res.send(successResponse);
@@ -30,7 +31,8 @@ function checkMathGameResult(playersFile, given, req, res, prevResult) {
                 let ErrorResponse = JSON.stringify({
                     verdict: "Wrong, the answer is => <span>" + prevResult + "</span>",
                     inputGiven: given,
-                    playersCollection: playersFile
+                    playersCollection: playersFile,
+                    currentPlayer: player
                 });
                 saveToPlayersListFile(player);
                 res.send(ErrorResponse);

@@ -19,7 +19,8 @@ function recordNewPlayer(playersFile, given, req, res, prevResult) {
         let successResponse = JSON.stringify({
             verdict: "Well done, keep playing!!!",
             inputGiven: given,
-            playersCollection: playersFile
+            playersCollection: playersFile,
+            currentPlayer: currentPlayer
         });
         saveToPlayersListFile(currentPlayer);
         res.send(successResponse);
@@ -28,7 +29,8 @@ function recordNewPlayer(playersFile, given, req, res, prevResult) {
         let ErrorResponse = JSON.stringify({
             verdict: "Wrong, the answer is => <span>" + prevResult + "</span>",
             inputGiven: given,
-            playersCollection: playersFile
+            playersCollection: playersFile,
+            currentPlayer: currentPlayer
         });
         saveToPlayersListFile(currentPlayer);
         res.send(ErrorResponse);
