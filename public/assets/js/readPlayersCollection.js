@@ -1,4 +1,4 @@
-//our collection model
+//Player collection model
 const Player = require('./mongoosePlayerSchema');
 
 function readPlayersCollection() {
