@@ -5,9 +5,6 @@ function submitGameResult(endPoint, content) {
             data: content
         })
         .done(function(res) {
-
-            //  res.json()
-            //  .then(function(res) {
             res = JSON.parse(res);
             document.querySelector('#gameMessage').innerHTML = res.verdict;
             //reset the answer fields
