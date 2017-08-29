@@ -37,8 +37,12 @@ function validateGameResultFormSubmition() {
             // send message to server
             let form = document.querySelector('#send_game_try');
             let formActionUrl = form.action;
-            let formData = new FormData(form);
-            //send the endpoint and the form
+            // let formData = new FormData(form);
+            let formData = {
+                    playerName: name.value,
+                    answer: answer.value
+                }
+                //send the endpoint and the form
             submitGameResult(formActionUrl, formData);
         }
     });

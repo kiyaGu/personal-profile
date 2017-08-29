@@ -7,7 +7,6 @@ function animateEducationSectionImg() {
         "certifi_5.jpg", "micro2.jpg"
     ];
     let eduDiscriptionHeadingArray = [
-
         'Udemy Certificate',
         'Udemy Certificate',
         'Udemy Certificate',
@@ -22,12 +21,10 @@ function animateEducationSectionImg() {
         'A certificate for successfully completing &quot;The complete Web developer course&quot; Udemy online course.',
         'Bsc degree in computer Science<br>Majoring in software Engineering'
     ]
-
     let i = 0,
         j = 0,
         k = 0; // used to accesses the array elements for the comming three functions
     function education_slide() {
-
         if (i < educationImgArray.length) {
             //fadeOut the current picture and when done as a callback function fadeIn a new image
             $(".slider-education-pic .education-image img").fadeOut(1000, "swing",
@@ -44,8 +41,6 @@ function animateEducationSectionImg() {
                     $(".slider-education-pic .education-image img").attr("src", "assets/images/" + educationImgArray[i]).fadeIn(3000, "linear");
                 });
         }
-
-
         if (j < eduDiscriptionHeadingArray.length) {
             //fadeOut the current picture and when done as a callback function fadeIn a new image
             $(".slider-education-content #edu-heading").fadeOut(1000, "swing",
@@ -62,9 +57,6 @@ function animateEducationSectionImg() {
                     $(".slider-education-content #edu-heading").html(eduDiscriptionHeadingArray[j]).fadeIn(3000, "linear");
                 });
         }
-
-
-
         if (k < eduDiscriptionContentArray.length) {
             //fadeOut the current picture and when done as a callback function fadeIn a new image
             $(".slider-education-content #edu-content").fadeOut(1000, "swing",
@@ -117,7 +109,6 @@ function animatePortfolioSectionImg() {
         y = 0,
         z = 0; // used to accesses the array elements for the comming three functions
     function portfolio_slide() {
-
         if (x < portfolioImgArray.length) {
             //fadeOut the current picture and when done as a callback function fadeIn a new image
             $(".slider-portfolio-pic .slide-item img").fadeOut(1000, "swing",
@@ -134,8 +125,6 @@ function animatePortfolioSectionImg() {
                     $(".slider-portfolio-pic .slide-item img").attr("src", "assets/images/" + portfolioImgArray[x]).fadeIn(3000, "linear");
                 });
         }
-
-
         if (y < portfolioDesHeadingArray.length) {
             //fadeOut the current picture and when done as a callback function fadeIn a new image
             $(".slider-portfolio-content #portfolio-heading").fadeOut(1000, "swing",
@@ -152,9 +141,6 @@ function animatePortfolioSectionImg() {
                     $(".slider-portfolio-content #portfolio-heading").html(portfolioDesHeadingArray[y]).fadeIn(3000, "linear");
                 });
         }
-
-
-
         if (z < portfolioDesContentArray.length) {
             //fadeOut the current picture and when done as a callback function fadeIn a new image
             $(".slider-portfolio-content #portfolio-content").fadeOut(1000, "swing",
@@ -307,7 +293,6 @@ function hideNavbarOnScrollDown() {
     $(window).scroll(function(event) {
         didScroll = true;
     });
-
     setInterval(function() {
         if (didScroll) {
             hasScrolled();
@@ -349,7 +334,7 @@ $(document).ready(function() {
     With Browserify you can write code that uses require in the same way that you would use it in Node.
     1.  npm install --global browserify 
     2. browserify main.js -o bundle.js //by >cd to the directory public/assets/js/
-    =========*/
+    =======================*/
     const animateTheProgressbar = require("./animateTheProgressbar");
     //to hide the navbar when the user scrolls down but to show it when they scroll up
     const hideNavbarOnScrollDown = require("./hideNavbarOnScrollDown");
@@ -399,7 +384,6 @@ $(document).ready(function() {
     hideNavbarOnScrollDown();
     //to smothly scroll the page when navigated from one section to other
     smothlyScroll();
-
     //for animating the education images and content
     animateEducationSectionImg();
     //for animating the portfolio images and content 
@@ -417,11 +401,6 @@ $(document).ready(function() {
     githubrepolist.forEach(function(element) {
         $(element).css('text-transform', 'capitalize');
     });
-    // if ($(window).height() > 568) {
-    //     $("#home-section").css("height", $(window).height());
-    //     $("#intro-name").css("height", $(window).height() - 130 + "px");
-    // }
-
 }); //document ready
 },{"./animateEducationSectionImg":1,"./animatePortfolioSectionImg":2,"./animateTheProgressbar":3,"./changeActiveTopNavigation":4,"./changePlayersScoreDisplayColor":5,"./displayGithubReadmeContent":6,"./hideNavbarOnScrollDown":7,"./parallaxScrolling":9,"./smothlyScroll":11,"./validateContactMeFormSubmit":13,"./validateGameResultFormSubmition":14}],9:[function(require,module,exports){
 function parallaxScrolling() {
@@ -462,7 +441,6 @@ function sendContactMeMessage(url, data) {
         .catch(function(err) {
             console.error(err)
         });
-
 }
 module.exports = sendContactMeMessage;
 },{}],11:[function(require,module,exports){
@@ -478,54 +456,56 @@ function smothlyScroll() {
         });
     });
 }
-
 module.exports = smothlyScroll;
 },{}],12:[function(require,module,exports){
- function submitGameResult(url, data) {
-     fetch(url, {
+ function submitGameResult(endPoint, content) {
+     $.ajax({
+             url: endPoint,
              method: 'POST',
-             body: data
+             data: content
          })
-         .then(function(res) {
-             res.json()
-                 .then(function(json) {
-                     document.querySelector('#gameMessage').innerHTML = json.verdict;
-                     //reset the answer fields
-                     $('#answer').val("");
-                     answer.setAttribute("placeholder", "Put what is in your mind");
-                     //display new operator and operands
-                     let given = json.inputGiven.number1 + " " + json.inputGiven.operator + " " + json.inputGiven.number2;
-                     document.querySelector('#given').setAttribute('placeholder', given);
-                     //the current players collection
-                     let playersCollection = json.playersCollection;
-                     //sort the list based on the score hitgh -> low
-                     playersCollection.sort(function(a, b) {
-                         return b.score - a.score;
-                     });
-                     if ($("#leaderBoard-list").children().length >= 1) {
-                         $("#leaderBoard-list li").remove();
+         .done(function(res) {
+             //  res.json()
+             //  .then(function(res) {
+             res = JSON.parse(res);
+             document.querySelector('#gameMessage').innerHTML = res.verdict;
+             //reset the answer fields
+             $('#answer').val("");
+             answer.setAttribute("placeholder", "Put what is in your mind");
+             //display new operator and operands
+             let given = res.inputGiven.number1 + " " + res.inputGiven.operator + " " + res.inputGiven.number2;
+             document.querySelector('#given').setAttribute('placeholder', given);
+             //the current players collection
+             let playersCollection = res.playersCollection;
+             //sort the list based on the score hitgh -> low
+
+             playersCollection.sort(function(a, b) {
+                 return b.score - a.score;
+             });
+             if ($("#leaderBoard-list").children().length >= 1) {
+                 $("#leaderBoard-list li").remove();
+             }
+             //display only the top 10 players
+             if (playersCollection.length > 10) {
+                 for (let index = 0; index < 10; index++) {
+                     if (playersCollection[index].score == 0) { //make the color of the score cornsilk
+                         $("<li id='" + index + "'><span class='player-name'>" + playersCollection[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
+                     } else {
+                         $("<li id='" + index + "'><span class='player-name'>" + playersCollection[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
                      }
-                     //display only the top 10 players
-                     if (playersCollection.length > 10) {
-                         for (let index = 0; index < 10; index++) {
-                             if (playersCollection[index].score == 0) { //make the color of the score cornsilk
-                                 $("<li id='" + index + "'><span class='player-name'>" + playersCollection[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
-                             } else {
-                                 $("<li id='" + index + "'><span class='player-name'>" + playersCollection[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
-                             }
-                         }
+                 }
 
-                     } else { //if there are less than 10 players
-                         playersCollection.forEach((element) => {
+             } else { //if there are less than 10 players
+                 playersCollection.forEach((element) => {
 
-                             if (element.score == 0) { //make the color of the score cornsilk
-                                 $("<li id='" + playersCollection.indexOf(element) + "'><span class='player-name'>" + element.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
-                             } else {
-                                 $("<li id='" + playersCollection.indexOf(element) + "'><span class='player-name'>" + element.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
-                             }
-                         })
+                     if (element.score == 0) { //make the color of the score cornsilk
+                         $("<li id='" + playersCollection.indexOf(element) + "'><span class='player-name'>" + element.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
+                     } else {
+                         $("<li id='" + playersCollection.indexOf(element) + "'><span class='player-name'>" + element.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
                      }
                  })
+             }
+             //  })
          })
          .catch(function(err) {
              console.error(err)
@@ -689,8 +669,12 @@ function validateGameResultFormSubmition() {
             // send message to server
             let form = document.querySelector('#send_game_try');
             let formActionUrl = form.action;
-            let formData = new FormData(form);
-            //send the endpoint and the form
+            // let formData = new FormData(form);
+            let formData = {
+                    playerName: name.value,
+                    answer: answer.value
+                }
+                //send the endpoint and the form
             submitGameResult(formActionUrl, formData);
         }
     });

@@ -1,4 +1,5 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const formidable = require('express-formidable');
@@ -6,7 +7,7 @@ const nodemailer = require('nodemailer');
 const GitHubApi = require('github');
 const sendEmail = require('./public/assets/js/sendEmail');
 const mathGame = require('./public/assets/js/mathGame');
-const readPlayersList = require('./public/assets/js/readPlayersList');
+const readPlayersCollection = require('./public/assets/js/readPlayersCollection');
 const saveToPlayersListFile = require('./public/assets/js/saveToPlayersListFile');
 const checkMathGameResult = require('./public/assets/js/checkMathGameResult');
 const recordNewPlayer = require('./public/assets/js/recordNewPlayer');
@@ -28,6 +29,26 @@ github.authenticate({
     password: process.env.GITHUB_PASSWORD
 })
 const app = express();
+app.use(cookieParser());
+
+// set a cookie
+// app.use('/game', function(req, res, next) {
+//     // check if client sent cookie
+//     // re.clearCookie('currentPlayer');
+//     let cookie = req.cookies.currentPlayer;
+//     if (cookie === undefined) {
+//         // no: set a new cookie
+//         var randomNumber = Math.random().toString();
+//         randomNumber = randomNumber.substring(2, randomNumber.length);
+//         res.cookie('currentPlayer', randomNumber, { expire: new Date() + 9999, path: '/game' });
+//         console.log(req.cookies.currentPlayer, 'cookie created successfully');
+//     } else {
+//         // yes, cookie was already present
+//         console.log('cookie exists', req.cookies);
+//     }
+//     next(); // <-- important!
+// });
+
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
@@ -36,10 +57,10 @@ app.use(formidable());
 
 let given; //to hold the operator, the operands and the result of the math game
 app.get('/', (req, res) => {
-    //to give the user the initial numbers and the operator 
+    //to give the user the initial numbers and the operator
     mathGame((given) => {
         //fetch all the repository of the user kiyagu
-        readPlayersList()
+        readPlayersCollection()
             .then((playersFile) => { //after getting the players list with their score
                 let topTenPlayers = [];
                 for (let index = 0; index < 10; index++) {
@@ -71,9 +92,10 @@ let currentPlayer;
 app.post('/game', function(req, res) {
     //assign the result of the operands displayed to the user for later comparison
     let prevResult = result;
+    // console.log(req.cookies.currentPlayer, "at game", req)
     //execute the mathGame() with the given callback
     mathGame(function(given) {
-        readPlayersList()
+        readPlayersCollection()
             .then((playersFile) => {
                 if (playersFile.length > 0) {
                     checkMathGameResult(playersFile, given, req, res, prevResult);
