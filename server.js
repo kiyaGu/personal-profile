@@ -32,7 +32,7 @@ const app = express();
 app.use(cookieParser());
 
 // set a cookie
-app.use('/game', function(req, res, next) {
+app.use(function(req, res, next) {
     // check if client sent cookie
     // res.clearCookie('currentPlayer');
     let cookie = req.cookies.currentPlayer;
@@ -40,7 +40,7 @@ app.use('/game', function(req, res, next) {
         // no: set a new cookie
         var randomNumber = Math.random().toString();
         randomNumber = randomNumber.substring(2, randomNumber.length);
-        res.cookie('currentPlayer', randomNumber, { expire: new Date() + 9999, path: '/game' });
+        res.cookie('currentPlayer', randomNumber, { expire: new Date() + 9999 });
 
     }
     next(); // <-- important!
