@@ -5,6 +5,7 @@
              data: content
          })
          .done(function(res) {
+
              //  res.json()
              //  .then(function(res) {
              res = JSON.parse(res);
@@ -29,27 +30,42 @@
              }
 
 
+
              //display only the top 10 players
              if (playersCollection.length > 10) {
                  for (let index = 0; index < 10; index++) {
                      if (playersCollection[index].score == 0) { //make the color of the score cornsilk
-                         $("<li id='" + index + "'><span class='player-name'>" + playersCollection[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
+                         if (playersCollection[index].name.toLowerCase() === content.playerName + "-" + String(element.cookieId).substring(0, 3)) {
+                             $("<li id='" + index + "'><span class='currentPlayer'> You </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
+                         } else {
+                             $("<li id='" + index + "'><span class='player-name'>" + playersCollection[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
+                         }
                      } else {
-                         $("<li id='" + index + "'><span class='player-name'>" + playersCollection[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
+                         if (playersCollection[index].name.toLowerCase() === content.playerName + "-" + String(element.cookieId).substring(0, 3)) {
+                             $("<li id='" + index + "'><span class='currentPlayer'> You </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
+                         } else {
+                             $("<li id='" + index + "'><span class='player-name'>" + playersCollection[index].name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + playersCollection[index].score + "</span></li>").appendTo('#leaderBoard-list');
+                         }
                      }
                  }
 
              } else { //if there are less than 10 players
                  playersCollection.forEach((element) => {
-
                      if (element.score == 0) { //make the color of the score cornsilk
-                         $("<li id='" + playersCollection.indexOf(element) + "'><span class='player-name'>" + element.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
+                         if (element.name.toLowerCase() === content.playerName + "-" + String(element.cookieId).substring(0, 3)) {
+                             $("<li id='" + playersCollection.indexOf(element) + "'><span class='currentPlayer '> You </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
+                         } else {
+                             $("<li id='" + playersCollection.indexOf(element) + "'><span class='player-name'>" + element.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score-zero'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
+                         }
                      } else {
-                         $("<li id='" + playersCollection.indexOf(element) + "'><span class='player-name'>" + element.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
+                         if (element.name.toLowerCase() === content.playerName + "-" + String(element.cookieId).substring(0, 3)) {
+                             $("<li id='" + playersCollection.indexOf(element) + "'><span class='currentPlayer'> You </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
+                         } else {
+                             $("<li id='" + playersCollection.indexOf(element) + "'><span class='player-name'>" + element.name + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='player-score'>" + element.score + "</span></li>").appendTo('#leaderBoard-list');
+                         }
                      }
                  })
              }
-             //  })
          })
          .catch(function(err) {
              console.error(err)

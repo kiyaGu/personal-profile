@@ -9,7 +9,9 @@ var Players = function(name, score, cookieId) {
 
 function recordNewPlayer(playersFile, given, req, res, prevResult) {
     // let playersFile;
-    currentPlayer = new Players(req.fields.playerName, 0, req.cookies.currentPlayer);
+    //append the first three digits form the cookie to the name
+    let playerName = req.fields.playerName + "-" + String(req.cookies.currentPlayer).substring(0, 3);
+    currentPlayer = new Players(playerName, 0, req.cookies.currentPlayer);
 
     if (prevResult === Number(req.fields.answer)) {
         ++currentPlayer.score;

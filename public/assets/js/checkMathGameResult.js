@@ -6,7 +6,8 @@ function checkMathGameResult(playersFile, given, req, res, prevResult) {
     let index = 0,
         player;
     for (; index < playersFile.length; index++) {
-        if (playersFile[index].name.toLowerCase() === req.fields.playerName.toLowerCase() &&
+        let currentPlayerName = req.fields.playerName.toLowerCase() + "-" + String(req.cookies.currentPlayer).substring(0, 3);
+        if (playersFile[index].name.toLowerCase() === currentPlayerName &&
             playersFile[index].cookieId == req.cookies.currentPlayer.trim()) {
             player = playersFile[index];
             if (prevResult === Number(req.fields.answer)) {
