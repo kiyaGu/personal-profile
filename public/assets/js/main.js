@@ -19,6 +19,8 @@ $(document).ready(function() {
     const displayGithubReadmeContent = require('./displayGithubReadmeContent');
     //setting different color of the player score based on the score
     const changePlayersScoreDisplayColor = require('./changePlayersScoreDisplayColor');
+    //more games
+    const moreGames = require('./moreGames');
     //parallax scrolling for the backgrounds
     const parallaxScrolling = require('./parallaxScrolling');
     //to change the active navigation when the user scrolls to different sections
@@ -63,6 +65,8 @@ $(document).ready(function() {
     validateGameResultFormSubmition();
     //setting different color of the player score based on the score
     changePlayersScoreDisplayColor();
+    //moregames
+    moreGames();
     // validate the contact me form when submitted
     validateContactMeFormSubmit();
     //to capitlise the list of the repos
@@ -70,4 +74,6 @@ $(document).ready(function() {
     githubrepolist.forEach(function(element) {
         $(element).css('text-transform', 'capitalize');
     });
+
+
 }); //document ready

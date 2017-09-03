@@ -350,6 +350,8 @@ $(document).ready(function() {
     const displayGithubReadmeContent = require('./displayGithubReadmeContent');
     //setting different color of the player score based on the score
     const changePlayersScoreDisplayColor = require('./changePlayersScoreDisplayColor');
+    //more games
+    const moreGames = require('./moreGames');
     //parallax scrolling for the backgrounds
     const parallaxScrolling = require('./parallaxScrolling');
     //to change the active navigation when the user scrolls to different sections
@@ -394,6 +396,8 @@ $(document).ready(function() {
     validateGameResultFormSubmition();
     //setting different color of the player score based on the score
     changePlayersScoreDisplayColor();
+    //moregames
+    moreGames();
     // validate the contact me form when submitted
     validateContactMeFormSubmit();
     //to capitlise the list of the repos
@@ -401,8 +405,31 @@ $(document).ready(function() {
     githubrepolist.forEach(function(element) {
         $(element).css('text-transform', 'capitalize');
     });
+
+
 }); //document ready
-},{"./animateEducationSectionImg":1,"./animatePortfolioSectionImg":2,"./animateTheProgressbar":3,"./changeActiveTopNavigation":4,"./changePlayersScoreDisplayColor":5,"./displayGithubReadmeContent":6,"./hideNavbarOnScrollDown":7,"./parallaxScrolling":9,"./smothlyScroll":11,"./validateContactMeFormSubmit":13,"./validateGameResultFormSubmition":14}],9:[function(require,module,exports){
+},{"./animateEducationSectionImg":1,"./animatePortfolioSectionImg":2,"./animateTheProgressbar":3,"./changeActiveTopNavigation":4,"./changePlayersScoreDisplayColor":5,"./displayGithubReadmeContent":6,"./hideNavbarOnScrollDown":7,"./moreGames":9,"./parallaxScrolling":10,"./smothlyScroll":12,"./validateContactMeFormSubmit":14,"./validateGameResultFormSubmition":15}],9:[function(require,module,exports){
+function moreGames() {
+    //for the modal
+    let modal = document.getElementById('more-game');
+    let closeButton = document.querySelector("#more-game-container .close");
+    // When the user clicks on <span> (x), close the modal
+    closeButton.onclick = function() {
+            modal.style.display = "none";
+        }
+        //when the user clicks anywhere outside of the modal, close the modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    $('#btn-more-game').click(function(event) {
+        event.preventDefault();
+        document.querySelector('#more-game').style.display = "block";
+    });
+}
+module.exports = moreGames;
+},{}],10:[function(require,module,exports){
 function parallaxScrolling() {
     // $(function() {
     // Cache the Window object
@@ -424,7 +451,7 @@ function parallaxScrolling() {
     // });
 }
 module.exports = parallaxScrolling;
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 function sendContactMeMessage(url, data) {
     //to make post request for contact form
     fetch(url, {
@@ -443,7 +470,7 @@ function sendContactMeMessage(url, data) {
         });
 }
 module.exports = sendContactMeMessage;
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 function smothlyScroll() {
     //jQuery for page scrolling feature - requires jQuery Easing plugin
     $(function() {
@@ -457,7 +484,7 @@ function smothlyScroll() {
     });
 }
 module.exports = smothlyScroll;
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 function submitGameResult(endPoint, content) {
     $.ajax({
             url: endPoint,
@@ -465,9 +492,6 @@ function submitGameResult(endPoint, content) {
             data: content
         })
         .done(function(res) {
-
-            //  res.json()
-            //  .then(function(res) {
             res = JSON.parse(res);
             document.querySelector('#gameMessage').innerHTML = res.verdict;
             //reset the answer fields
@@ -531,7 +555,7 @@ function submitGameResult(endPoint, content) {
         });
 }
 module.exports = submitGameResult;
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
  //make post request to send the message if there is no error in form validation
  const sendContactMeMessage = require('./sendContactMeMessage');
 
@@ -648,7 +672,7 @@ module.exports = submitGameResult;
      });
  }
  module.exports = validateContactMeFormSubmit;
-},{"./sendContactMeMessage":10}],14:[function(require,module,exports){
+},{"./sendContactMeMessage":11}],15:[function(require,module,exports){
 //make post request to send the result if there is no error in form validation
 const submitGameResult = require('./submitGameResult');
 
@@ -699,4 +723,4 @@ function validateGameResultFormSubmition() {
     });
 }
 module.exports = validateGameResultFormSubmition;
-},{"./submitGameResult":12}]},{},[8]);
+},{"./submitGameResult":13}]},{},[8]);

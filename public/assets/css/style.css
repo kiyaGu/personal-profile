@@ -83,7 +83,7 @@ body {
 #skills-section article,
 #experience-section article,
 #portfolio,
-#game-section article,
+#game-section article:first-child,
 #contact-me-section article,
 footer .container {
     display: flex;
@@ -96,12 +96,14 @@ footer .container {
     flex-direction: column;
 }
 
-#github-read-me {
+#more-game {
     margin: 0 8.63%;
     color: cornsilk;
     width: 85%;
     margin-left: auto;
     margin-right: auto;
+    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .9)), url(../images/images/puzzel2.jpg); */
+    display: flex;
 }
 
 #home-section article:after,
@@ -1194,7 +1196,8 @@ article#experience {
 
 /*=====githubrepo readme ====*/
 
-#github-read-me {
+#github-read-me,
+#more-game {
     display: none;
     position: fixed;
     z-index: 100;
@@ -1209,10 +1212,10 @@ article#experience {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-#portfolio-section #github-read-me-container {
+#portfolio-section #github-read-me-container,
+#more-game-container {
     margin: 2em 5%;
     background-size: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .9)), url(../images/dark-bg.jpg);
     border-radius: 3px;
     min-height: 300px;
     overflow-y: auto;
@@ -1220,6 +1223,10 @@ article#experience {
     flex-direction: column;
     position: relative;
     padding: 3em 5% 3em 8%;
+}
+
+#portfolio-section #github-read-me-container {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .9)), url(../images/dark-bg.jpg);
 }
 
 #github-read-me-container h1:first-letter {
@@ -1272,7 +1279,8 @@ article#experience {
     margin-bottom: 3em;
 }
 
-#github-read-me-container .close {
+#github-read-me-container .close,
+#more-game-container .close {
     margin: 5px 10px;
     color: #aaaaaa;
     float: right;
@@ -1280,7 +1288,8 @@ article#experience {
     font-weight: bold;
 }
 
-#github-read-me .close i {
+#github-read-me .close i,
+#more-game-container .close i {
     color: #fec85d;
     font-size: 24px;
     float: right;
@@ -1291,7 +1300,9 @@ article#experience {
 }
 
 #github-read-me .close i:hover,
-#github-read-me .close i:focus {
+#github-read-me .close i:focus,
+#more-game-container .close i:hover,
+#more-game-container .close i:focus {
     color: #DF4848;
     text-decoration: none;
     cursor: pointer;
@@ -1322,7 +1333,8 @@ article#experience {
 }
 
 #game #game-heading,
-#game #game-container {
+#game #game-container,
+#more-game-link {
     margin: .5em 5%;
 }
 
@@ -1433,6 +1445,139 @@ article#experience {
 
 .player-score-zero {
     color: #CF4A39;
+}
+
+#more-game-link {
+    text-align: center;
+}
+
+#more-game-link button,
+#more-game-link button i {
+    text-align: center;
+    color: #000;
+}
+
+#more-game-link button i {
+    font-size: 1.2em;
+}
+
+
+/* ========= more game =========== */
+
+#more-game-container {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .5), rgba(0, 0, 0, .9)), url(../images/images/puzzel2.jpg) repeat center center fixed;
+    /* background: transparent; */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    margin-top: .5em;
+}
+
+#game-wrapper {
+    align-self: center;
+    padding: 1em auto;
+    width: 450px;
+}
+
+#puzzel-game-container {
+    height: auto;
+    width: auto;
+    margin: 10%;
+}
+
+.game-canvas {
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+#harder-puzzel-container {
+    display: none;
+}
+
+#buttons-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#puzzel-game-container #buttons-container {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+#more-game .btn {
+    background: transparent;
+    border: 1px solid #fec951;
+    outline: none;
+}
+
+#more-game .btn:hover {
+    color: #fec951;
+}
+
+#buttons-container button:first-of-type {
+    padding: .4em 3em;
+}
+
+#resultContainer {
+    color: #fff;
+    font-size: 1.4em;
+    text-transform: uppercase;
+}
+
+#more-game #result {
+    -vendor-animation-duration: 3s;
+    -vendor-animation-delay: 2s;
+    -vendor-animation-iteration-count: 10;
+}
+
+#more-game #result {
+    color: cornsilk;
+}
+
+#more-game #result span {
+    font-size: 1.5em;
+    color: #fec951;
+}
+
+#more-game-container p:last-of-type {
+    color: #fec951;
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: .8em;
+}
+
+#more-game-container hr:last-of-type {
+    margin-bottom: .7em;
+}
+
+#more-game-container p:last-of-type i {
+    color: red;
+}
+
+#more-game-container p:last-of-type span {
+    color: cornsilk;
+}
+
+#game-timer {
+    background: transparent;
+    border-color: #fec951;
+    position: absolute;
+    right: 70px;
+    top: 40%;
+    width: 200px;
+    padding-top: .7em;
+    color: #CF4A39;
+    text-align: center;
+}
+
+#game-timer span {
+    text-transform: uppercase;
 }
 
 
@@ -1973,7 +2118,8 @@ footer p {
         text-decoration: underline;
     }
     /*=======github readme =========*/
-    #github-read-me .close i {
+    #github-read-me .close i,
+    #more-game .close i {
         right: 0px;
         top: 10px;
     }

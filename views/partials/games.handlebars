@@ -34,8 +34,39 @@
         </form>
         <div id="result-and-leaderBoard">
             {{> leaderBoard }}
+            <div id="more-game-link">
+        <button class="btn btn-success" id="btn-more-game">
+                    More Games <i class="fa fa-gamepad" aria-hidden="true"></i>
+        </button>
+    </div>
         </div><!--===leaderBoard==-->
     </div>
+    
     <!--===game==-->
 </article>
 <!--===article==-->
+<!--===more-game article==-->
+<article id="more-game">     
+    <div id="more-game-container">
+        <hr>
+        <span class="close"><i class="fa fa-times-circle-o" aria-hidden="true"></i></span>
+        <div id="game-wrapper">
+            <div id="puzzel-game-container">
+                <div id="easy-puzzel-container">
+                    <canvas id="easy-puzzel" class="game-canvas" width="303px" height="244px"></canvas>
+                </div>
+                <div id="harder-puzzel-container">
+                    <canvas id="harder-puzzel" class="game-canvas" width="404px" height="324px"></canvas>
+                </div>
+                <div id="buttons-container">
+                    <button class="btn" id="reset">Reset</button>
+                    <button class="btn" id="make-it-harder">Make It Harder</button>
+                </div>
+            </div>
+        </div>
+        <div id="game-timer"></div>
+        <div id="resultContainer"></div>
+        <hr>
+        <p>Made with <i class="fa fa-heart" aria-hidden="true"></i> by <span>KIYA</span> @ 2017</p>
+    </div>
+</article>
