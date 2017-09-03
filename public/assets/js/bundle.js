@@ -426,6 +426,8 @@ function moreGames() {
     $('#btn-more-game').click(function(event) {
         event.preventDefault();
         document.querySelector('#more-game').style.display = "block";
+        //load easier puzzel by default
+        easierPuzzel();
     });
 }
 module.exports = moreGames;

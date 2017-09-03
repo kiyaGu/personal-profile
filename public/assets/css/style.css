@@ -1578,6 +1578,7 @@ article#experience {
 
 #game-timer span {
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 

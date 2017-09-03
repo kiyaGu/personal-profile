@@ -39,29 +39,17 @@ let generateRandomNumber = function(upperBound) {
     return (Math.floor(Math.random() * upperBound) + 1);
 }
 let drawNumberImg = function(dx, dy, i) {
-        let img = document.createElement("img");
-        if (currentGame == "easierPuzzel")
-            img.src = "/assets/images/images/numbers" + i + ".gif";
-        else if (currentGame == "harderPuzzel")
-            img.src = "/assets/images/images/puzzel15/numbers" + i + ".gif";
+    let img = document.createElement("img");
+    if (currentGame == "easierPuzzel")
+        img.src = "/assets/images/images/numbers" + i + ".gif";
+    else if (currentGame == "harderPuzzel")
+        img.src = "/assets/images/images/puzzel15/numbers" + i + ".gif";
 
-        img.addEventListener("load", function() {
-            canvasContext.drawImage(img, dx, dy);
-        });
-    }
-    // let repaintPosition = function(x, y) {
-    //     // canvasContext.fillStyle = "black";
-    //     // canvasContext.fillRect(x, y, 100, 80);
-    //     let img = document.createElement("img");
-    //     if (currentGame == "easierPuzzel")
-    //         img.src = "/assets/images/images/numbers9.gif";
-    //     else if (currentGame == "harderPuzzel")
-    //         img.src = "/assets/images/images/puzzel15/numbers16.gif";
+    img.addEventListener("load", function() {
+        canvasContext.drawImage(img, dx, dy);
+    });
+}
 
-//     img.addEventListener("load", function() {
-//         canvasContext.drawImage(img, x, y);
-//     });
-// }
 let gameTimer = function(ceiling, callback) {
     //game timer 
     shortly = new Date();
@@ -86,6 +74,14 @@ let checkGameResult = function(positions) {
 }
 let displayMessage = function() {
     document.getElementById('resultContainer').innerHTML = "<p id='result' class='animated flash'><span>Congratulation</span>, you won...HURRAH!!!</p>";
+    $('#game-timer').countdown('destroy');
+    setTimeout(() => {
+        document.getElementById('resultContainer').innerHTML = "";
+        if (currentGame == "easierPuzzel")
+            easierPuzzel();
+        else
+            harderPuzzel();
+    }, 3000);
 }
 
 //change game type
@@ -108,25 +104,25 @@ document.getElementById('make-it-harder').addEventListener('click', (event) => {
     }
 
 });
-
-//reset 
-document.getElementById('reset').addEventListener('click', (event) => {
-    let switchGame = document.querySelector('#make-it-harder').innerHTML;
-    if (switchGame.trim() == "Make It Harder") {
-        easierPuzzel();
-        $('#game-timer').countdown('destroy');
-    } else {
-        harderPuzzel();
-        $('#game-timer').countdown('destroy');
+//reset game
+let resetGame = function() {
+        let switchGame = document.querySelector('#make-it-harder').innerHTML;
+        if (switchGame.trim() == "Make It Harder") {
+            easierPuzzel();
+            $('#game-timer').countdown('destroy');
+        } else {
+            harderPuzzel();
+            $('#game-timer').countdown('destroy');
+        }
     }
-
+    //reset 
+document.getElementById('reset').addEventListener('click', (event) => {
+    resetGame();
 });
 
 //easier puzzel  
 let easierPuzzel = function() {
     currentGame = "easierPuzzel";
-    document.getElementById('resultContainer').innerHTML = "";
-
     let index = [];
     mixThePuzzel = function() {
         if (index.length < 9) {
@@ -170,13 +166,16 @@ let easierPuzzel = function() {
 
     let easyGameCanvas = document.getElementById('easy-puzzel');
     canvasContext = easyGameCanvas.getContext('2d');
+    canvasContext.clearRect(0, 0, easyGameCanvas.width, easyGameCanvas.height);
     puzzelEntryNumbers.forEach((element) => {
         drawNumberImg(element.position.x, element.position.y, element.puzzelNumber);
     })
     easyGameCanvas.addEventListener('click', (event) => {
+        event.preventDefault();
         //set the time to 10min 
-        gameTimer(60, easierPuzzel);
+        gameTimer(300, resetGame);
         let position = getMousePos(easyGameCanvas, event);
+        console.log(position);
         //p0
         if (position.x > 0 && position.x < 101 && position.y > 0 && position.y < 81) {
             if (positions[1].availablity) {
@@ -270,24 +269,18 @@ let easierPuzzel = function() {
 
         if (checkGameResult(positions)) {
             displayMessage();
-            setTimeout(() => {
-                easierPuzzel();
-            }, 6000);
         }
 
     })
 
 }
 
-//load easier puzzel by default
-easierPuzzel();
+
 
 
 //make it harder
 let harderPuzzel = function() {
     currentGame = "harderPuzzel";
-    document.getElementById('resultContainer').innerHTML = "";
-
     let index = [];
     mixThePuzzel = function() {
         if (index.length < 16) {
@@ -344,6 +337,7 @@ let harderPuzzel = function() {
     puzzelEntryNumbers.push(new PuzzelEntry(positions[15], index[15], true, 15));
     let harderGameCanvas = document.getElementById('harder-puzzel');
     canvasContext = harderGameCanvas.getContext('2d');
+    canvasContext.clearRect(0, 0, harderGameCanvas.width, harderGameCanvas.height);
 
 
     puzzelEntryNumbers.forEach((element) => {
@@ -351,9 +345,10 @@ let harderPuzzel = function() {
     })
 
     harderGameCanvas.addEventListener('click', (event) => {
+        event.preventDefault();
         let position = getMousePos(harderGameCanvas, event);
         //set the time to 10min 
-        gameTimer(900, harderPuzzel);
+        gameTimer(600, resetGame);
         //p0..1,4
         if (position.x > 0 && position.x < 101 && position.y > 0 && position.y < 81) {
             if (positions[1].availablity) {
@@ -523,9 +518,6 @@ let harderPuzzel = function() {
         }
         if (checkGameResult(positions)) {
             displayMessage();
-            setTimeout(() => {
-                harderPuzzel();
-            }, 6000);
         }
     })
 }
