@@ -21,15 +21,16 @@ let getMousePos = function(canvas, evt) {
     };
 }
 let makeMove = function(moveFrom, moveTo) {
-    drawNumberImg(moveTo.x, moveTo.y, moveFrom.currentPlaceHolder);
+    moveFrom.availablity = true;
+    moveTo.availablity = false;
+    moveTo.currentPlaceHolder = moveFrom.currentPlaceHolder;
+    drawNumberImg(moveTo.x, moveTo.y, moveTo.currentPlaceHolder);
+
     if (currentGame == "easierPuzzel")
         drawNumberImg(moveFrom.x, moveFrom.y, 9);
     else if (currentGame == "harderPuzzel")
         drawNumberImg(moveFrom.x, moveFrom.y, 16);
-    moveFrom.availablity = true;
-    moveTo.availablity = false;
 
-    moveTo.currentPlaceHolder = moveFrom.currentPlaceHolder;
     if (currentGame == "easierPuzzel")
         moveFrom.currentPlaceHolder = 9;
     else if (currentGame == "harderPuzzel")
@@ -44,8 +45,8 @@ let drawNumberImg = function(dx, dy, i) {
         img.src = "/assets/images/images/numbers" + i + ".gif";
     else if (currentGame == "harderPuzzel")
         img.src = "/assets/images/images/puzzel15/numbers" + i + ".gif";
-
     img.addEventListener("load", function() {
+        canvasContext.clearRect(dx, dy, 100, 80);
         canvasContext.drawImage(img, dx, dy);
     });
 }
@@ -82,6 +83,7 @@ let displayMessage = function() {
         else
             harderPuzzel();
     }, 3000);
+
 }
 
 //change game type
@@ -122,163 +124,152 @@ document.getElementById('reset').addEventListener('click', (event) => {
 
 //easier puzzel  
 let easierPuzzel = function() {
-    currentGame = "easierPuzzel";
-    let index = [];
-    mixThePuzzel = function() {
-        if (index.length < 9) {
-            let value = generateRandomNumber(9);
-            if (index.length == 0) {
-                index.push(value);
-            } else {
-                if (!(index.includes(value)))
+        currentGame = "easierPuzzel";
+        let index = [];
+        mixThePuzzel = function() {
+            if (index.length < 9) {
+                let value = generateRandomNumber(9);
+                if (index.length == 0) {
                     index.push(value);
+                } else {
+                    if (!(index.includes(value)))
+                        index.push(value);
+                }
+                mixThePuzzel();
             }
-            mixThePuzzel();
         }
+        mixThePuzzel();
+
+        this.positions = [];
+        //(x, y, availablity, posNumber, currentPlaceHolder)
+        positions.push(new PuzzelBoardPosition(0, 0, false, 0, index[0]));
+        positions.push(new PuzzelBoardPosition(101, 0, false, 1, index[1]));
+        positions.push(new PuzzelBoardPosition(202, 0, false, 2, index[2]));
+        positions.push(new PuzzelBoardPosition(0, 81, false, 3, index[3]));
+        positions.push(new PuzzelBoardPosition(101, 81, false, 4, index[4]));
+        positions.push(new PuzzelBoardPosition(202, 81, false, 5, index[5]));
+        positions.push(new PuzzelBoardPosition(0, 162, false, 6, index[6]));
+        positions.push(new PuzzelBoardPosition(101, 162, false, 7, index[7]));
+        positions.push(new PuzzelBoardPosition(202, 162, false, 8, index[8]));
+        positions.forEach((element) => {
+            if (element.currentPlaceHolder == 9)
+                element.availablity = true;
+        })
+
+        let puzzelEntryNumbers = [];
+        //(position, puzzelNumber, currentLocation) 
+        puzzelEntryNumbers.push(new PuzzelEntry(positions[0], index[0], 0));
+        puzzelEntryNumbers.push(new PuzzelEntry(positions[1], index[1], 1));
+        puzzelEntryNumbers.push(new PuzzelEntry(positions[2], index[2], 2));
+        puzzelEntryNumbers.push(new PuzzelEntry(positions[3], index[3], 3));
+        puzzelEntryNumbers.push(new PuzzelEntry(positions[4], index[4], 4));
+        puzzelEntryNumbers.push(new PuzzelEntry(positions[5], index[5], 5));
+        puzzelEntryNumbers.push(new PuzzelEntry(positions[6], index[6], 6));
+        puzzelEntryNumbers.push(new PuzzelEntry(positions[7], index[7], 7));
+        puzzelEntryNumbers.push(new PuzzelEntry(positions[8], index[8], 8));
+
+        let easyGameCanvas = document.getElementById('easy-puzzel');
+        canvasContext = easyGameCanvas.getContext('2d');
+        // canvasContext.clearRect(0, 0, easyGameCanvas.width, easyGameCanvas.height);
+        puzzelEntryNumbers.forEach((element) => {
+            drawNumberImg(element.position.x, element.position.y, element.puzzelNumber);
+        })
+        easyGameCanvas.addEventListener('click', (event) => {
+            event.preventDefault();
+            //set the time to 10min 
+            gameTimer(300, resetGame);
+            let position = getMousePos(easyGameCanvas, event);
+
+            //p0
+            if ((position.x > 0 && position.x < 101) && (position.y > 0 && position.y < 81)) {
+                if (positions[1].availablity) {
+                    makeMove(positions[0], positions[1]);
+                } else if (positions[3].availablity) {
+                    makeMove(positions[0], positions[3]);
+                }
+            }
+            //p1
+            else if ((position.x > 102 && position.x < 202) && (position.y > 0 && position.y < 81)) {
+                if (positions[0].availablity) {
+                    makeMove(positions[1], positions[0]);
+                } else if (positions[2].availablity) {
+                    makeMove(positions[1], positions[2]);
+                } else if (positions[4].availablity) {
+                    makeMove(positions[1], positions[4]);
+                }
+            }
+            //p2
+            else if ((position.x > 203 && position.x < 303) && (position.y > 0 && position.y < 81)) {
+                if (positions[1].availablity) {
+                    makeMove(positions[2], positions[1]);
+                } else if (positions[5].availablity) {
+                    makeMove(positions[2], positions[5]);
+                }
+            }
+            //p3
+            else if ((position.x > 0 && position.x < 101) && (position.y > 82 && position.y < 162)) {
+                if (positions[0].availablity) {
+                    makeMove(positions[3], positions[0]);
+                } else if (positions[4].availablity) {
+                    makeMove(positions[3], positions[4]);
+                } else if (positions[6].availablity) {
+                    makeMove(positions[3], positions[6]);
+                }
+            }
+            //p4
+            else if ((position.x > 102 && position.x < 202) && (position.y > 82 && position.y < 162)) {
+                if (positions[1].availablity) {
+                    makeMove(positions[4], positions[1]);
+                } else if (positions[3].availablity) {
+                    makeMove(positions[4], positions[3]);
+                } else if (positions[5].availablity) {
+                    makeMove(positions[4], positions[5]);
+                } else if (positions[7].availablity) {
+                    makeMove(positions[4], positions[7]);
+                }
+            }
+            //p5
+            else if ((position.x > 203 && position.x < 303) && (position.y > 82 && position.y < 162)) {
+                if (positions[2].availablity) {
+                    makeMove(positions[5], positions[2]);
+                } else if (positions[4].availablity) {
+                    makeMove(positions[5], positions[4]);
+                } else if (positions[8].availablity) {
+                    makeMove(positions[5], positions[8]);
+                }
+            }
+            //p6
+            else if ((position.x > 0 && position.x < 101) && (position.y > 163 && position.y < 243)) {
+                if (positions[3].availablity) {
+                    makeMove(positions[6], positions[3]);
+                } else if (positions[7].availablity) {
+                    makeMove(positions[6], positions[7]);
+                }
+            }
+            //p7
+            else if ((position.x > 102 && position.x < 202) && (position.y > 163 && position.y < 243)) {
+                if (positions[4].availablity) {
+                    makeMove(positions[7], positions[4]);
+                } else if (positions[6].availablity) {
+                    makeMove(positions[7], positions[6]);
+                } else if (positions[8].availablity) {
+                    makeMove(positions[7], positions[8]);
+                }
+            }
+            //p8
+            else if ((position.x > 203 && position.x < 303) && (position.y > 163 && position.y < 243)) {
+                if (positions[5].availablity) {
+                    makeMove(positions[8], positions[5]);
+                } else if (positions[7].availablity) {
+                    makeMove(positions[8], positions[7]);
+                }
+            }
+            if (checkGameResult(positions)) {
+                displayMessage();
+            }
+        })
     }
-    mixThePuzzel();
-
-    let positions = [];
-    positions.push(new PuzzelBoardPosition(0, 0, false, 0, index[0]));
-    positions.push(new PuzzelBoardPosition(101, 0, false, 1, index[1]));
-    positions.push(new PuzzelBoardPosition(202, 0, false, 2, index[2]));
-    positions.push(new PuzzelBoardPosition(0, 81, false, 3, index[3]));
-    positions.push(new PuzzelBoardPosition(101, 81, false, 4, index[4]));
-    positions.push(new PuzzelBoardPosition(202, 81, false, 5, index[5]));
-    positions.push(new PuzzelBoardPosition(0, 162, false, 6, index[6]));
-    positions.push(new PuzzelBoardPosition(101, 162, false, 7, index[7]));
-    positions.push(new PuzzelBoardPosition(202, 162, false, 8, index[8]));
-    positions.forEach((element) => {
-        if (element.currentPlaceHolder == 9)
-            element.availablity = true;
-    })
-
-    let puzzelEntryNumbers = [];
-    puzzelEntryNumbers.push(new PuzzelEntry(positions[0], index[0], 0));
-    puzzelEntryNumbers.push(new PuzzelEntry(positions[1], index[1], 1));
-    puzzelEntryNumbers.push(new PuzzelEntry(positions[2], index[2], 2));
-    puzzelEntryNumbers.push(new PuzzelEntry(positions[3], index[3], 3));
-    puzzelEntryNumbers.push(new PuzzelEntry(positions[4], index[4], 4));
-    puzzelEntryNumbers.push(new PuzzelEntry(positions[5], index[5], 5));
-    puzzelEntryNumbers.push(new PuzzelEntry(positions[6], index[6], 6));
-    puzzelEntryNumbers.push(new PuzzelEntry(positions[7], index[7], 7));
-    puzzelEntryNumbers.push(new PuzzelEntry(positions[8], index[8], 8));
-
-    let easyGameCanvas = document.getElementById('easy-puzzel');
-    canvasContext = easyGameCanvas.getContext('2d');
-    canvasContext.clearRect(0, 0, easyGameCanvas.width, easyGameCanvas.height);
-    puzzelEntryNumbers.forEach((element) => {
-        drawNumberImg(element.position.x, element.position.y, element.puzzelNumber);
-    })
-    easyGameCanvas.addEventListener('click', (event) => {
-        event.preventDefault();
-        //set the time to 10min 
-        gameTimer(300, resetGame);
-        let position = getMousePos(easyGameCanvas, event);
-        console.log(position);
-        //p0
-        if (position.x > 0 && position.x < 101 && position.y > 0 && position.y < 81) {
-            if (positions[1].availablity) {
-                makeMove(positions[0], positions[1]);
-            } else if (positions[3].availablity) {
-                makeMove(positions[0], positions[3]);
-            }
-        }
-        //p1
-        if (position.x > 102 && position.x < 202 && position.y > 0 && position.y < 81) {
-            if (positions[0].availablity) {
-                makeMove(positions[1], positions[0]);
-            } else if (positions[2].availablity) {
-                makeMove(positions[1], positions[2]);
-            } else if (positions[4].availablity) {
-                makeMove(positions[1], positions[4]);
-            }
-        }
-        //p2
-        if (position.x > 203 && position.x < 303 && position.y > 0 && position.y < 81) {
-            if (positions[1].availablity) {
-                makeMove(positions[2], positions[1]);
-            } else if (positions[5].availablity) {
-                makeMove(positions[2], positions[5]);
-            }
-        }
-        //p3
-        if (position.x > 0 && position.x < 101 && position.y > 82 && position.y < 162) {
-            if (positions[0].availablity) {
-                makeMove(positions[3], positions[0]);
-            } else if (positions[4].availablity) {
-                makeMove(positions[3], positions[4]);
-            } else if (positions[6].availablity) {
-                makeMove(positions[3], positions[6]);
-            }
-        }
-        //p4
-        if (position.x > 102 && position.x < 202 && position.y > 82 && position.y < 162) {
-            if (positions[1].availablity) {
-                makeMove(positions[4], positions[1]);
-            } else if (positions[3].availablity) {
-                makeMove(positions[4], positions[3]);
-            } else if (positions[5].availablity) {
-                makeMove(positions[4], positions[5]);
-            } else if (positions[7].availablity) {
-                makeMove(positions[4], positions[7]);
-            }
-        }
-        //p5
-        if (position.x > 203 && position.x < 303 && position.y > 82 && position.y < 162) {
-            if (positions[2].availablity) {
-                makeMove(positions[5], positions[2]);
-            } else if (positions[4].availablity) {
-                makeMove(positions[5], positions[4]);
-            } else if (positions[8].availablity) {
-                if (positions[8].currentPlaceHolder == 9) {
-                    positions[8].currentPlaceHolder = 6;
-                }
-                makeMove(positions[5], positions[8]);
-            }
-        }
-        //p6
-        if (position.x > 0 && position.x < 101 && position.y > 163 && position.y < 243) {
-            if (positions[3].availablity) {
-                makeMove(positions[6], positions[3]);
-            } else if (positions[7].availablity) {
-                makeMove(positions[6], positions[7]);
-            }
-        }
-        //p7
-        if (position.x > 102 && position.x < 202 && position.y > 163 && position.y < 243) {
-            if (positions[4].availablity) {
-                makeMove(positions[7], positions[4]);
-            } else if (positions[6].availablity) {
-                makeMove(positions[7], positions[6]);
-            } else if (positions[8].availablity) {
-                if (positions[8].currentPlaceHolder == 9) {
-                    positions[8].currentPlaceHolder = 8;
-                }
-                makeMove(positions[7], positions[8]);
-            }
-        }
-        //p8
-        if (position.x > 203 && position.x < 303 && position.y > 163 && position.y < 243) {
-            if (positions[5].availablity) {
-                makeMove(positions[8], positions[5]);
-            } else if (positions[7].availablity) {
-                makeMove(positions[8], positions[7]);
-            }
-        }
-
-        if (checkGameResult(positions)) {
-            displayMessage();
-        }
-
-    })
-
-}
-
-
-
-
-//make it harder
+    //make it harder
 let harderPuzzel = function() {
     currentGame = "harderPuzzel";
     let index = [];
@@ -296,7 +287,7 @@ let harderPuzzel = function() {
     }
     mixThePuzzel();
 
-    let positions = [];
+    this.positions = [];
     positions.push(new PuzzelBoardPosition(0, 0, false, 0, index[0]));
     positions.push(new PuzzelBoardPosition(101, 0, false, 1, index[1]));
     positions.push(new PuzzelBoardPosition(202, 0, false, 2, index[2]));
@@ -358,7 +349,7 @@ let harderPuzzel = function() {
             }
         }
         //p1...0,2,5
-        if (position.x > 102 && position.x < 202 && position.y > 0 && position.y < 81) {
+        else if (position.x > 102 && position.x < 202 && position.y > 0 && position.y < 81) {
             if (positions[0].availablity) {
                 makeMove(positions[1], positions[0]);
             } else if (positions[2].availablity) {
@@ -368,7 +359,7 @@ let harderPuzzel = function() {
             }
         }
         //p2...1,3,6
-        if (position.x > 203 && position.x < 303 && position.y > 0 && position.y < 81) {
+        else if (position.x > 203 && position.x < 303 && position.y > 0 && position.y < 81) {
             if (positions[1].availablity) {
                 makeMove(positions[2], positions[1]);
             } else if (positions[3].availablity) {
@@ -378,7 +369,7 @@ let harderPuzzel = function() {
             }
         }
         //p3...2,7
-        if (position.x > 304 && position.x < 404 && position.y > 0 && position.y < 81) {
+        else if (position.x > 304 && position.x < 404 && position.y > 0 && position.y < 81) {
             if (positions[2].availablity) {
                 makeMove(positions[3], positions[2]);
             } else if (positions[7].availablity) {
@@ -386,7 +377,7 @@ let harderPuzzel = function() {
             }
         }
         //p4....0,5,8
-        if (position.x > 0 && position.x < 101 && position.y > 82 && position.y < 162) {
+        else if (position.x > 0 && position.x < 101 && position.y > 82 && position.y < 162) {
             if (positions[0].availablity) {
                 makeMove(positions[4], positions[0]);
             } else if (positions[5].availablity) {
@@ -396,7 +387,7 @@ let harderPuzzel = function() {
             }
         }
         //p5...1,4,6,9
-        if (position.x > 102 && position.x < 202 && position.y > 82 && position.y < 162) {
+        else if (position.x > 102 && position.x < 202 && position.y > 82 && position.y < 162) {
             if (positions[1].availablity) {
                 makeMove(positions[5], positions[1]);
             } else if (positions[4].availablity) {
@@ -408,7 +399,7 @@ let harderPuzzel = function() {
             }
         }
         //p6...2,5,7,10
-        if (position.x > 203 && position.x < 303 && position.y > 82 && position.y < 162) {
+        else if (position.x > 203 && position.x < 303 && position.y > 82 && position.y < 162) {
             if (positions[2].availablity) {
                 makeMove(positions[6], positions[2]);
             } else if (positions[5].availablity) {
@@ -420,7 +411,7 @@ let harderPuzzel = function() {
             }
         }
         //p7..3,6,11
-        if (position.x > 304 && position.x < 404 && position.y > 82 && position.y < 162) {
+        else if (position.x > 304 && position.x < 404 && position.y > 82 && position.y < 162) {
             if (positions[3].availablity) {
                 makeMove(positions[7], positions[3]);
             } else if (positions[6].availablity) {
@@ -430,7 +421,7 @@ let harderPuzzel = function() {
             }
         }
         //p8...4,9,12
-        if (position.x > 0 && position.x < 101 && position.y > 163 && position.y < 243) {
+        else if (position.x > 0 && position.x < 101 && position.y > 163 && position.y < 243) {
             if (positions[4].availablity) {
                 makeMove(positions[8], positions[4]);
             } else if (positions[9].availablity) {
@@ -441,7 +432,7 @@ let harderPuzzel = function() {
         }
 
         //p9...5,8,10,13
-        if (position.x > 102 && position.x < 202 && position.y > 163 && position.y < 243) {
+        else if (position.x > 102 && position.x < 202 && position.y > 163 && position.y < 243) {
             if (positions[5].availablity) {
                 makeMove(positions[9], positions[5]);
             } else if (positions[8].availablity) {
@@ -453,7 +444,7 @@ let harderPuzzel = function() {
             }
         }
         //p10...6,9,11,14
-        if (position.x > 203 && position.x < 303 && position.y > 163 && position.y < 243) {
+        else if (position.x > 203 && position.x < 303 && position.y > 163 && position.y < 243) {
             if (positions[6].availablity) {
                 makeMove(positions[10], positions[6]);
             } else if (positions[9].availablity) {
@@ -465,20 +456,17 @@ let harderPuzzel = function() {
             }
         }
         //p11..7,10,15
-        if (position.x > 304 && position.x < 404 && position.y > 163 && position.y < 243) {
+        else if (position.x > 304 && position.x < 404 && position.y > 163 && position.y < 243) {
             if (positions[7].availablity) {
                 makeMove(positions[11], positions[7]);
             } else if (positions[10].availablity) {
                 makeMove(positions[11], positions[10]);
             } else if (positions[15].availablity) {
-                if (positions[15].currentPlaceHolder == 16) {
-                    positions[15].currentPlaceHolder = 12;
-                }
                 makeMove(positions[11], positions[15]);
             }
         }
         //p12...8,13
-        if (position.x > 0 && position.x < 101 && position.y > 244 && position.y < 324) {
+        else if (position.x > 0 && position.x < 101 && position.y > 244 && position.y < 324) {
             if (positions[8].availablity) {
                 makeMove(positions[12], positions[8]);
             } else if (positions[13].availablity) {
@@ -486,7 +474,7 @@ let harderPuzzel = function() {
             }
         }
         //p13...9,12,14
-        if (position.x > 102 && position.x < 202 && position.y > 244 && position.y < 324) {
+        else if (position.x > 102 && position.x < 202 && position.y > 244 && position.y < 324) {
             if (positions[9].availablity) {
                 makeMove(positions[13], positions[9]);
             } else if (positions[12].availablity) {
@@ -496,20 +484,17 @@ let harderPuzzel = function() {
             }
         }
         //p14...10,13,15
-        if (position.x > 203 && position.x < 303 && position.y > 244 && position.y < 324) {
+        else if (position.x > 203 && position.x < 303 && position.y > 244 && position.y < 324) {
             if (positions[10].availablity) {
                 makeMove(positions[14], positions[10]);
             } else if (positions[13].availablity) {
                 makeMove(positions[14], positions[13]);
             } else if (positions[15].availablity) {
-                if (positions[15].currentPlaceHolder == 16) {
-                    positions[15].currentPlaceHolder = 15;
-                }
                 makeMove(positions[14], positions[15]);
             }
         }
         //p15...11,14
-        if (position.x > 304 && position.x < 404 && position.y > 244 && position.y < 324) {
+        else if (position.x > 304 && position.x < 404 && position.y > 244 && position.y < 324) {
             if (positions[11].availablity) {
                 makeMove(positions[15], positions[11]);
             } else if (positions[14].availablity) {

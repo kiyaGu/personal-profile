@@ -125,6 +125,9 @@ app.post('/getReadmedata', (req, res) => {
 });
 
 process.setMaxListeners(0);
-app.listen(process.env.PORT || 3333, () => {
-    console.log('Server is listening on port 3333. Ready to accept requests!');
-});
+module.exports = app;
+if (!module.parent) {
+    app.listen(process.env.PORT || 3333, () => {
+        console.log('Server is listening on port 3333. Ready to accept requests!');
+    })
+}

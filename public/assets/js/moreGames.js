@@ -5,12 +5,15 @@ function moreGames() {
     // When the user clicks on <span> (x), close the modal
     closeButton.onclick = function() {
             modal.style.display = "none";
+            $('#game-timer').countdown('destroy');
         }
         //when the user clicks anywhere outside of the modal, close the modal
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
+            $('#game-timer').countdown('destroy');
         }
+
     }
     $('#btn-more-game').click(function(event) {
         event.preventDefault();

@@ -4,7 +4,7 @@
     "description": "This is a portfolio page built as part of CYF summar brake project ",
     "main": "server.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "mocha"
     },
     "repository": {
         "type": "git",
@@ -30,5 +30,9 @@
         "node-fetch": "^1.7.2",
         "node-pre-gyp": "^0.6.36",
         "nodemailer": "^4.0.1"
+    },
+    "devDependencies": {
+        "mocha": "^3.5.0",
+        "zombie": "^5.0.7"
     }
 }
