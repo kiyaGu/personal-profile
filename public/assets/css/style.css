@@ -2218,7 +2218,8 @@ footer p {
     #buttons-container {
         flex-direction: column;
         align-content: center;
-        width: 100%;
+        width: 70%;
+        margin: 0 auto;
     }
     #buttons-container button:first-of-type {
         margin-bottom: 1em;
@@ -2233,6 +2234,10 @@ footer p {
         right: 70px;
         top: 10%;
         font-size: .8em;
+        color: cornsilk;
+    }
+    #more-game #result span {
+        font-size: 1em;
     }
     /* === contact me === */
     #contact-me-section {
