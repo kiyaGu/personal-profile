@@ -46,8 +46,13 @@ let drawNumberImg = function(dx, dy, i) {
     else if (currentGame == "harderPuzzel")
         img.src = "/assets/images/images/puzzel15/numbers" + i + ".gif";
     img.addEventListener("load", function() {
-        canvasContext.clearRect(dx, dy, 100, 80);
-        canvasContext.drawImage(img, dx, dy);
+        if (currentGame == "harderPuzzel") {
+            canvasContext.clearRect(dx, dy, 80, 70);
+            canvasContext.drawImage(img, dx, dy, 80, 70);
+        } else {
+            canvasContext.clearRect(dx, dy, 100, 80);
+            canvasContext.drawImage(img, dx, dy);
+        }
     });
 }
 
@@ -289,21 +294,21 @@ let harderPuzzel = function() {
 
     this.positions = [];
     positions.push(new PuzzelBoardPosition(0, 0, false, 0, index[0]));
-    positions.push(new PuzzelBoardPosition(101, 0, false, 1, index[1]));
-    positions.push(new PuzzelBoardPosition(202, 0, false, 2, index[2]));
-    positions.push(new PuzzelBoardPosition(303, 0, false, 3, index[3]));
-    positions.push(new PuzzelBoardPosition(0, 81, false, 4, index[4]));
-    positions.push(new PuzzelBoardPosition(101, 81, false, 5, index[5]));
-    positions.push(new PuzzelBoardPosition(202, 81, false, 6, index[6]));
-    positions.push(new PuzzelBoardPosition(303, 81, false, 7, index[7]));
-    positions.push(new PuzzelBoardPosition(0, 162, false, 8, index[8]));
-    positions.push(new PuzzelBoardPosition(101, 162, false, 9, index[9]));
-    positions.push(new PuzzelBoardPosition(202, 162, false, 10, index[10]));
-    positions.push(new PuzzelBoardPosition(303, 162, false, 11, index[11]));
-    positions.push(new PuzzelBoardPosition(0, 243, false, 12, index[12]));
-    positions.push(new PuzzelBoardPosition(101, 243, false, 13, index[13]));
-    positions.push(new PuzzelBoardPosition(202, 243, false, 14, index[14]));
-    positions.push(new PuzzelBoardPosition(303, 243, false, 15, index[15]));
+    positions.push(new PuzzelBoardPosition(81, 0, false, 1, index[1]));
+    positions.push(new PuzzelBoardPosition(162, 0, false, 2, index[2]));
+    positions.push(new PuzzelBoardPosition(243, 0, false, 3, index[3]));
+    positions.push(new PuzzelBoardPosition(0, 71, false, 4, index[4]));
+    positions.push(new PuzzelBoardPosition(81, 71, false, 5, index[5]));
+    positions.push(new PuzzelBoardPosition(162, 71, false, 6, index[6]));
+    positions.push(new PuzzelBoardPosition(243, 71, false, 7, index[7]));
+    positions.push(new PuzzelBoardPosition(0, 142, false, 8, index[8]));
+    positions.push(new PuzzelBoardPosition(81, 142, false, 9, index[9]));
+    positions.push(new PuzzelBoardPosition(162, 142, false, 10, index[10]));
+    positions.push(new PuzzelBoardPosition(243, 142, false, 11, index[11]));
+    positions.push(new PuzzelBoardPosition(0, 213, false, 12, index[12]));
+    positions.push(new PuzzelBoardPosition(81, 213, false, 13, index[13]));
+    positions.push(new PuzzelBoardPosition(162, 213, false, 14, index[14]));
+    positions.push(new PuzzelBoardPosition(243, 213, false, 15, index[15]));
     positions.forEach((element) => {
         if (element.currentPlaceHolder == 16)
             element.availablity = true;
@@ -340,8 +345,9 @@ let harderPuzzel = function() {
         let position = getMousePos(harderGameCanvas, event);
         //set the time to 10min 
         gameTimer(600, resetGame);
+
         //p0..1,4
-        if (position.x > 0 && position.x < 101 && position.y > 0 && position.y < 81) {
+        if (position.x > 0 && position.x < 81 && position.y > 0 && position.y < 71) {
             if (positions[1].availablity) {
                 makeMove(positions[0], positions[1]);
             } else if (positions[4].availablity) {
@@ -349,7 +355,7 @@ let harderPuzzel = function() {
             }
         }
         //p1...0,2,5
-        else if (position.x > 102 && position.x < 202 && position.y > 0 && position.y < 81) {
+        else if (position.x > 82 && position.x < 162 && position.y > 0 && position.y < 71) {
             if (positions[0].availablity) {
                 makeMove(positions[1], positions[0]);
             } else if (positions[2].availablity) {
@@ -359,7 +365,7 @@ let harderPuzzel = function() {
             }
         }
         //p2...1,3,6
-        else if (position.x > 203 && position.x < 303 && position.y > 0 && position.y < 81) {
+        else if (position.x > 163 && position.x < 243 && position.y > 0 && position.y < 71) {
             if (positions[1].availablity) {
                 makeMove(positions[2], positions[1]);
             } else if (positions[3].availablity) {
@@ -369,7 +375,7 @@ let harderPuzzel = function() {
             }
         }
         //p3...2,7
-        else if (position.x > 304 && position.x < 404 && position.y > 0 && position.y < 81) {
+        else if (position.x > 244 && position.x < 324 && position.y > 0 && position.y < 71) {
             if (positions[2].availablity) {
                 makeMove(positions[3], positions[2]);
             } else if (positions[7].availablity) {
@@ -377,7 +383,7 @@ let harderPuzzel = function() {
             }
         }
         //p4....0,5,8
-        else if (position.x > 0 && position.x < 101 && position.y > 82 && position.y < 162) {
+        else if (position.x > 0 && position.x < 81 && position.y > 72 && position.y < 142) {
             if (positions[0].availablity) {
                 makeMove(positions[4], positions[0]);
             } else if (positions[5].availablity) {
@@ -387,7 +393,7 @@ let harderPuzzel = function() {
             }
         }
         //p5...1,4,6,9
-        else if (position.x > 102 && position.x < 202 && position.y > 82 && position.y < 162) {
+        else if (position.x > 82 && position.x < 162 && position.y > 72 && position.y < 142) {
             if (positions[1].availablity) {
                 makeMove(positions[5], positions[1]);
             } else if (positions[4].availablity) {
@@ -399,7 +405,7 @@ let harderPuzzel = function() {
             }
         }
         //p6...2,5,7,10
-        else if (position.x > 203 && position.x < 303 && position.y > 82 && position.y < 162) {
+        else if (position.x > 163 && position.x < 243 && position.y > 72 && position.y < 142) {
             if (positions[2].availablity) {
                 makeMove(positions[6], positions[2]);
             } else if (positions[5].availablity) {
@@ -411,7 +417,7 @@ let harderPuzzel = function() {
             }
         }
         //p7..3,6,11
-        else if (position.x > 304 && position.x < 404 && position.y > 82 && position.y < 162) {
+        else if (position.x > 244 && position.x < 324 && position.y > 72 && position.y < 142) {
             if (positions[3].availablity) {
                 makeMove(positions[7], positions[3]);
             } else if (positions[6].availablity) {
@@ -421,7 +427,7 @@ let harderPuzzel = function() {
             }
         }
         //p8...4,9,12
-        else if (position.x > 0 && position.x < 101 && position.y > 163 && position.y < 243) {
+        else if (position.x > 0 && position.x < 81 && position.y > 143 && position.y < 213) {
             if (positions[4].availablity) {
                 makeMove(positions[8], positions[4]);
             } else if (positions[9].availablity) {
@@ -432,7 +438,7 @@ let harderPuzzel = function() {
         }
 
         //p9...5,8,10,13
-        else if (position.x > 102 && position.x < 202 && position.y > 163 && position.y < 243) {
+        else if (position.x > 82 && position.x < 162 && position.y > 143 && position.y < 213) {
             if (positions[5].availablity) {
                 makeMove(positions[9], positions[5]);
             } else if (positions[8].availablity) {
@@ -444,7 +450,7 @@ let harderPuzzel = function() {
             }
         }
         //p10...6,9,11,14
-        else if (position.x > 203 && position.x < 303 && position.y > 163 && position.y < 243) {
+        else if (position.x > 163 && position.x < 243 && position.y > 143 && position.y < 213) {
             if (positions[6].availablity) {
                 makeMove(positions[10], positions[6]);
             } else if (positions[9].availablity) {
@@ -456,7 +462,7 @@ let harderPuzzel = function() {
             }
         }
         //p11..7,10,15
-        else if (position.x > 304 && position.x < 404 && position.y > 163 && position.y < 243) {
+        else if (position.x > 244 && position.x < 324 && position.y > 143 && position.y < 213) {
             if (positions[7].availablity) {
                 makeMove(positions[11], positions[7]);
             } else if (positions[10].availablity) {
@@ -466,7 +472,7 @@ let harderPuzzel = function() {
             }
         }
         //p12...8,13
-        else if (position.x > 0 && position.x < 101 && position.y > 244 && position.y < 324) {
+        else if (position.x > 0 && position.x < 81 && position.y > 214 && position.y < 284) {
             if (positions[8].availablity) {
                 makeMove(positions[12], positions[8]);
             } else if (positions[13].availablity) {
@@ -474,7 +480,7 @@ let harderPuzzel = function() {
             }
         }
         //p13...9,12,14
-        else if (position.x > 102 && position.x < 202 && position.y > 244 && position.y < 324) {
+        else if (position.x > 82 && position.x < 162 && position.y > 214 && position.y < 284) {
             if (positions[9].availablity) {
                 makeMove(positions[13], positions[9]);
             } else if (positions[12].availablity) {
@@ -484,7 +490,7 @@ let harderPuzzel = function() {
             }
         }
         //p14...10,13,15
-        else if (position.x > 203 && position.x < 303 && position.y > 244 && position.y < 324) {
+        else if (position.x > 163 && position.x < 243 && position.y > 214 && position.y < 284) {
             if (positions[10].availablity) {
                 makeMove(positions[14], positions[10]);
             } else if (positions[13].availablity) {
@@ -494,7 +500,7 @@ let harderPuzzel = function() {
             }
         }
         //p15...11,14
-        else if (position.x > 304 && position.x < 404 && position.y > 244 && position.y < 324) {
+        else if (position.x > 244 && position.x < 324 && position.y > 214 && position.y < 284) {
             if (positions[11].availablity) {
                 makeMove(positions[15], positions[11]);
             } else if (positions[14].availablity) {
