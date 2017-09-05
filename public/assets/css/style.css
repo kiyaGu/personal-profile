@@ -2144,7 +2144,7 @@ footer p {
     #game #game-container {
         flex-direction: column;
     }
-    #game-section article:first-child {
+    #game-section article:first-of-type {
         width: 95%;
     }
     #game-section {
@@ -2198,7 +2198,10 @@ footer p {
     }
     /* ========= more game =========== */
     #more-game-container {
-        margin-top: .5em;
+        margin: 0 auto;
+    }
+    #more-game-container {
+        padding: 3em 1.5em;
     }
     #game-wrapper {
         margin-top: 1em;
@@ -2239,6 +2242,7 @@ footer p {
         right: 70px;
         top: 10%;
         font-size: .8em;
+        color: cornsilk;
         background: linear-gradient(to bottom, rgba(0, 0, 0, .5), rgba(0, 0, 0, .9));
     }
     #more-game #result span {
