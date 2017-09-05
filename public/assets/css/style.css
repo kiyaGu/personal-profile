@@ -2198,9 +2198,6 @@ footer p {
     }
     /* ========= more game =========== */
     #more-game-container {
-        margin: 0 auto;
-    }
-    #more-game-container {
         padding: 3em 1.5em;
     }
     #game-wrapper {
