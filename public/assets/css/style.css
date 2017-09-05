@@ -2193,6 +2193,47 @@ footer p {
     #send_game_try ul li i {
         color: #fec85d;
     }
+    /* ========= more game =========== */
+    #more-game-container {
+        margin-top: .5em;
+    }
+    #game-wrapper {
+        margin-top: 1em;
+        align-self: center;
+        padding: auto;
+        width: auto;
+    }
+    #puzzel-game-container {
+        height: auto;
+        width: auto;
+        margin: 10% 0;
+    }
+    .game-canvas {
+        cursor: pointer;
+        margin-bottom: 1em;
+    }
+    #harder-puzzel-container {
+        display: none;
+    }
+    #buttons-container {
+        flex-direction: column;
+        align-content: center;
+        width: 100%;
+    }
+    #buttons-container button:first-of-type {
+        margin-bottom: 1em;
+    }
+    #resultContainer {
+        font-size: 1em;
+    }
+    #more-game #result span {
+        font-size: 1.2em;
+    }
+    #game-timer {
+        right: 70px;
+        top: 10%;
+        font-size: .8em;
+    }
     /* === contact me === */
     #contact-me-section {
         height: auto;

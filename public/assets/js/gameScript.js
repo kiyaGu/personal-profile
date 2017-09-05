@@ -182,7 +182,7 @@ let easierPuzzel = function() {
         easyGameCanvas.addEventListener('click', (event) => {
             event.preventDefault();
             //set the time to 10min 
-            gameTimer(300, resetGame);
+            gameTimer(180, resetGame);
             let position = getMousePos(easyGameCanvas, event);
 
             //p0
@@ -344,7 +344,7 @@ let harderPuzzel = function() {
         event.preventDefault();
         let position = getMousePos(harderGameCanvas, event);
         //set the time to 10min 
-        gameTimer(600, resetGame);
+        gameTimer(300, resetGame);
 
         //p0..1,4
         if (position.x > 0 && position.x < 81 && position.y > 0 && position.y < 71) {
