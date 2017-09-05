@@ -2144,6 +2144,9 @@ footer p {
     #game #game-container {
         flex-direction: column;
     }
+    #game-section article:first-child {
+        width: 95%;
+    }
     #game-section {
         padding-top: 40px;
     }
@@ -2226,15 +2229,17 @@ footer p {
     }
     #resultContainer {
         font-size: 1em;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, .5), rgba(0, 0, 0, .9));
     }
     #more-game #result span {
         font-size: 1.2em;
     }
     #game-timer {
+        margin: 0 auto;
         right: 70px;
         top: 10%;
         font-size: .8em;
-        color: cornsilk;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, .5), rgba(0, 0, 0, .9));
     }
     #more-game #result span {
         font-size: 1em;
