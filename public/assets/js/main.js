@@ -55,25 +55,25 @@ $(document).ready(function() {
     TweenMax.staggerFrom('#hire-me-top-hr', 14, { y: -140, opacity: 0, delay: 25, scale: 0.2, ease: Back.easeOut });
     TweenMax.staggerFrom('#hire-me-bottom-hr', 14, { y: 1000, opacity: 0, delay: 25, scale: 0.2, ease: Back.easeOut });
     //set up ScrollMagic
-    var controller = new ScrollMagic.Controller({
-        globalSceneOptions: {
-            triggerHook: "onLeave"
-        }
-    });
-    //atractions animation
-    var attractionstween = TweenMax.staggerFromTo('#about-me-detail', 1, { opacity: 0, scale: 0 }, {
-        delay: 1,
-        opacity: 1,
-        scale: 1,
-        ease: Back.easeOut
-    });
+    // var controller = new ScrollMagic.Controller({
+    //     globalSceneOptions: {
+    //         triggerHook: "onLeave"
+    //     }
+    // });
+    // //atractions animation
+    // var attractionstween = TweenMax.staggerFromTo('#about-me', 1, { opacity: 0, scale: 0 }, {
+    //     delay: 1,
+    //     opacity: 1,
+    //     scale: 1,
+    //     ease: Back.easeOut
+    // });
 
-    var topoffset = 43;
-    var scene = new ScrollMagic.Scene({
-            triggerElement: '#about-me-section',
-            offset: -topoffset
-        }).setTween(attractionstween)
-        .addTo(controller);
+    // var topoffset = 43;
+    // var scene = new ScrollMagic.Scene({
+    //         triggerElement: '#about-me-section',
+    //         offset: -topoffset
+    //     }).setTween(attractionstween)
+    //     .addTo(controller);
     //to change the active navigation when the user scrolls to different sections
     changeActiveTopNavigation();
     //animate the progressbar/skills bar when the usesr scrolls
