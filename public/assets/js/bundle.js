@@ -375,7 +375,36 @@ $(document).ready(function() {
     $('.collapsed').click(function() {
         $('.navbar-wrapper ul').toggle("slow");
     });
+    //tweenmax animation of social media links
+    TweenMax.from('#profile-pic', 2, { right: 0, opacity: 0, rotation: 90, scale: 1 });
+    TweenMax.staggerFrom('#under-typed', 45, { y: 0, opacity: 0, delay: 3.5, scale: 0.2, ease: Back.easeOut });
+    TweenMax.staggerFrom('#landing-social-links .badge', 3, { opacity: 0, left: 400, rotation: 360, scale: .2, delay: 20, ease: Back.easeOut }, 2);
 
+    TweenMax.staggerFrom('#move-down a', 8, { x: -100, opacity: 0, rotation: 360, scale: .2, delay: 38, ease: Back.easeIn });
+    TweenMax.staggerFrom('#move-down i', 10, { opacity: 0, rotation: 360, scale: .5, delay: 40 });
+    TweenMax.staggerFrom('.hire-me button', 14, { y: 0, opacity: 0, delay: 29, rotation: 90, scale: 0.1, ease: Back.easeIn });
+    TweenMax.staggerFrom('#hire-me-top-hr', 14, { y: -140, opacity: 0, delay: 25, scale: 0.2, ease: Back.easeOut });
+    TweenMax.staggerFrom('#hire-me-bottom-hr', 14, { y: 1000, opacity: 0, delay: 25, scale: 0.2, ease: Back.easeOut });
+    //set up ScrollMagic
+    var controller = new ScrollMagic.Controller({
+        globalSceneOptions: {
+            triggerHook: "onLeave"
+        }
+    });
+    //atractions animation
+    var attractionstween = TweenMax.staggerFromTo('#about-me-detail', 1, { opacity: 0, scale: 0 }, {
+        delay: 1,
+        opacity: 1,
+        scale: 1,
+        ease: Back.easeOut
+    });
+
+    var topoffset = 43;
+    var scene = new ScrollMagic.Scene({
+            triggerElement: '#about-me-section',
+            offset: -topoffset
+        }).setTween(attractionstween)
+        .addTo(controller);
     //to change the active navigation when the user scrolls to different sections
     changeActiveTopNavigation();
     //animate the progressbar/skills bar when the usesr scrolls
