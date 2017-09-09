@@ -1473,21 +1473,60 @@ article#experience {
     background-size: cover;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    margin: 2em 5%;
+    border-radius: 3px;
+    min-height: 300px;
+    overflow-y: auto;
+    padding: 3em 5% 3em 8%;
+    align-content: center;
     position: relative;
     margin-top: .5em;
 }
 
+.game-canvas {
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+#harder-puzzel-container {
+    display: none;
+}
+
+#container #buttons-container {
+    text-align: center;
+}
+
+#buttons-container button:first-of-type {
+    /*margin-right: 2em;*/
+    padding: .4em 3em;
+}
+
+#resultContainer {
+    color: #fff;
+    font-size: 1.4em;
+    text-transform: uppercase;
+}
+
+#more-game #result {
+    -webkit-animation-duration: 3s;
+    -moz-animation-delay: 2s;
+    -ms-animation-iteration-count: 10;
+}
+
+#result span {
+    font-size: 1.5em;
+    color: #fec951;
+}
+
 #game-wrapper {
     align-self: center;
-    padding: 1em auto;
-    width: 450px;
+    padding: 1em;
+    text-align: center;
 }
 
 #puzzel-game-container {
     height: auto;
     width: auto;
-    margin: 10%;
 }
 
 .game-canvas {
@@ -1531,12 +1570,6 @@ article#experience {
 }
 
 #more-game #result {
-    -vendor-animation-duration: 3s;
-    -vendor-animation-delay: 2s;
-    -vendor-animation-iteration-count: 10;
-}
-
-#more-game #result {
     color: cornsilk;
 }
 
@@ -1574,9 +1607,14 @@ article#experience {
     padding-top: .7em;
     color: #CF4A39;
     text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-#game-timer span {
+#game-timer p#expiry-text {
+    color: #CF4A39;
+    font-size: 1.2em;
+    text-align: center;
     text-transform: uppercase;
     font-weight: bold;
 }
@@ -1664,8 +1702,8 @@ article#experience {
 .error-animate {
     border: 1.5px solid red !important;
     text-transform: capitalize;
-    -vendor-animation-duration: 2s;
-    -vendor-animation-iteration-count: 3;
+    -webkit-animation-duration: 3s;
+    -ms-animation-iteration-count: 10;
     animation-duration: 2s;
     animation-iteration-count: 3;
 }
@@ -2119,8 +2157,7 @@ footer p {
         text-decoration: underline;
     }
     /*=======github readme =========*/
-    #github-read-me .close i,
-    #more-game .close i {
+    #github-read-me .close i {
         right: 0px;
         top: 10px;
     }
@@ -2197,13 +2234,26 @@ footer p {
         color: #fec85d;
     }
     /* ========= more game =========== */
+    #more-game .close i {
+        right: 5px;
+        top: 0px;
+    }
+    #more-game {
+        padding-top: 10px;
+        margin: 0;
+    }
     #more-game-container {
-        padding: 3em 1.5em;
+        padding: 1.3em 0;
+        width: 95%;
+        overflow: hidden;
+    }
+    #more-game-container hr:first-of-type {
+        padding-bottom: 0;
     }
     #game-wrapper {
-        margin-top: 1em;
+        margin-top: 0;
         align-self: center;
-        padding: auto;
+        padding: 5px;
         width: auto;
     }
     #puzzel-game-container {
@@ -2236,14 +2286,16 @@ footer p {
     }
     #game-timer {
         margin: 0 auto;
+        padding: 0 auto;
         right: 70px;
-        top: 10%;
+        top: 6%;
         font-size: .8em;
         color: cornsilk;
         background: linear-gradient(to bottom, rgba(0, 0, 0, .5), rgba(0, 0, 0, .9));
     }
-    #more-game #result span {
-        font-size: 1em;
+    #game-timer p#expiry-text {
+        font-size: 1.3em;
+        margin-bottom: 0;
     }
     /* === contact me === */
     #contact-me-section {

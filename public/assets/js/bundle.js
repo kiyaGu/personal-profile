@@ -459,7 +459,7 @@ function moreGames() {
         event.preventDefault();
         document.querySelector('#more-game').style.display = "block";
         //load easier puzzel by default
-        easierPuzzel();
+        // easierPuzzel();
     });
 }
 module.exports = moreGames;
