@@ -10,6 +10,8 @@ The following technologies have been in one way or the other used for constructi
   * [Browserify](http://browserify.org/) - To use the power of 'require' in the client/browser side in the same way that it is used in NodeJS at the backend and it helped very much in code refactoring.
   * vanila JavaScript - For adding some behaviour to the frontend and for handling some logics such as form validation, accessing DOM elements and setting attributes, etc.
   * [jQuery](https://jquery.com/) - Used for DOM traversal and manipulation, event handling, animation, and Ajax requests.
+  * [TweenMax](https://greensock.com/tweenmax) - Used for adding some animation to the page.
+  * [jQuery Countdown](http://keith-wood.name/countdown.html) - A jQuery plugin used to set timer for the second game.
 #### Backend
   * [NodeJS](https://nodejs.org/en/) + [express.js](https://expressjs.com/) for handling backend logic
   * [nodemailer](https://nodemailer.com/about/) - To send emails from the contact me section
