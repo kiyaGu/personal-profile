@@ -43,7 +43,7 @@
 }
 */
 
-@import url('https://fonts.googleapis.com/css?family=Fondamento');
+@import url('https://fonts.googleapis.com/css?family=Fondamento|Jim+Nightshade|Raleway:400,700');
 body {
     line-height: 150%;
     font: 200 1em/1.5em 'Raleway', Helvetica, sans-serif;
@@ -83,7 +83,7 @@ body {
 #education-section article,
 #skills-section article,
 #experience-section article,
-#portfolio,
+#portfolio-section #portfolio,
 #game-section article:first-child,
 #contact-me-section article,
 footer .container {
@@ -473,6 +473,16 @@ hr {
 
 
 /*style for the typed library*/
+
+#my-name {
+    font-family: 'Jim Nightshade', cursive;
+    color: #fec951;
+    font-weight: bold;
+    font-size: 1.2em;
+    line-height: 1;
+    text-decoration: underline;
+    text-decoration-color: red;
+}
 
 #typed:after {
     visibility: visible;
@@ -1192,8 +1202,10 @@ article#experience {
 }
 
 #github-api-data h2 i {
-    color: green;
+    color: #fff;
     font-size: 1.3em;
+    background: #000;
+    border-radius: 50%;
 }
 
 #github-api-data hr:first-of-type {
@@ -1203,8 +1215,8 @@ article#experience {
 }
 
 #github-api-data hr:last-of-type {
-    width: 90%;
-    margin-right: 20px;
+    width: 93%;
+    margin-left: 2px;
 }
 
 #github-api-data a {
@@ -1224,7 +1236,7 @@ article#experience {
 #more-game {
     display: none;
     position: fixed;
-    z-index: 100;
+    z-index: 300;
     padding-top: 100px;
     left: 0;
     top: 0;
@@ -1238,7 +1250,7 @@ article#experience {
 
 #portfolio-section #github-read-me-container,
 #more-game-container {
-    margin: 2em 5%;
+    margin: 2em 7.4%;
     background-size: 100%;
     border-radius: 3px;
     min-height: 300px;
@@ -1246,11 +1258,12 @@ article#experience {
     display: flex;
     flex-direction: column;
     position: relative;
-    padding: 3em 5% 3em 8%;
+    padding: 3em 5% 3em 5%;
 }
 
 #portfolio-section #github-read-me-container {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .9)), url(../images/dark-bg.jpg);
+    color: #fff;
 }
 
 #github-read-me-container h1:first-letter {
@@ -1495,15 +1508,9 @@ article#experience {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    display: flex;
-    flex-direction: column;
-    margin: 2em 5%;
-    border-radius: 3px;
     min-height: 300px;
     overflow-y: auto;
-    padding: 3em 5% 3em 8%;
     align-content: center;
-    position: relative;
     margin-top: .5em;
 }
 
@@ -1715,8 +1722,8 @@ article#experience {
 }
 
 #contact-me hr {
-    margin: 10px;
-    width: 95%;
+    margin: 10px 40px;
+    width: 93%;
 }
 
 #contact-me .container {
@@ -1738,6 +1745,8 @@ article#experience {
 
 #contact-form .required {
     color: red;
+    font-size: 1.3em;
+    font-weight: bold;
 }
 
 #social-link-bottom>ul {
