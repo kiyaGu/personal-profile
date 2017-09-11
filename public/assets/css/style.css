@@ -90,7 +90,7 @@ footer .container {
     display: flex;
     /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .9)), url(../images/dark-bg.jpg); */
     background: #24414C;
-    opacity: .95;
+    opacity: .85;
     margin: 0 8.63%;
     color: #fff;
     width: 85%;
@@ -537,11 +537,20 @@ hr {
     line-height: 2;
 }
 
-#typed i {
+#typed #terminal {
     color: #fd7576;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: 5s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-duration: 2s;
+    -moz-animation-delay: 5s;
+    -moz-animation-iteration-count: infinite;
+    animation-duration: 2s;
+    animation-delay: 5s;
+    animation-iteration-count: infinite;
 }
 
-#typed i,
+#typed #terminal,
 #typed strong {
     font-weight: 800;
     font-size: 54px;
@@ -1909,7 +1918,7 @@ footer p {
         width: 50%;
         padding: 0;
     }
-    #typed i,
+    #typed #terminal,
     #typed strong {
         font-weight: 800;
         font-size: 24px;
