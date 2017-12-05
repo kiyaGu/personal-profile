@@ -83,7 +83,7 @@ body {
 #education-section article,
 #skills-section article,
 #experience-section article,
-#portfolio-section #portfolio,
+#portfolio-section article:first-child,
 #game-section article:first-child,
 #contact-me-section article,
 footer .container {
@@ -1888,7 +1888,7 @@ footer p {
     #education-section article,
     #skills-section article,
     #experience-section article,
-    #portfolio-section article,
+    #portfolio-section article:first-of-type,
     #game-section article,
     #contact-me-section article,
     footer .container {
@@ -2177,9 +2177,7 @@ footer p {
         flex-shrink: 0;
         margin: .2em 0;
     }
-    #github-api-data h2 i {
-        color: green;
-    }
+
     #github-api-data hr:first-of-type {
         width: 90%;
         margin: 3px 0 1em 0;
