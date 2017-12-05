@@ -1,9 +1,9 @@
 $(document).ready(function() {
     /*====Browsers don't have the require method defined, but Node.js does. 
-                                    With Browserify you can write code that uses require in the same way that you would use it in Node.
-                                    1.  npm install --global browserify 
-                                    2. browserify main.js -o bundle.js //by >cd to the directory public/assets/js/
-                                    =======================*/
+                                                With Browserify you can write code that uses require in the same way that you would use it in Node.
+                                                1.  npm install --global browserify 
+                                                2. browserify main.js -o bundle.js //by >cd to the directory public/assets/js/
+                                                =======================*/
     const animateTheProgressbar = require("./animateTheProgressbar");
     //to hide the navbar when the user scrolls down but to show it when they scroll up
     const hideNavbarOnScrollDown = require("./hideNavbarOnScrollDown");
@@ -29,30 +29,30 @@ $(document).ready(function() {
     const smothlyScroll = require("./smothlyScroll");
 
     /*===============
-                                            landing page typewriter 
-                                                   ===================*/
+                                                        landing page typewriter 
+                                                               ===================*/
     //typed.js set the speed of the typewriter and the target element
     $(function() {
         $("#typed").typed({
             stringsElement: $("#typed-strings"),
-            typeSpeed: 80
+            typeSpeed: 30
         });
     });
     /*===============
-                                        for the hamberger navigation menu in small screns to show and hide the navigation links
-                                         ===================*/
+                                                    for the hamberger navigation menu in small screns to show and hide the navigation links
+                                                     ===================*/
     $(".collapsed").click(function() {
         $(".navbar-wrapper ul").toggle("slow");
     });
     //tweenmax animation of social media links
-    // TweenMax.from("#profile-pic", 2, {
-    //     right: 0,
-    //     opacity: 0,
-    //     rotation: 90,
-    //     scale: 1
-    // });
+    TweenMax.from("#typed-strings", 2, {
+        right: 0,
+        opacity: 0,
+        rotation: 90,
+        scale: 1
+    });
 
-    TweenMax.staggerFrom("#under-typed", 5, {
+    TweenMax.staggerFrom("#under-typed", 45, {
         y: 0,
         opacity: 0,
         delay: 3.5,
