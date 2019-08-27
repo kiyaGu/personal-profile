@@ -32,7 +32,7 @@
         "nodemailer": "^4.0.1"
     },
     "devDependencies": {
-        "mocha": "^3.5.0",
-        "zombie": "^5.0.7"
+        "mocha": "^6.2.0",
+        "zombie": "^6.1.4"
     }
 }
