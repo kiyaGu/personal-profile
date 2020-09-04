@@ -25,7 +25,7 @@
         "express-formidable": "^1.0.0",
         "express-handlebars": "^3.1.0",
         "github": "^9.3.1",
-        "mongodb": "^2.2.31",
+        "mongodb": "^3.1.13",
         "mongoose": "^5.7.5",
         "node-fetch": "^1.7.2",
         "node-pre-gyp": "^0.6.36",
